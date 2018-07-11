@@ -1,0 +1,12 @@
+rofi.combi-modi:   	 window,drun
+rofi.theme:        	 lb
+rofi.font:         	 Source Code Pro 9
+rofi.lines:        	 5
+rofi.columns:      	 1
+rofi.width:        	 30
+rofi.location:        	 0
+rofi.separator-style:    dash
+rofi.show-icons:   	 true
+rofi.fake-transparency:  true
+rofi.fake-background:    background
+rofi.modi:        	 combi

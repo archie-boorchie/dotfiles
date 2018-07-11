@@ -1,0 +1,28 @@
+rofi.modi: drun,window
+rofi.display-drun: run
+rofi.display-window: win
+
+rofi.color-enabled: true
+rofi.color-window: argb:ea292d37, #292d37, #17a086
+rofi.color-normal: argb:00292d37, #ffffff, argb:00292d37, argb:00292d37, #17a086
+rofi.color-active: argb:00292d37, #ffaadd, argb:00292d37, argb:00292d37, #44ff99
+rofi.color-urgent: argb:00292d37, #ffffff, argb:00292d37, argb:00292d37, #ffffff
+
+rofi.font: Source Code Pro 9
+rofi.sidebar-mode: true
+rofi.eh: 2
+rofi.line-margin: 2
+rofi.separator-style: solid
+rofi.hide-scrollbar: false
+rofi.lines: 3
+rofi.width: -42
+rofi.padding: 370
+rofi.bw: 0
+rofi.auto-select: false
+
+rofi.show-icons: true
+rofi.drun-icon-theme: Adwaita
+
+rofi.matching: fuzzy
+
+rofi.location: 0
