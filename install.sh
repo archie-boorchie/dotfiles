@@ -4,7 +4,14 @@
 #   This is a script that can be used to create      #
 #   a user's environment, after a basic arch linux   #
 #   installation and the creation of a sudo user.    #
+<<<<<<< HEAD
 #   More on that on file tips_for_installation.      #
+=======
+<<<<<<< HEAD
+#   More on that on file tips_for_installation.      #
+=======
+>>>>>>> 9801ddd384f98b1d99ec8e8f4e609a370e18db9e
+>>>>>>> 19c9d5df3224f8261e3d99684ff0473c417f0d0b
 #                                                    #
 #   Created by:                                      #
 #   Lampros Trifyllis [archie-boorchie @ GitHub]     #
