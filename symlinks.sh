@@ -8,6 +8,7 @@
 # We can overwite files with ln, but not folders...
 # For that, it suffices to delete each file/folder 
 # using "rm -rf ..." before creating the symlink. 
+# This is done automatically by this script.
 
 # dotfiles belonging to /home/user/
 linkstohome=(

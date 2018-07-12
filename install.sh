@@ -4,7 +4,8 @@
 #   This is a script that can be used to create      #
 #   a user's environment, after a basic arch linux   #
 #   installation and the creation of a sudo user.    #
-#   More on that on file tips_for_installation.      #
+#   More on that on file tips_for_installation,      #
+#   inside dotfiles folder.                          #
 #                                                    #
 #   Created by:                                      #
 #   Lampros Trifyllis [archie-boorchie @ GitHub]     #
