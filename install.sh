@@ -1,39 +1,61 @@
 #!/bin/bash
 
 ######################################################
+#                                                    #
 #   This is a script that can be used to create      #
 #   a user's environment, after a basic arch linux   #
 #   installation and the creation of a sudo user.    #
-#   More on that on file tips_for_installation,      #
-#   inside dotfiles folder.                          #
+#   More on that on file tips_for_installation.      #
 #                                                    #
 #   Created by:                                      #
 #   Lampros Trifyllis [archie-boorchie @ GitHub]     #
+#                                                    #
 ######################################################
+
 
 # During basic installation base and base-devel 
 # are assumed to be installed.
+# git and vim are also assumed to be 
+# installed upon basic installation.
 
-# First, we create a list of the packages from [CORE]
+
+# First, we create a list of the packages from the 
+# official repositories.
+
 corepackages=(
+# 
+# I do not use a display manager
+# 
 # Window manager
 i3 # install the i3 group
 #
-# Git is used for aur packages, dotfile management etc
-git # install git
+# git # Git is used for aur packages, dotfile management etc
+# It is assumed to already be installed
 #
 # Editors
-vim # main editor
+# vim # main editor
+# It is assumed to already be installed
 # something for GUI? maybe atom or gedit
 #
 # PDF viewer
-mupdf # as an alternative I have llpp
+mupdf # as an alternative I have llpp from AUR
 cups # for printing
 # something more mainstream? maybe evince or zathura
+#
+# LaTeX
+texlive-most # includes TeX Live applications
+texlive-langgreek # fonts and support for typesetting Greek
+biber # a Unicode-capable BibTeX replacement for biblatex users
 #
 # File managers
 ranger # main
 thunar # for GUI
+#
+# Printing
+cups  # the CUPS Printing System - daemon package
+# You now have to Enable and start org.cups.cupsd.service (maybe automatically from this script)
+print-manager # GUI-tool for managing print jobs and printers (KDE)
+#
 #
 # Launcher
 rofi
@@ -58,7 +80,9 @@ numix-circle
 # virtual machines
 virtualbox
 #
-# Screenshot, video recording
+# Screen capturing
+maim #  Simple command line utility that takes screenshots (better than scrot)
+# add a screencast tool
 #
 # Presentation, multiscreen etc
 pdfpc # pdf presentation console
@@ -94,19 +118,28 @@ rm -rf aurman/
 
 echo -ne "\naurman will now be used to manage the AUR packages\n"
 
-# List of programs from [AUR]
-# aurman is installed via git
-# and then it is used to install the rest
+
+# Now we create a list of packages from [AUR].
+# aurman is already installed via git,
+# and then it will be used to install the rest aur packages.
+
 aurpackages=(
 #
 # PDF viewer
 llpp 
+#
 # Data syncing
 dropbox
 #
 speedtest # check internet speed in terminal
-pdftk # command line pdf file modifier
+#
+# pdf utilities
+pdftk # pdftk is a simple tool for doing everyday things with PDF documents
+crop-pdf # command line tool to crop PDF files
+#
+# Screenshot, video recording
 screenkey # show the keys you type on the screen
+#
 )
 
 # install aur packages
