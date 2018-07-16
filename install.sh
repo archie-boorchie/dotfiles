@@ -68,6 +68,10 @@ ttf-dejavu # needs the correct package
 qutebrowser # main
 firefox # for some demanding tasks
 #
+# Network utilities
+curl # An URL retrieval utility and library
+wget # Network utility to retrieve files from the Web
+#
 # office apps
 libreoffice-fresh # with new program enhancements
 hunspell # for spell-checking
@@ -151,9 +155,9 @@ done
 
 echo -ne "\nAUR packages are ready\n"
 
-# Final step: manage dotfiles, create symlinks for them
-echo -ne "\nCreating symlinks for the dotfiles\n"
-
-sh ~/dotfiles/symlinks.sh
-
-echo -ne "\nSystem is now ready to use!\n"
+## Final step: manage dotfiles, create symlinks for them
+#echo -ne "\nCreating symlinks for the dotfiles\n"
+#
+#sh ~/dotfiles/symlinks.sh
+#
+#echo -ne "\nSystem is now ready to use!\n"
