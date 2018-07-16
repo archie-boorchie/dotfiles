@@ -99,17 +99,17 @@ cmatrix
 )
 
 # update and synchronise pacman
-echo -ne "\nsynchronising pacman\n"
+echo -ne "\nSynchronising pacman\n"
 sudo pacman -Syy
 
-# install core packages
-echo -ne "\ninstalling packages from CORE repository\n"
+# install official repository packages
+echo -ne "\nInstalling packages from official repositories\n"
 for X in "${corepackages[@]}"
 do
 	sudo pacman -S --noconfirm $X
 done
 
-echo -ne "\nCORE packages are ready\n"
+echo -ne "\nOfficial repository packages are ready\n"
 
 # Install aurman to help with the AUR package management
 echo -ne "\nInstalling aurman to help with the AUR package management\n"
@@ -155,9 +155,11 @@ done
 
 echo -ne "\nAUR packages are ready\n"
 
-## Final step: manage dotfiles, create symlinks for them
-#echo -ne "\nCreating symlinks for the dotfiles\n"
-#
-#sh ~/dotfiles/symlinks.sh
-#
-#echo -ne "\nSystem is now ready to use!\n"
+# Final step: manage dotfiles, create symlinks for them
+echo -ne "\nCreating symlinks for the dotfiles\n"
+
+sh ~/dotfiles/symlinks.sh
+
+echo -ne "\nSystem is now ready to use!\n"
+
+echo -ne "\nExiting script install.sh\n"
