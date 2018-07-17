@@ -15,8 +15,6 @@
 
 # During basic installation base and base-devel 
 # are assumed to be installed.
-# git and vim are also assumed to be 
-# installed upon basic installation.
 
 
 # First, we create a list of the packages from the 
@@ -29,12 +27,11 @@ corepackages=(
 # Window manager
 i3 # install the i3 group
 #
-# git # Git is used for aur packages, dotfile management etc
-# It is assumed to already be installed
+git # Git is used for aur packages, dotfile management etc
+# It is probably already be installed for cloning this repository
 #
 # Editors
-# vim # main editor
-# It is assumed to already be installed
+vim # main editor
 # something for GUI? maybe atom or gedit
 #
 # PDF viewer
@@ -106,7 +103,7 @@ sudo pacman -Syy
 echo -ne "\nInstalling packages from official repositories\n"
 for X in "${corepackages[@]}"
 do
-	sudo pacman -S --noconfirm $X
+	sudo pacman -S --noconfirm --needed $X
 done
 
 echo -ne "\nOfficial repository packages are ready\n"
@@ -150,7 +147,7 @@ screenkey # show the keys you type on the screen
 echo -ne "\nInstalling aur packages with aurman\n"
 for Y in "${aurpackages[@]}"
 do
-	aurman -S --noconfirm $Y
+	aurman -S --noconfirm --needed $Y
 done
 
 echo -ne "\nAUR packages are ready\n"
