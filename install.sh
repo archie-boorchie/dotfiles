@@ -21,6 +21,23 @@
 # official repositories.
 
 corepackages=(
+#
+# Python and python modules
+python2 # Python v2. Needed many times for package management
+python # Latest version of Python (currently v2)
+python-matplotlib # A python plotting library, making publication quality plots
+python-numpy # Scientific tools for Python
+#
+# Packages for pacman
+reflector # A script to retrieve and filter the latest Pacman mirror list
+pacman-contrib # Contributed scripts and tools for pacman systems 
+#
+# Core utilities
+fd # Simple, fast and user-friendly alternative to find
+mlocate # Merging locate/updatedb implementation
+# 
+# Archive management
+atool # Script for managing file archives of various types
 # 
 # I do not use a display manager
 # 
@@ -31,7 +48,7 @@ git # Git is used for aur packages, dotfile management etc
 # It is probably already be installed for cloning this repository
 #
 # Editors
-vim # main editor
+gvim # main editor is vim - I use gvim package to get the +xterm_clipboard option for vim
 # something for GUI? maybe atom or gedit
 #
 # PDF viewer
@@ -53,7 +70,6 @@ cups  # the CUPS Printing System - daemon package
 # You now have to Enable and start org.cups.cupsd.service (maybe automatically from this script)
 print-manager # GUI-tool for managing print jobs and printers (KDE)
 #
-#
 # Launcher
 rofi
 #
@@ -64,6 +80,7 @@ ttf-dejavu # needs the correct package
 # Internet browsers
 qutebrowser # main
 firefox # for some demanding tasks
+flashplugin # flash plugin for firefox
 #
 # Network utilities
 curl # An URL retrieval utility and library
@@ -78,8 +95,11 @@ hunspell-gr # for greek spell-checking
 # Icons
 numix-circle
 #
-# virtual machines
+# Virtual machines
 virtualbox
+#
+# Toolkits for image etc convertions and so on 
+imagemagick # An image viewing/manipulation program
 #
 # Screen capturing
 maim #  Simple command line utility that takes screenshots (better than scrot)
@@ -93,6 +113,10 @@ mons # for easy multiscreen management
 fortune-mod
 cowsay
 cmatrix
+#
+# Uncategorised
+nmap # Utility for network discovery and security auditing
+#
 )
 
 # update and synchronise pacman
@@ -126,11 +150,18 @@ echo -ne "\naurman will now be used to manage the AUR packages\n"
 
 aurpackages=(
 #
+# Python modules
+python-nmap # A Python library which helps in using the nmap port scanner
+# 
+# Archive management
+dtrx # An intelligent archive extraction tool
+#
 # PDF viewer
 llpp 
 #
 # Data syncing
 dropbox
+owncloud
 #
 speedtest # check internet speed in terminal
 #

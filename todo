@@ -1,3 +1,9 @@
 make script to automatically enable etc services.
 needed for: curp , nm , ...
 
+#######
+make a bin folder in home:
+mkdir ~/bin
+$ export PATH=~/bin:$PATH
+(but do it permanent)
+#######
