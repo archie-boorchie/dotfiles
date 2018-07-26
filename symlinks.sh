@@ -47,7 +47,9 @@ if [ "$yn" = "yes" ]; then
         	rm -rf ~/.$X
         	ln -sfn ~/dotfiles/x ~/.$X
         done
+
     echo -ne "\ncreating softlinks to /home/user/.config\n"
+
     for X in "${linkstoconfig[@]}"
         do
         	rm -rf ~/.config/$X

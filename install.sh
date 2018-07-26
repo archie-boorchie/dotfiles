@@ -35,6 +35,7 @@ pacman-contrib # Contributed scripts and tools for pacman systems
 # Core utilities
 fd # Simple, fast and user-friendly alternative to find
 mlocate # Merging locate/updatedb implementation
+htop # Interactive process viewer
 # 
 # Archive management
 atool # Script for managing file archives of various types
