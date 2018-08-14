@@ -235,6 +235,9 @@ bindsym $mod+Shift+g gaps inner all minus 1
 bindsym $mod+Ctrl+g gaps outer all plus 1
 bindsym $mod+Ctrl+Shift+g gaps outer all minus 1
 
+# enable floating for tor browser to avoid detection
+for_window [class="Tor Browser"] floating enable
+
 # autostart programs
 exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper.png
 exec_always --no-staruup-id unclutter
