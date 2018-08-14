@@ -240,11 +240,14 @@ bindsym $mod+Ctrl+Shift+g gaps outer all minus 1
 bindsym $mod+Shift+minus move scratchpad
 # Show the first scratchpad window
 bindsym $mod+minus scratchpad show
+# Create a scratchpad terminal (termite) at startup
+for_window [class="scratchpad_termite"] floating enable
 
 # enable floating for tor browser to avoid detection
 for_window [class="Tor Browser"] floating enable
 
 # autostart programs
 exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper.png
-exec_always --no-staruup-id unclutter
+exec_always --no-startup-id unclutter
 exec --no-startup-id termite
+exec_always --no-startup-id termite --name scratchpad_termite
