@@ -235,6 +235,12 @@ bindsym $mod+Shift+g gaps inner all minus 1
 bindsym $mod+Ctrl+g gaps outer all plus 1
 bindsym $mod+Ctrl+Shift+g gaps outer all minus 1
 
+# Using a scratchpad 
+# Make the currently focused window a scratchpad
+bindsym $mod+Shift+minus move scratchpad
+# Show the first scratchpad window
+bindsym $mod+minus scratchpad show
+
 # enable floating for tor browser to avoid detection
 for_window [class="Tor Browser"] floating enable
 
