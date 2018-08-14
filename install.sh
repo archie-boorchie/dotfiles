@@ -43,11 +43,14 @@ atool # Script for managing file archives of various types
 # I do not use a display manager
 # 
 # Window manager
-i3 # install the i3 group
+i3 # install the i3 group - i3gaps is the default
 # additionally, to save an i3 session we need
 perl-anyevent-i3
 perl-json-xs
 #
+# Desctop notification deamon
+dunst # Customizable and lightweight notification-daemon
+# 
 git # Git is used for aur packages, dotfile management etc
 # It is probably already be installed for cloning this repository
 #
@@ -78,9 +81,17 @@ print-manager # GUI-tool for managing print jobs and printers (KDE)
 rofi
 #
 # Fonts
-adobe-source-code-pro-fonts
-ttf-dejavu # needs the correct package
+adobe-source-code-pro-fonts # Monospaced font family for user interface and coding environments
+adobe-source-sans-pro-fonts # Sans serif font family for user interface environments
+adobe-source-serif-pro-fonts # Serif typeface for setting text. Designed to complement Source Sans Pro
+terminus-font # Monospace bitmap font (for X11 and console) 
+ttf-dejavu
+ttf-font-awesome
+awesome-terminal-fonts
 #
+# Icon themes
+adwaita-icon-theme
+# 
 # Internet browsers
 qutebrowser # A keyboard-driven, vim-like browser based on PyQt5 (main browser)
 opera # A fast and secure web browser (for some demanding tasks)
