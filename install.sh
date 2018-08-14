@@ -44,6 +44,9 @@ atool # Script for managing file archives of various types
 # 
 # Window manager
 i3 # install the i3 group
+# additionally, to save an i3 session we need
+perl-anyevent-i3
+perl-json-xs
 #
 git # Git is used for aur packages, dotfile management etc
 # It is probably already be installed for cloning this repository
@@ -79,9 +82,14 @@ adobe-source-code-pro-fonts
 ttf-dejavu # needs the correct package
 #
 # Internet browsers
-qutebrowser # main
-firefox # for some demanding tasks
+qutebrowser # A keyboard-driven, vim-like browser based on PyQt5 (main browser)
+opera # A fast and secure web browser (for some demanding tasks)
+firefox # Standalone web browser from mozilla.org (for some demanding tasks)
 flashplugin # flash plugin for firefox
+#
+# Tor 
+tor # Anonymizing overlay network
+arm # Terminal status monitor for Tor relays
 #
 # Network utilities
 curl # An URL retrieval utility and library
@@ -157,6 +165,9 @@ python-nmap # A Python library which helps in using the nmap port scanner
 # Archive management
 dtrx # An intelligent archive extraction tool
 #
+# Tor 
+tor-browser # Tor Browser Bundle: anonymous browsing using Firefox and Tor (international PKGBUILD)
+#
 # PDF viewer
 llpp 
 #
@@ -171,7 +182,12 @@ pdftk # pdftk is a simple tool for doing everyday things with PDF documents
 crop-pdf # command line tool to crop PDF files
 #
 # Screenshot, video recording
-screenkey # show the keys you type on the screen
+screenkey # Show the keys you type on the screen
+#
+# Screens utils
+xorg-xrandr # Primitive command line interface to RandR extension
+arandr # Provide a simple visual front end for XRandR 1.2.
+xorg-xbacklight # RandR-based backlight control application
 #
 )
 
