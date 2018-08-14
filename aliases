@@ -1,0 +1,97 @@
+########################################### 
+
+# Temporary
+
+# Power off
+alias poweroff='sudo poweroff'
+
+# To-do List
+alias todo='clear; echo "Please enter new task"; read task; echo "$task" >> /home/lampros/todolist.txt'
+alias todolist='clear; echo "__________________________________________________"; echo "___________________ TO DO LIST ___________________"; echo "__________________________________________________"; echo ""; cat -b /home/lampros/todolist.txt; echo ""; echo "__________________________________________________";  echo "__________________________________________________"; echo ""'
+alias todonano='nano /home/lampros/todolist.txt'
+alias todoclear='echo "" > /home/lampros/todolist.txt'
+
+# USB Stick
+alias usb1='sudo mount /dev/sdb1 /media/usb1'
+alias usb2='sudo mount /dev/sdb2 /media/usb2'
+alias usb3='sudo mount /dev/sdb3 /media/usb3'
+alias usbb1='sudo umount /media/usb1'
+alias usbb2='sudo umount /media/usb2'
+alias usbb3='sudo umount /media/usb3'
+
+# Misc
+alias d='dict'
+alias time='clear; echo -ne "\n\n\n\n\n\n"; figlet `date` | lolcat -a -d 1 -s 12; fortune;read -rsn1 -p" ";echo'
+alias timer='while true; do echo -ne "`date`\n" | lolcat -a -d 12 -s 12 || break; done'
+alias weather='curl wttr.in/ioannina'
+alias cdc='cd;c'
+
+# Games
+alias myman='gnome-terminal --full-screen -e 'myman''
+
+# xdg-open - see in functions; go is used in 'silent mode'
+# alias go='xdg-open'
+
+# terminal at full-screen
+alias t='gnome-terminal --full-screen'
+alias tt='gnome-terminal --full-screen; exit'
+
+# handy short cuts
+alias h='history'
+alias c='clear'
+alias j='jobs -l'
+alias ee='exit'
+alias e='lolcat /home/lampros/.Wallpapers\ for\ Terminal/reaper.txt;sleep 1;exit'
+alias p='pwd'
+alias rmrf='\rm -rf'
+
+# better less 
+alias less="LESS='-RS#3NM~g' less"
+
+# Vanishing Cursor
+# alias noc='unclutter -idle 0.3 -root &'
+
+# Internet shortcut
+alias q='nohup qutebrowser >/dev/null 2>&1 &'
+alias f='nohup firefox >/dev/null 2>&1 &'
+alias g='nohup google-chrome >/dev/null 2>&1 &'
+alias gg='nohup google-chrome --kiosk >/dev/null 2>&1 &'
+
+# Volume and Backlight
+alias bri='xbacklight -set'
+alias vol='pactl set-sink-volume 1'
+
+# For battery status in terminal
+alias battery='upower -i $(upower -e | grep '/battery') | grep --color=never -E "state|to\ full|to\ empty|percentage"'
+
+# To turn monitor back on. See monitordump in .bash_functions for more
+alias monitoron='xrandr --output eDP1 --auto' 
+
+# Package management
+alias ins='sudo apt-get install'
+alias upd='sudo apt-get update'
+alias upg='sudo apt-get upgrade'
+alias pur='sudo apt-get purge'
+
+# Number of Workspaces, followed by  hsize or vsize and desired number
+alias workspaces='gsettings set org.compiz.core:/org/compiz/profiles/unity/plugins/core/'
+
+# List shortcuts
+alias ls='ls --color=auto'
+alias ll='ls -la --color=auto'
+alias la='ls -a --color=auto' 
+alias l.='ls -d .* --color=auto'
+
+# Trash-cli package
+alias rm='trash'
+
+# Popcorn Time
+alias popcorntime='cd; ./opt/Popcorn\ Time/Popcorn-Time &'
+
+# ASCII art Wallpapers with lolcat
+# See .bashrc last line -> Terminal Opens With WP Printed
+alias cwp='clear; cd /home/lampros/.Wallpapers\ for\ Terminal/; lolcat `ls | shuf -n 1`; cd ..;'
+alias pb='clear; cd /home/lampros/.Wallpapers\ for\ Terminal/; lolcat playboy.txt -S 7 ; cd ..'
+alias bm='clear; cd /home/lampros/.Wallpapers\ for\ Terminal/; lolcat bm.txt -S 280 -F 0.01 ; cd ..;'
+
+###########################################

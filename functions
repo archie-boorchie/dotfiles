@@ -1,0 +1,109 @@
+# Here are all user defined functions.
+# This file is called inside bashrc.
+
+# To create a new directory and instantly jump to that directory.
+mkdircd () { mkdir -p $1; cd $1; }
+
+# To use xdg-open in 'silent mode', i.e. no terminal output (else use it as an alias).
+go () { xdg-open "$1" >/dev/null 2>&1 & }
+
+# Use gedit in 'silent mode' in the background
+gedit () { nohup gedit "$1" >/dev/null 2>&1 & }
+
+# To extract any type of file.
+extract () {
+ if [ -z "$1" ]; then
+    # display usage if no parameters given
+    echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
+    echo "       extract <path/file_name_1.ext> [path/file_name_2.ext] [path/file_name_3.ext]"
+ else
+    for n in $@
+    do
+      if [ -f "$n" ] ; then
+          case "${n%,}" in
+            *.tar.bz2|*.tar.gz|*.tar.xz|*.tbz2|*.tgz|*.txz|*.tar) 
+                         tar xvf "$n"       ;;
+            *.lzma)      unlzma ./"$n"      ;;
+            *.bz2)       bunzip2 ./"$n"     ;;
+            *.rar)       unrar x -ad ./"$n" ;;
+            *.gz)        gunzip ./"$n"      ;;
+            *.zip)       unzip ./"$n"       ;;
+            *.z)         uncompress ./"$n"  ;;
+            *.7z|*.arj|*.cab|*.chm|*.deb|*.dmg|*.iso|*.lzh|*.msi|*.rpm|*.udf|*.wim|*.xar)
+                         7z x ./"$n"        ;;
+            *.xz)        unxz ./"$n"        ;;
+            *.exe)       cabextract ./"$n"  ;;
+            *)
+                         echo "extract: '$n' - unknown archive method"
+                         return 1
+                         ;;
+          esac
+      else
+          echo "'$n' - file does not exist"
+          return 1
+      fi
+    done
+fi
+}
+
+# System information.
+function mach()
+{
+    clear;
+    echo -e "\nMachine information:" ; uname -a
+    echo -e "\nUsers logged on:" ; w -h
+    echo -e "\nCurrent date :" ; date
+    echo -e "\nMachine status :" ; uptime
+    echo -e "\nMemory status :" ; free
+    echo -e "\nFilesystem status :"; df -h
+}
+
+# Provides a y/n question to open qutebrowser.
+quteopen () {
+	x=0
+	while [ $x -eq 0 ]
+	do
+	echo "Would you like to start Qutebrowser? [y/n]"
+	read ans
+	if [ $ans = y -o $ans = Y -o $ans = yes -o $ans = Yes -o $ans = YES ]
+	then
+		echo "Starting Qutebrowser..."
+		qutebrowser &
+		x=1	
+	elif [ $ans = n -o $ans = N -o $ans = no -o $ans = No -o $ans = NO ]
+	then
+		echo "Abort..."
+		x=1
+	else
+		echo "Please enter y/n"
+		sleep 0.4
+	fi
+	done
+	echo "Thanks for your time!"
+	return 0	
+}
+
+# Provides a y/n question to turn off laptop screen.
+monitordump () {
+	x=0
+	while [ $x -eq 0 ]
+	do
+	echo "CAUTION! THIS WILL DISABLE LAPTOP SCREEN! Would you like to turn off laptop screen? [y/n]"
+	read ans
+	if [ $ans = y -o $ans = Y -o $ans = yes -o $ans = Yes -o $ans = YES ]
+	then
+		echo "Laptop monitor turned off. To turn back on please type ' xrandr --output eDP1 --auto ' "
+		 xrandr --output eDP1 --off
+		x=1	
+	elif [ $ans = n -o $ans = N -o $ans = no -o $ans = No -o $ans = NO ]
+	then
+		echo "Main screen still on."
+		x=1
+	else
+		echo "CAUTION! THIS WILL DISABLE LAPTOP SCREEN! Please enter y/n"
+		sleep 0.4
+	fi
+	done
+	echo "Enjoy!"
+	return 0
+}

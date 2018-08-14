@@ -112,6 +112,12 @@ hunspell # for spell-checking
 hunspell-en # for english spell-checking
 hunspell-gr # for greek spell-checking
 # 
+# Utils to apply diff in PDF files
+diff-pdf-git # A simple tool for visually comparing two PDF files
+pdiff-git # Find differences between PDF documents
+visual-pdf-diff-git # Merges two PDF files into one PDF file and highlights their visual differences
+# also check the script in https://gist.github.com/timabell/9616807b2fe3fa60f234
+#
 # Icons
 numix-circle
 #
