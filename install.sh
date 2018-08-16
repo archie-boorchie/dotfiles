@@ -112,7 +112,8 @@ hunspell # for spell-checking
 hunspell-en # for english spell-checking
 hunspell-gr # for greek spell-checking
 # 
-# Utils to apply diff in PDF files
+# Utils to check PDF files for differences 
+diffpdf # Diffing pdf files visually or textually
 diff-pdf-git # A simple tool for visually comparing two PDF files
 pdiff-git # Find differences between PDF documents
 visual-pdf-diff-git # Merges two PDF files into one PDF file and highlights their visual differences
@@ -206,6 +207,11 @@ xorg-xrandr # Primitive command line interface to RandR extension
 arandr # Provide a simple visual front end for XRandR 1.2.
 xorg-xbacklight # RandR-based backlight control application
 #
+# Utils to check PDF files for differences 
+diff-pdf-git # A simple tool for visually comparing two PDF files
+pdiff-git # Find differences between PDF documents
+visual-pdf-diff-git # Merges two PDF files into one PDF file and highlights their visual differences
+# also check a script in https://gist.github.com/timabell/9616807b2fe3fa60f234
 )
 
 # install aur packages
