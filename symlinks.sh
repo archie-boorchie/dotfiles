@@ -30,7 +30,7 @@ if [ "$yn" = "yes" ]; then
     linkstoconfig=(
     aurman
     fish
-    i3
+    # it uses an i3 folder with many things inside!!!    i3
     llpp.conf
     neofetch
     powerline
@@ -49,15 +49,17 @@ if [ "$yn" = "yes" ]; then
         done
 
     echo -ne "\ncreating softlinks to /home/user/.config\n"
-
     for X in "${linkstoconfig[@]}"
         do
         	rm -rf ~/.config/$X
         	ln -sfn ~/dotfiles/$X ~/.config/$X
         done
     echo -ne "\ndone!\n"
-    echo -ne "\nYour config files are now loaded!\n"
 
+    echo -ne "\ncreating softlinks to program-specific directories\n"
+ 	ln -sfn ~/dotfiles/elinks.conf ~/.elinks/
+
+    echo -ne "\nYour config files are now loaded!\n"
 else
     echo -ne "\nYou may run the script symlinks.sh manually at any time.\n"
 fi
