@@ -22,65 +22,71 @@
 
 corepackages=(
 #
-# Python and python modules
+### Python and python modules
 python2 # Python v2. Needed many times for package management
 python # Latest version of Python (currently v2)
 python-matplotlib # A python plotting library, making publication quality plots
 python-numpy # Scientific tools for Python
 #
-# Packages for pacman
+### Packages for pacman
 reflector # A script to retrieve and filter the latest Pacman mirror list
 pacman-contrib # Contributed scripts and tools for pacman systems 
 #
-# Core utilities
+### Core utilities
 fd # Simple, fast and user-friendly alternative to find
 mlocate # Merging locate/updatedb implementation
 htop # Interactive process viewer
 # 
-# Archive management
+### Archive management
 atool # Script for managing file archives of various types
 # 
-# I do not use a display manager
+### I do not use a display manager
 # 
-# Window manager
+### Window manager
 i3 # install the i3 group - i3gaps is the default
 # additionally, to save an i3 session we need
 perl-anyevent-i3
 perl-json-xs
 #
-# Desctop notification deamon
+### Desctop notification deamon
 dunst # Customizable and lightweight notification-daemon
 # 
 git # Git is used for aur packages, dotfile management etc
 # It is probably already be installed for cloning this repository
 #
-# Editors
+### Editors
 gvim # main editor is vim - I use gvim package to get the +xterm_clipboard option for vim
 # something for GUI? maybe atom or gedit
 #
-# PDF viewer
+### PDF viewer
 mupdf # as an alternative I have llpp from AUR
 cups # for printing
 # something more mainstream? maybe evince or zathura
 #
-# LaTeX
+### LaTeX
 texlive-most # includes TeX Live applications
 texlive-langgreek # fonts and support for typesetting Greek
 biber # a Unicode-capable BibTeX replacement for biblatex users
 #
-# File managers
-ranger # main
-thunar # for GUI
+### File managers
+# console
+ranger # A simple, vim-like file manager
+# gui
+thunar # Modern file manager for Xfce
+# make thunar functional
+thunar-archive-plugin # Create and extract archives in Thunar
+thunar-media-tags-plugin # Adds special features for media files to the Thunar File Manager
+thunar-volman # Automatic management of removeable devices in Thunar
 #
-# Printing
+### Printing
 cups  # the CUPS Printing System - daemon package
 # You now have to Enable and start org.cups.cupsd.service (maybe automatically from this script)
 print-manager # GUI-tool for managing print jobs and printers (KDE)
 #
-# Launcher
+### Launcher
 rofi
 #
-# Fonts
+### Fonts
 adobe-source-code-pro-fonts # Monospaced font family for user interface and coding environments
 adobe-source-sans-pro-fonts # Sans serif font family for user interface environments
 adobe-source-serif-pro-fonts # Serif typeface for setting text. Designed to complement Source Sans Pro
@@ -89,59 +95,61 @@ ttf-dejavu
 ttf-font-awesome
 awesome-terminal-fonts
 #
-# Icon themes
+### Icon themes
 adwaita-icon-theme
 # 
-# Internet browsers
+### Internet browsers
+# gui
 qutebrowser # A keyboard-driven, vim-like browser based on PyQt5 (main browser)
-opera # A fast and secure web browser (for some demanding tasks)
 firefox # Standalone web browser from mozilla.org (for some demanding tasks)
 flashplugin # flash plugin for firefox
+# console
+elinks
 #
-# Tor 
+### Tor 
 tor # Anonymizing overlay network
 arm # Terminal status monitor for Tor relays
 #
-# Network utilities
+### Network utilities
 curl # An URL retrieval utility and library
 wget # Network utility to retrieve files from the Web
 #
-# office apps
+### Office apps
 libreoffice-fresh # with new program enhancements
 hunspell # for spell-checking
 hunspell-en # for english spell-checking
 hunspell-gr # for greek spell-checking
 # 
-# Utils to check PDF files for differences 
+### Utils to check PDF files for differences 
 diffpdf # Diffing pdf files visually or textually
 diff-pdf-git # A simple tool for visually comparing two PDF files
 pdiff-git # Find differences between PDF documents
 visual-pdf-diff-git # Merges two PDF files into one PDF file and highlights their visual differences
 # also check the script in https://gist.github.com/timabell/9616807b2fe3fa60f234
 #
-# Icons
+### Icons
 numix-circle
 #
-# Virtual machines
+### Virtual machines
 virtualbox
 #
-# Toolkits for image etc convertions and so on 
+### Toolkits for image etc convertions and so on 
 imagemagick # An image viewing/manipulation program
 #
-# Screen capturing
+### Screen capturing
 maim #  Simple command line utility that takes screenshots (better than scrot)
 # add a screencast tool
 #
-# Presentation, multiscreen etc
+### Presentation, multiscreen etc
 pdfpc # pdf presentation console
 mons # for easy multiscreen management
 #
-# For fun
+### For fun
 fortune-mod
 cowsay
 cmatrix
 #
-# Uncategorised
+### Uncategorised
 nmap # Utility for network discovery and security auditing
 #
 )
@@ -177,43 +185,43 @@ echo -ne "\naurman will now be used to manage the AUR packages\n"
 
 aurpackages=(
 #
-# Python modules
+### Python modules
 python-nmap # A Python library which helps in using the nmap port scanner
 # 
-# Archive management
+### Archive management
 dtrx # An intelligent archive extraction tool
 #
-# Tor 
+### Tor 
 tor-browser # Tor Browser Bundle: anonymous browsing using Firefox and Tor (international PKGBUILD)
 #
-# PDF viewer
+### PDF viewer
 llpp 
 #
-# Data syncing
+### Data syncing
 dropbox
 owncloud
 #
 speedtest # check internet speed in terminal
 #
-# pdf utilities
+### pdf utilities
 pdftk # pdftk is a simple tool for doing everyday things with PDF documents
 crop-pdf # command line tool to crop PDF files
 #
-# Screenshot, video recording
+### Screenshot, video recording
 screenkey # Show the keys you type on the screen
 #
-# Screens utils
+### Screens utils
 xorg-xrandr # Primitive command line interface to RandR extension
 arandr # Provide a simple visual front end for XRandR 1.2.
 xorg-xbacklight # RandR-based backlight control application
 #
-# Utils to check PDF files for differences 
+### Utils to check PDF files for differences 
 diff-pdf-git # A simple tool for visually comparing two PDF files
 pdiff-git # Find differences between PDF documents
 visual-pdf-diff-git # Merges two PDF files into one PDF file and highlights their visual differences
 # also check a script in https://gist.github.com/timabell/9616807b2fe3fa60f234
 #
-# RPGs
+### Tabletop RPGs
 roll # A tool to roll a user-defined dice sequence and display the result
 rolldice # A virtual dice roller
 dice-roller-git # A python dice rolling application using the standard dice notation
