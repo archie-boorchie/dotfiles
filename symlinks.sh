@@ -30,7 +30,7 @@ if [ "$yn" = "yes" ]; then
     linkstoconfig=(
     aurman
     fish
-    # it uses an i3 folder with many things inside!!!    i3
+    i3
     llpp.conf
     neofetch
     powerline

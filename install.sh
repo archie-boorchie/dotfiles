@@ -114,6 +114,15 @@ arm # Terminal status monitor for Tor relays
 curl # An URL retrieval utility and library
 wget # Network utility to retrieve files from the Web
 #
+### Science
+calc # Arbitrary precision console calculator
+stellarium # A stellarium with great graphics and a nice database of sky-objects
+celestia # Real-time space simulation
+units # Converts between different units
+kalzium # Periodic Table of Elements
+marble # Desktop Globe
+## add more map tools and meteorology tools
+#
 ### Office apps
 libreoffice-fresh # with new program enhancements
 hunspell # for spell-checking
@@ -126,6 +135,10 @@ diff-pdf-git # A simple tool for visually comparing two PDF files
 pdiff-git # Find differences between PDF documents
 visual-pdf-diff-git # Merges two PDF files into one PDF file and highlights their visual differences
 # also check the script in https://gist.github.com/timabell/9616807b2fe3fa60f234
+#
+### Time management
+calcurse # A text-based personal organizer
+remind # A sophisticated calendar and alarm program
 #
 ### Icons
 numix-circle
@@ -201,6 +214,7 @@ llpp
 dropbox
 owncloud
 #
+### Network utilities
 speedtest # check internet speed in terminal
 #
 ### pdf utilities
