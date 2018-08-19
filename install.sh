@@ -212,6 +212,14 @@ diff-pdf-git # A simple tool for visually comparing two PDF files
 pdiff-git # Find differences between PDF documents
 visual-pdf-diff-git # Merges two PDF files into one PDF file and highlights their visual differences
 # also check a script in https://gist.github.com/timabell/9616807b2fe3fa60f234
+#
+# RPGs
+roll # A tool to roll a user-defined dice sequence and display the result
+rolldice # A virtual dice roller
+dice-roller-git # A python dice rolling application using the standard dice notation
+rolisteam # Virtual tabletop software. It helps you to manage tabletop role playing games with remote friends/players.
+pcgen-git # An RPG Character Generator
+#
 )
 
 # install aur packages
