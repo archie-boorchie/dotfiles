@@ -110,11 +110,17 @@ elinks
 tor # Anonymizing overlay network
 arm # Terminal status monitor for Tor relays
 #
-### Network utilities
+### Network utilities 
 curl # An URL retrieval utility and library
 wget # Network utility to retrieve files from the Web
 #
-### Science
+### Youtube utilities 
+minitube # A native YouTube client in Qt. Watch YouTube videos without Flash Player
+mps-youtube # Terminal based YouTube jukebox with playlist management
+youtube-dl # A small command-line program to download videos from YouTube.com and a few more sites
+youtube-viewer # Command line utility for viewing YouTube videos
+#
+### Science 
 calc # Arbitrary precision console calculator
 stellarium # A stellarium with great graphics and a nice database of sky-objects
 celestia # Real-time space simulation
@@ -123,7 +129,7 @@ kalzium # Periodic Table of Elements
 marble # Desktop Globe
 ## add more map tools and meteorology tools
 #
-### Office apps
+### Office apps 
 libreoffice-fresh # with new program enhancements
 hunspell # for spell-checking
 hunspell-en # for english spell-checking
@@ -237,8 +243,6 @@ visual-pdf-diff-git # Merges two PDF files into one PDF file and highlights thei
 #
 ### Tabletop RPGs
 roll # A tool to roll a user-defined dice sequence and display the result
-rolldice # A virtual dice roller
-dice-roller-git # A python dice rolling application using the standard dice notation
 rolisteam # Virtual tabletop software. It helps you to manage tabletop role playing games with remote friends/players.
 pcgen-git # An RPG Character Generator
 #
