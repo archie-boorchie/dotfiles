@@ -120,6 +120,9 @@ mps-youtube # Terminal based YouTube jukebox with playlist management
 youtube-dl # A small command-line program to download videos from YouTube.com and a few more sites
 youtube-viewer # Command line utility for viewing YouTube videos
 #
+### Irc client 
+irssi # Modular text mode IRC client with Perl scripting
+#
 ### Science 
 calc # Arbitrary precision console calculator
 stellarium # A stellarium with great graphics and a nice database of sky-objects
