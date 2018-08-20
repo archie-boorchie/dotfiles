@@ -24,6 +24,7 @@ if [ "$yn" = "yes" ]; then
     bash_logout
     bash_profile
     bashrc
+    elinks
     )
     
     # dotfiles belonging to /home/user/.config
@@ -55,9 +56,6 @@ if [ "$yn" = "yes" ]; then
         	ln -sfn ~/dotfiles/$X ~/.config/$X
         done
     echo -ne "\ndone!\n"
-
-    echo -ne "\ncreating softlinks to program-specific directories\n"
- 	ln -sfn ~/dotfiles/elinks.conf ~/.elinks/
 
     echo -ne "\nYour config files are now loaded!\n"
 else
