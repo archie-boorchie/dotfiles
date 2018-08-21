@@ -25,7 +25,8 @@ if [ "$yn" = "yes" ]; then
     bash_profile
     bashrc
     elinks
-	xmodmaprc
+	Xmodmap
+	xinitrc
     )
     
     # dotfiles belonging to /home/user/.config
