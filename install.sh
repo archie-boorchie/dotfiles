@@ -155,6 +155,11 @@ numix-circle
 ### Virtual machines
 virtualbox
 #
+### Media players
+feh # Fast and light imlib2-based image viewer 
+mplayer # Media player for Linux 
+mpv # a free, open source, and cross-platform media player 
+#
 ### Toolkits for image etc convertions and so on 
 imagemagick # An image viewing/manipulation program
 #
