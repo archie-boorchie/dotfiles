@@ -92,6 +92,7 @@ adobe-source-sans-pro-fonts # Sans serif font family for user interface environm
 adobe-source-serif-pro-fonts # Serif typeface for setting text. Designed to complement Source Sans Pro
 terminus-font # Monospace bitmap font (for X11 and console) 
 ttf-dejavu
+ttf-noto
 ttf-font-awesome
 awesome-terminal-fonts
 #
@@ -154,6 +155,11 @@ numix-circle
 #
 ### Virtual machines
 virtualbox
+#
+### Media players
+feh # Fast and light imlib2-based image viewer 
+mplayer # Media player for Linux 
+mpv # a free, open source, and cross-platform media player 
 #
 ### Toolkits for image etc convertions and so on 
 imagemagick # An image viewing/manipulation program
