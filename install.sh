@@ -138,6 +138,7 @@ libreoffice-fresh # with new program enhancements
 hunspell # for spell-checking
 hunspell-en # for english spell-checking
 hunspell-gr # for greek spell-checking
+catdoc # A convertor for Microsoft Word, Excel, PowerPoint and RTF Files to text
 # 
 ### Utils to check PDF files for differences 
 diffpdf # Diffing pdf files visually or textually
