@@ -36,6 +36,7 @@ pacman-contrib # Contributed scripts and tools for pacman systems
 fd # Simple, fast and user-friendly alternative to find
 mlocate # Merging locate/updatedb implementation
 htop # Interactive process viewer
+lolcat # a colourful alternative to cat 
 # 
 ### Archive management
 atool # Script for managing file archives of various types
@@ -138,6 +139,7 @@ libreoffice-fresh # with new program enhancements
 hunspell # for spell-checking
 hunspell-en # for english spell-checking
 hunspell-gr # for greek spell-checking
+catdoc # A convertor for Microsoft Word, Excel, PowerPoint and RTF Files to text
 # 
 ### Utils to check PDF files for differences 
 diffpdf # Diffing pdf files visually or textually
@@ -212,6 +214,9 @@ echo -ne "\naurman will now be used to manage the AUR packages\n"
 # and then it will be used to install the rest aur packages.
 
 aurpackages=(
+#
+### TTYs 
+kmscon # Terminal emulator based on Kernel Mode Setting (KMS)
 #
 ### Python modules
 python-nmap # A Python library which helps in using the nmap port scanner
