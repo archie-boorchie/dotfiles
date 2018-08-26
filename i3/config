@@ -250,6 +250,7 @@ for_window [class="Tor Browser"] floating enable
 # autostart programs
 exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper.png
 exec_always --no-startup-id unclutter
+exec_always setxkbmap -option grp:alt_shift_toggle us,gr
 exec --no-startup-id termite
 
 # Create a scratchpad terminal (termite) at startup
