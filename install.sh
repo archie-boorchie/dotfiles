@@ -113,8 +113,16 @@ tor # Anonymizing overlay network
 arm # Terminal status monitor for Tor relays
 #
 ### Network utilities 
+networkmanager # Network connection manager and user applications
+nm-connection-editor # NetworkManager GUI connection editor and widgets
+network-manager-applet # Applet for managing network connections
+dnsmasq # Lightweight, easy to configure DNS forwarder and DHCP server
 curl # An URL retrieval utility and library
 wget # Network utility to retrieve files from the Web
+#
+### Vpn 
+openvpn # An easy-to-use, robust and highly configurable VPN (Virtual Private Network)
+networkmanager-openvpn # NetworkManager VPN plugin for OpenVPN
 #
 ### Youtube utilities 
 minitube # A native YouTube client in Qt. Watch YouTube videos without Flash Player
