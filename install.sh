@@ -216,6 +216,7 @@ echo -ne "\naurman will now be used to manage the AUR packages\n"
 aurpackages=(
 #
 ### TTYs 
+libtsm # kmscon dependency 
 kmscon # Terminal emulator based on Kernel Mode Setting (KMS)
 #
 ### Python modules
