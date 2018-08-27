@@ -40,6 +40,7 @@ lolcat # a colourful alternative to cat
 # 
 ### Archive management
 atool # Script for managing file archives of various types
+unzip # For extracting and viewing files in .zip archives
 # 
 ### I do not use a display manager
 # 
@@ -227,6 +228,9 @@ aurpackages=(
 libtsm # kmscon dependency 
 kmscon # Terminal emulator based on Kernel Mode Setting (KMS)
 #
+### Media players
+tiv # A simple image viewer that displays images directly in the terminal
+#
 ### Python modules
 python-nmap # A Python library which helps in using the nmap port scanner
 # 
@@ -246,7 +250,7 @@ owncloud
 ### Network utilities
 speedtest # check internet speed in terminal
 #
-### pdf utilities
+### PDF utilities
 pdftk # pdftk is a simple tool for doing everyday things with PDF documents
 crop-pdf # command line tool to crop PDF files
 #
