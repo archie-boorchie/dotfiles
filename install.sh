@@ -22,6 +22,10 @@
 
 corepackages=(
 #
+### Terminal 
+termite # A simple VTE-based terminal
+tmux # A terminal multiplexer	
+#
 ### Python and python modules
 python2 # Python v2. Needed many times for package management
 python # Latest version of Python (currently v2)
