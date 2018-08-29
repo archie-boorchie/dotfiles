@@ -7,3 +7,4 @@ mkdir ~/bin
 $ export PATH=~/bin:$PATH
 (but do it permanent)
 #######
+

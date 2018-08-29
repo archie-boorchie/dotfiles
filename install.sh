@@ -22,6 +22,10 @@
 
 corepackages=(
 #
+### X.org 
+xorg-server # Xorg X server
+xorg-xinit # X.Org initialisation program
+#
 ### Terminal 
 termite # A simple VTE-based terminal
 tmux # A terminal multiplexer	
