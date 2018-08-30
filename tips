@@ -8,7 +8,7 @@ and reflector my \emph{personal} preferences.
 }
 
 \section{Partition}
-I create 4 partitions: root (> ~25G), boot (200M), swap (2xRam) and home (rest). 
+I create 4 partitions: 1. root (> ~25G), 2. boot (200M), 3. swap (2xRam) and 4. home (rest). 
 Caution! Use primary partition for 4th partition, not extended. 
 
 run: mkfs.ext4 /dev/sdaX where X=1,2,4 and then make swap partition. 
@@ -23,21 +23,19 @@ mkdir /mnt/boot
 mount /dev/sda2 /mnt/boot
 mount /dev/sda4 /mnt/home
 
-choose a couple close mirrors and pacstrap only base to save time.
-after change root, install reflector, generate mirrorlist by 
+Choose a couple close mirrors and pacstrap only base to save time.
+After change root, install reflector, generate mirrorlist by 
 reflector --verbose --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
 
 and install base-devel, vim, git, networkmanager, grub.
 
-Change kernel to lts: 
+Change kernel to lts (keep the linux kernel as a backup) 
+and install headers: 
 
-pacman -S linux-lts
-(optional) check if kernel, ramdisk and fallback are available in ls -lsha /boot
-pacman -R linux
+pacman -S linux-headers linux-lts linux-lts-headers 
 grub-mkconfig -o /boot/grub/grub.cfg
 reboot
 
-install virtualbox hosts: virtualbox-host-dkms
 
 
 \section{Network manager}
@@ -45,13 +43,28 @@ To avoid manually configurating networks after reboot, install nm:
 
 pacman -S networkmanager
 
-and start/enable it
+and enable it:
 
 systemctl enable NetworkManager
 
+After reboot internet works out of the box. 
 
 \section{User add}
+Add a new user 
+
 useradd -m -g wheel myname
 
-visudo -> uncomment wheel group
+and give him root privileges by running 
+visudo and uncommentin wheel group (I use NOPASSWD option).
 
+
+
+
+\section{Prettify console}
+Install terminus fonts:
+
+pacman -S terminus-font
+
+To use terminus fonts in console do:
+
+echo "FONT=ter-114n" >> /etc/vconsole.conf

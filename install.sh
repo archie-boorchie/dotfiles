@@ -25,12 +25,13 @@ corepackages=(
 ### X.org 
 xorg-server # Xorg X server
 xorg-xinit # X.Org initialisation program
+xorg # Install the whole X group
 #
 ### Terminal 
 termite # A simple VTE-based terminal
 tmux # A terminal multiplexer	
 #
-### Python and python modules
+### Python and python modules 
 python2 # Python v2. Needed many times for package management
 python # Latest version of Python (currently v2)
 python-matplotlib # A python plotting library, making publication quality plots
@@ -50,7 +51,8 @@ lolcat # a colourful alternative to cat
 atool # Script for managing file archives of various types
 unzip # For extracting and viewing files in .zip archives
 # 
-### I do not use a display manager
+### Display manager
+# I do not use a display manager
 # 
 ### Window manager
 i3 # install the i3 group - i3gaps is the default
