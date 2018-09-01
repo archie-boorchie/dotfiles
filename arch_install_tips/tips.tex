@@ -1,31 +1,52 @@
 \documentclass[letterpaper]{article}
-\usepackage{...}
+
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage[top=2cm,bottom=1.5cm,left=1.5cm,right=1.5cm]{geometry}
+
+\title{Tips in Archlinux install}
+\date{}
+
+\begin{document}
 
 \abstract{%
-Here are some brief notes abput an arch linux install. 
+Here are some brief notes about a basic arch linux installation. 
 These notes are to be read together with the installation guide, 
-and reflector my \emph{personal} preferences.
+and they reflector my \emph{personal} preferences.
 }
 
 \section{Partition}
-I create 4 partitions: 1. root (> ~25G), 2. boot (200M), 3. swap (2xRam) and 4. home (rest). 
-Caution! Use primary partition for 4th partition, not extended. 
+I create 4 partitions: 
+\begin{enumerate}
+    \item  root partition (about 25G), 
+    \item  boot partition (200M), 
+    \item  swap partition (about twice the ram), and 
+    \item  home partition (rest of memory).  
+\end{enumerate}
 
-run: mkfs.ext4 /dev/sdaX where X=1,2,4 and then make swap partition. 
+\noindent
+{\bf Caution!} Use primary partition for 4th partition, not extended. 
 
-mount everything:
+\noindent
+After that, format and \texttt{mount} the partitions 
 
-mount /dev/sda1 /mnt
-
-mkdir /mnt/home
-mkdir /mnt/boot
-
-mount /dev/sda2 /mnt/boot
-mount /dev/sda4 /mnt/home
-
+\begin{lstlisting}
+    mkswap /dev/sda3
+    swapom /dev/sda3
+    mkfs.ext4 /dev/sda1 
+    mkfs.ext4 /dev/sda2 
+    mkfs.ext4 /dev/sda4 
+    mount /dev/sda1 /mnt
+    mkdir /mnt/home
+    mkdir /mnt/boot
+    mount /dev/sda2 /mnt/boot
+    mount /dev/sda4 /mnt/home
+\end{lstlisting}
 Choose a couple close mirrors and pacstrap only base to save time.
-After change root, install reflector, generate mirrorlist by 
+After change root, install \lstinline{reflector}, generate mirrorlist by 
+\begin{lstlisting}
 reflector --verbose --latest 20 --protocol https --sort rate --save /etc/pacman.d/mirrorlist
+\end{lstlisting}
 
 and install base-devel, vim, git, networkmanager, grub.
 
@@ -68,3 +89,5 @@ pacman -S terminus-font
 To use terminus fonts in console do:
 
 echo "FONT=ter-114n" >> /etc/vconsole.conf
+
+\end{document}

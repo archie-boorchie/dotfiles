@@ -1,0 +1,293 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"  
+  "http://www.w3.org/TR/html4/loose.dtd">  
+<html > 
+<head><title></title> 
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"> 
+<meta name="generator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<meta name="originator" content="TeX4ht (http://www.cse.ohio-state.edu/~gurari/TeX4ht/)"> 
+<!-- html --> 
+<meta name="src" content="tips.tex"> 
+<meta name="date" content="2018-08-31 21:22:00"> 
+<link rel="stylesheet" type="text/css" href="tips.css"> 
+</head><body 
+>
+<div class="center" 
+>
+<!--l. 14--><p class="noindent" >
+<!--l. 14--><p class="noindent" ><span 
+class="cmbx-9">Abstract</span></div>
+     <!--l. 15--><p class="noindent" ><span 
+class="cmr-9">Here are some brief notes abput an arch linux install. These notes are to be read together with the installation guide,</span>
+     <span 
+class="cmr-9">and reflector my </span><span 
+class="cmti-9">personal </span><span 
+class="cmr-9">preferences.</span>
+       <h3 class="sectionHead"><span class="titlemark"><span 
+class="cmr-9">1   </span></span> <a 
+ id="x1-10001"></a><span 
+class="cmr-9">Partition</span></h3>
+     <!--l. 21--><p class="noindent" ><span 
+class="cmr-9">I create 4 partitions:</span>
+    <ol  class="enumerate1" >
+    <li 
+  class="enumerate" id="x1-1002x1"><span 
+class="cmr-9">root partition (about 25G),</span>
+    </li>
+    <li 
+  class="enumerate" id="x1-1004x2"><span 
+class="cmr-9">boot partition (200M),</span>
+    </li>
+    <li 
+  class="enumerate" id="x1-1006x3"><span 
+class="cmr-9">swap partition (about twice the ram), and</span>
+    </li>
+    <li 
+  class="enumerate" id="x1-1008x4"><span 
+class="cmr-9">home partition (rest of memory).</span></li></ol>
+     <!--l. 29--><p class="noindent" ><span 
+class="cmbx-9">Caution! </span><span 
+class="cmr-9">Use primary partition for 4th partition, not extended.</span>
+     <!--l. 32--><p class="indent" >     <span 
+class="cmr-9">After that, format and </span><span class="lstinline"><span 
+class="cmr-9">mount</span></span> <span 
+class="cmr-9">the partitions</span>
+       <!--l. 34-->
+   <div class="lstlisting" id="listing-1"><span class="label"><a 
+ id="x1-1009r1"></a></span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">mkswap</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">/</span><span 
+class="cmr-9">dev</span><span 
+class="cmr-9">/</span><span 
+class="cmr-9">sda3</span><span 
+class="cmr-9">&#x00A0;</span><br /><span class="label"><a 
+ id="x1-1010r2"></a></span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">swapom</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">/</span><span 
+class="cmr-9">dev</span><span 
+class="cmr-9">/</span><span 
+class="cmr-9">sda3</span><span 
+class="cmr-9">&#x00A0;</span><br /><span class="label"><a 
+ id="x1-1011r3"></a></span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">mkfs</span><span 
+class="cmr-9">.</span><span 
+class="cmr-9">ext4</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">/</span><span 
+class="cmr-9">dev</span><span 
+class="cmr-9">/</span><span 
+class="cmr-9">sda1</span><span 
+class="cmr-9">&#x00A0;</span><br /><span class="label"><a 
+ id="x1-1012r4"></a></span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">mkfs</span><span 
+class="cmr-9">.</span><span 
+class="cmr-9">ext4</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">/</span><span 
+class="cmr-9">dev</span><span 
+class="cmr-9">/</span><span 
+class="cmr-9">sda2</span><span 
+class="cmr-9">&#x00A0;</span><br /><span class="label"><a 
+ id="x1-1013r5"></a></span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">mkfs</span><span 
+class="cmr-9">.</span><span 
+class="cmr-9">ext4</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">/</span><span 
+class="cmr-9">dev</span><span 
+class="cmr-9">/</span><span 
+class="cmr-9">sda4</span><span 
+class="cmr-9">&#x00A0;</span><br /><span class="label"><a 
+ id="x1-1014r6"></a></span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">mount</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">/</span><span 
+class="cmr-9">dev</span><span 
+class="cmr-9">/</span><span 
+class="cmr-9">sda1</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">/</span><span 
+class="cmr-9">mnt</span><span 
+class="cmr-9">&#x00A0;</span><br /><span class="label"><a 
+ id="x1-1015r7"></a></span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">mkdir</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">/</span><span 
+class="cmr-9">mnt</span><span 
+class="cmr-9">/</span><span 
+class="cmr-9">home</span><span 
+class="cmr-9">&#x00A0;</span><br /><span class="label"><a 
+ id="x1-1016r8"></a></span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">mkdir</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">/</span><span 
+class="cmr-9">mnt</span><span 
+class="cmr-9">/</span><span 
+class="cmr-9">boot</span><span 
+class="cmr-9">&#x00A0;</span><br /><span class="label"><a 
+ id="x1-1017r9"></a></span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">mount</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">/</span><span 
+class="cmr-9">dev</span><span 
+class="cmr-9">/</span><span 
+class="cmr-9">sda2</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">/</span><span 
+class="cmr-9">mnt</span><span 
+class="cmr-9">/</span><span 
+class="cmr-9">boot</span><span 
+class="cmr-9">&#x00A0;</span><br /><span class="label"><a 
+ id="x1-1018r10"></a></span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">mount</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">/</span><span 
+class="cmr-9">dev</span><span 
+class="cmr-9">/</span><span 
+class="cmr-9">sda4</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">/</span><span 
+class="cmr-9">mnt</span><span 
+class="cmr-9">/</span><span 
+class="cmr-9">home</span>
+   
+       </div>
+     <!--l. 46--><p class="indent" >     <span 
+class="cmr-9">Choose a couple close mirrors and pacstrap only base to save time. After change root, install </span><span class="lstinline"><span 
+class="cmr-9">reflector</span></span><span 
+class="cmr-9">, generate mirrorlist by</span>
+     <!--l. 48-->
+   <div class="lstlisting" id="listing-2"><span class="label"><a 
+ id="x1-1019r1"></a></span><span 
+class="cmr-9">reflector</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmsy-9">-</span><span 
+class="cmsy-9">-</span><span 
+class="cmr-9">verbose</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmsy-9">-</span><span 
+class="cmsy-9">-</span><span 
+class="cmr-9">latest</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">20</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmsy-9">-</span><span 
+class="cmsy-9">-</span><span 
+class="cmr-9">protocol</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">https</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmsy-9">-</span><span 
+class="cmsy-9">-</span><span 
+class="cmr-9">sort</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">rate</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmsy-9">-</span><span 
+class="cmsy-9">-</span><span 
+class="cmr-9">save</span><span 
+class="cmr-9">&#x00A0;</span><span 
+class="cmr-9">/</span><span 
+class="cmr-9">etc</span><span 
+class="cmr-9">/</span><span 
+class="cmr-9">pacman</span><span 
+class="cmr-9">.</span><span 
+class="cmr-9">d</span><span 
+class="cmr-9">/</span><span 
+class="cmr-9">mirrorlist</span>
+   
+       </div>
+     <!--l. 52--><p class="indent" >     <span 
+class="cmr-9">and install base-devel, vim, git, networkmanager, grub.</span>
+     <!--l. 54--><p class="indent" >     <span 
+class="cmr-9">Change kernel to lts (keep the linux kernel as a backup) and install headers:</span>
+     <!--l. 57--><p class="indent" >     <span 
+class="cmr-9">pacman -S linux-headers linux-lts linux-lts-headers grub-mkconfig -o /boot/grub/grub.cfg reboot</span>
+     <!--l. 63--><p class="noindent" >
+       <h3 class="sectionHead"><span class="titlemark"><span 
+class="cmr-9">2   </span></span> <a 
+ id="x1-20002"></a><span 
+class="cmr-9">Network manager</span></h3>
+     <!--l. 64--><p class="noindent" ><span 
+class="cmr-9">To avoid manually configurating networks after reboot, install nm:</span>
+     <!--l. 66--><p class="indent" >     <span 
+class="cmr-9">pacman -S networkmanager</span>
+     <!--l. 68--><p class="indent" >     <span 
+class="cmr-9">and enable it:</span>
+     <!--l. 70--><p class="indent" >     <span 
+class="cmr-9">systemctl enable NetworkManager</span>
+     <!--l. 72--><p class="indent" >     <span 
+class="cmr-9">After reboot internet works out of the box.</span>
+     <!--l. 74--><p class="noindent" >
+       <h3 class="sectionHead"><span class="titlemark"><span 
+class="cmr-9">3   </span></span> <a 
+ id="x1-30003"></a><span 
+class="cmr-9">User add</span></h3>
+     <!--l. 75--><p class="noindent" ><span 
+class="cmr-9">Add a new user</span>
+     <!--l. 77--><p class="indent" >     <span 
+class="cmr-9">useradd -m -g wheel myname</span>
+     <!--l. 79--><p class="indent" >     <span 
+class="cmr-9">and give him root privileges by running visudo and uncommentin wheel group (I use NOPASSWD option).</span>
+                                                                                                     
+                                                                                                     
+     <!--l. 85--><p class="noindent" >
+       <h3 class="sectionHead"><span class="titlemark"><span 
+class="cmr-9">4   </span></span> <a 
+ id="x1-40004"></a><span 
+class="cmr-9">Prettify console</span></h3>
+     <!--l. 86--><p class="noindent" ><span 
+class="cmr-9">Install terminus fonts:</span>
+     <!--l. 88--><p class="indent" >     <span 
+class="cmr-9">pacman -S terminus-font</span>
+     <!--l. 90--><p class="indent" >     <span 
+class="cmr-9">To use terminus fonts in console do:</span>
+     <!--l. 92--><p class="indent" >     <span 
+class="cmr-9">echo &#8221;FONT=ter-114n&#8221; ¿¿ /etc/vconsole.conf</span>
+        
+</body></html> 
+
+                                                                                                     
+
+
