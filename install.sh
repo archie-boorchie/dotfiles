@@ -264,6 +264,7 @@ pdftk # pdftk is a simple tool for doing everyday things with PDF documents
 crop-pdf # command line tool to crop PDF files
 #
 ### Screenshot, video recording
+fbgrab # A framebuffer screenshot grabber
 screenkey # Show the keys you type on the screen
 #
 ### Screens utils
