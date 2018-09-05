@@ -48,7 +48,7 @@ if [ "$yn" = "yes" ]; then
     for X in "${linkstohome[@]}"
         do
         	rm -rf ~/.$X
-        	ln -sfn ~/dotfiles/x ~/.$X
+        	ln -sfn ~/dotfiles/$X ~/.$X
         done
 
     echo -ne "\ncreating softlinks to /home/user/.config\n"
@@ -64,4 +64,4 @@ else
     echo -ne "\nYou may run the script symlinks.sh manually at any time.\n"
 fi
 
-echo -ne "Exiting script symlinks.sh"
+echo -ne "Exiting script symlinks.sh\n\n"
