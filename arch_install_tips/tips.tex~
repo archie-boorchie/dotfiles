@@ -28,7 +28,7 @@ I create 4 partitions:
 {\bf Caution!} Use primary partition for 4th partition, not extended. 
 
 \noindent
-After that, format and \lstinline{mount} the partitions 
+After that, format and \texttt{mount} the partitions 
 
 \begin{lstlisting}
     mkswap /dev/sda3
