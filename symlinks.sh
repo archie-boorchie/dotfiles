@@ -27,6 +27,7 @@ if [ "$yn" = "yes" ]; then
     elinks
 	Xmodmap
 	xinitrc
+    zshrc
     )
     
     # dotfiles belonging to /home/user/.config
