@@ -25,6 +25,8 @@ if [ "$yn" = "yes" ]; then
     bash_profile
     bashrc
     elinks
+    vim
+    vimrc
 	Xmodmap
 	xinitrc
     zshrc

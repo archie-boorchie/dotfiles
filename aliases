@@ -78,6 +78,7 @@ alias workspaces='gsettings set org.compiz.core:/org/compiz/profiles/unity/plugi
 
 # List shortcuts
 alias ls='ls --color=auto'
+alias l='ls --color=auto'
 alias ll='ls -la --color=auto'
 alias la='ls -a --color=auto' 
 alias l.='ls -d .* --color=auto'
