@@ -46,7 +46,10 @@ alias p='pwd'
 alias rmrf='\rm -rf'
 
 # better less 
-alias less="LESS='-RS#3NM~g' less"
+alias bless="LESS='-RS#3NM~g' less"
+
+# less for pdf view
+pdfless() {pdftotext -layout $1 - | less}
 
 # Vanishing Cursor
 # alias noc='unclutter -idle 0.3 -root &'

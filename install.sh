@@ -31,9 +31,12 @@ xorg # Install the whole X group
 termite # A simple VTE-based terminal
 tmux # A terminal multiplexer	
 #
+### Composite manager
+xcompmgr # Composite Window-effects manager for X.org
+#
 ### Python and python modules 
 python2 # Python v2. Needed many times for package management
-python # Latest version of Python (currently v2)
+python # Latest version of Python (currently v3)
 python-matplotlib # A python plotting library, making publication quality plots
 python-numpy # Scientific tools for Python
 #
@@ -80,6 +83,9 @@ texlive-most # includes TeX Live applications
 texlive-langgreek # fonts and support for typesetting Greek
 biber # a Unicode-capable BibTeX replacement for biblatex users
 #
+### Utils for markup languages
+pandoc # Conversion between markup formats
+#
 ### File managers
 # console
 ranger # A simple, vim-like file manager
@@ -117,7 +123,8 @@ qutebrowser # A keyboard-driven, vim-like browser based on PyQt5 (main browser)
 firefox # Standalone web browser from mozilla.org (for some demanding tasks)
 flashplugin # flash plugin for firefox
 # console
-elinks
+elinks # An advanced and well-established feature-rich text mode web browser
+w3m # Text-based Web browser as well as pager
 #
 ### Tor 
 tor # Anonymizing overlay network
