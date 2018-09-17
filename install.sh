@@ -70,8 +70,11 @@ git # Git is used for aur packages, dotfile management etc
 # It is probably already be installed for cloning this repository
 #
 ### Editors
-gvim # main editor is vim - I use gvim package to get the +xterm_clipboard option for vim
-# something for GUI? maybe atom or gedit
+# console
+# main editor is vim - I use gvim package to get the +xterm_clipboard option for vim
+gvim # Vi Improved, a highly configurable, improved version of the vi text editor (with advanced features, such as a GUI)
+# gui
+code # The Open Source build of Visual Studio Code (vscode) editor
 #
 ### PDF viewer
 mupdf # as an alternative I have llpp from AUR
@@ -248,6 +251,7 @@ kmscon # Terminal emulator based on Kernel Mode Setting (KMS)
 tiv # A simple image viewer that displays images directly in the terminal
 #
 ### Python modules
+python-grip # Preview GitHub Markdown files like Readme locally before committing them
 python-nmap # A Python library which helps in using the nmap port scanner
 # 
 ### Archive management

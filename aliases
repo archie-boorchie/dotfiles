@@ -51,6 +51,9 @@ alias bless="LESS='-RS#3NM~g' less"
 # less for pdf view
 pdfless() {pdftotext -layout $1 - | less}
 
+# less for md view
+mdless() {pandoc -s -f markdown -t man "$1" | man -l -}
+
 # Vanishing Cursor
 # alias noc='unclutter -idle 0.3 -root &'
 
