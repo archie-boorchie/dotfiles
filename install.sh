@@ -45,6 +45,7 @@ reflector # A script to retrieve and filter the latest Pacman mirror list
 pacman-contrib # Contributed scripts and tools for pacman systems 
 #
 ### Core utilities
+tree # A directory listing program displaying a depth indented list of files
 fd # Simple, fast and user-friendly alternative to find
 mlocate # Merging locate/updatedb implementation
 htop # Interactive process viewer
@@ -76,10 +77,13 @@ gvim # Vi Improved, a highly configurable, improved version of the vi text edito
 # gui
 code # The Open Source build of Visual Studio Code (vscode) editor
 #
-### PDF viewer
+### ebooks, pdf viewers etc
 mupdf # as an alternative I have llpp from AUR
-cups # for printing
+fbreader # An e-book reader for Linux
 # something more mainstream? maybe evince or zathura
+#
+### Printing
+cups # for printing
 #
 ### LaTeX
 texlive-most # includes TeX Live applications
@@ -260,8 +264,9 @@ dtrx # An intelligent archive extraction tool
 ### Tor 
 tor-browser # Tor Browser Bundle: anonymous browsing using Firefox and Tor (international PKGBUILD)
 #
-### PDF viewer
+### ebooks, pdf viewers etc
 llpp 
+epubcheck # A tool to validate epub files
 #
 ### Data syncing
 dropbox
