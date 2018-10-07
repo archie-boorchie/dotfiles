@@ -1,14 +1,19 @@
-# Here are all user defined functions.
-# This file is called inside bashrc.
+# Functions for shell (if you use bash, change &! to &)
 
 # To create a new directory and instantly jump to that directory.
 mkdircd () { mkdir -p $1; cd $1; }
 
-# To use xdg-open in 'silent mode', i.e. no terminal output (else use it as an alias).
-go () { xdg-open "$1" >/dev/null 2>&1 & }
+# Use xdg-open in 'silent mode'
+go () { xdg-open "$1" >/dev/null 2>&1 &! }
+
+# less for pdf view
+pdfless() {pdftotext -layout $1 - | less}
+
+# less for md view
+mdless() {pandoc -s -f markdown -t man "$1" | man -l -}
 
 # Use gedit in 'silent mode' in the background
-gedit () { nohup gedit "$1" >/dev/null 2>&1 & }
+gedit () { nohup gedit "$1" >/dev/null 2>&1 &! }
 
 # To extract any type of file.
 extract () {
@@ -47,7 +52,7 @@ fi
 }
 
 # System information.
-function mach()
+function sysinfo()
 {
     clear;
     echo -e "\nMachine information:" ; uname -a
@@ -56,31 +61,6 @@ function mach()
     echo -e "\nMachine status :" ; uptime
     echo -e "\nMemory status :" ; free
     echo -e "\nFilesystem status :"; df -h
-}
-
-# Provides a y/n question to open qutebrowser.
-quteopen () {
-	x=0
-	while [ $x -eq 0 ]
-	do
-	echo "Would you like to start Qutebrowser? [y/n]"
-	read ans
-	if [ $ans = y -o $ans = Y -o $ans = yes -o $ans = Yes -o $ans = YES ]
-	then
-		echo "Starting Qutebrowser..."
-		qutebrowser &
-		x=1	
-	elif [ $ans = n -o $ans = N -o $ans = no -o $ans = No -o $ans = NO ]
-	then
-		echo "Abort..."
-		x=1
-	else
-		echo "Please enter y/n"
-		sleep 0.4
-	fi
-	done
-	echo "Thanks for your time!"
-	return 0	
 }
 
 # Provides a y/n question to turn off laptop screen.

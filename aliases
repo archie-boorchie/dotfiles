@@ -1,4 +1,4 @@
-########################################### 
+# Aliases for shell (if you use bash, change &! to &)
 
 # Temporary
 
@@ -19,6 +19,9 @@ alias usbb1='sudo umount /media/usb1'
 alias usbb2='sudo umount /media/usb2'
 alias usbb3='sudo umount /media/usb3'
 
+# Ranger shortcut
+alias r='ranger'
+
 # Misc
 alias d='dict'
 alias time='clear; echo -ne "\n\n\n\n\n\n"; figlet `date` | lolcat -a -d 1 -s 12; fortune;read -rsn1 -p" ";echo'
@@ -28,9 +31,6 @@ alias cdc='cd;c'
 
 # Games
 alias myman='gnome-terminal --full-screen -e 'myman''
-
-# xdg-open - see in functions; go is used in 'silent mode'
-# alias go='xdg-open'
 
 # terminal at full-screen
 alias t='gnome-terminal --full-screen'
@@ -48,20 +48,14 @@ alias rmrf='\rm -rf'
 # better less 
 alias bless="LESS='-RS#3NM~g' less"
 
-# less for pdf view
-pdfless() {pdftotext -layout $1 - | less}
-
-# less for md view
-mdless() {pandoc -s -f markdown -t man "$1" | man -l -}
-
 # Vanishing Cursor
-# alias noc='unclutter -idle 0.3 -root &'
+# alias noc='unclutter -idle 0.3 -root &!'
 
 # Internet shortcut
-alias q='nohup qutebrowser >/dev/null 2>&1 &'
-alias f='nohup firefox >/dev/null 2>&1 &'
-alias g='nohup google-chrome >/dev/null 2>&1 &'
-alias gg='nohup google-chrome --kiosk >/dev/null 2>&1 &'
+alias q='nohup qutebrowser >/dev/null 2>&1 &!'
+alias f='nohup firefox >/dev/null 2>&1 &!'
+alias g='nohup google-chrome >/dev/null 2>&1 &!'
+alias gg='nohup google-chrome --kiosk >/dev/null 2>&1 &!'
 
 # Volume and Backlight
 alias bri='xbacklight -set'
@@ -79,9 +73,6 @@ alias upd='sudo apt-get update'
 alias upg='sudo apt-get upgrade'
 alias pur='sudo apt-get purge'
 
-# Number of Workspaces, followed by  hsize or vsize and desired number
-alias workspaces='gsettings set org.compiz.core:/org/compiz/profiles/unity/plugins/core/'
-
 # List shortcuts
 alias ls='ls --color=auto'
 alias l='ls --color=auto'
@@ -90,12 +81,10 @@ alias la='ls -a --color=auto'
 alias l.='ls -d .* --color=auto'
 
 # Popcorn Time
-alias popcorntime='cd; ./opt/Popcorn\ Time/Popcorn-Time &'
+alias popcorntime='cd; ./opt/Popcorn\ Time/Popcorn-Time &!'
 
 # ASCII art Wallpapers with lolcat
 # See .bashrc last line -> Terminal Opens With WP Printed
 alias cwp='clear; cd /home/lampros/.Wallpapers\ for\ Terminal/; lolcat `ls | shuf -n 1`; cd ..;'
 alias pb='clear; cd /home/lampros/.Wallpapers\ for\ Terminal/; lolcat playboy.txt -S 7 ; cd ..'
 alias bm='clear; cd /home/lampros/.Wallpapers\ for\ Terminal/; lolcat bm.txt -S 280 -F 0.01 ; cd ..;'
-
-###########################################
