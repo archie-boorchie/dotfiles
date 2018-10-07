@@ -12,6 +12,9 @@ set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
 
+" Fast terminal
+set ttyfast
+
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
@@ -55,8 +58,11 @@ set encoding=utf8
 " Display incomplete commands
 set showcmd
 
-" Use Q for formatting
-map Q gq
+" Use Q for fast formatting
+" format selection
+vmap Q gq 
+" format current paragraph
+nmap Q gqap
 
 " Enable mouse
 set mouse=a
@@ -165,14 +171,14 @@ call plug#begin('~/.vim/plugged')
     Plug 'lervag/vimtex'
     " Retro groove color scheme for Vim
     Plug 'morhetz/gruvbox'
-    " " Vim script for text filtering and alignment 
-    " Plug 'godlygeek/tabular'
+    " Vim script for text filtering and alignment 
+    Plug 'godlygeek/tabular'
     " A light and configurable statusline/tabline plugin for Vim
     Plug 'itchyny/lightline.vim' 
     " Provides the branch name of the current git repository
     Plug 'itchyny/vim-gitbranch'
-    " "  The ultimate snippet solution for Vim
-    " Plug 'SirVer/ultisnips'
+    " The ultimate snippet solution for Vim
+    Plug 'SirVer/ultisnips'
 call plug#end()
 
 " Integrate Limelight to Goyo
@@ -187,6 +193,7 @@ let g:goyo_width = 80
 set background=dark
 let g:gruvbox_italic=0
 let g:gruvbox_contrast_dark='hard'
+let g:gruvbox_contrast_light='medium'
 colorscheme gruvbox
 
 " LimeLight settings
