@@ -61,9 +61,9 @@ map Q gq
 " Enable mouse
 set mouse=a
 
-" Flash the screen instead of beeping on errors
+" Turn off error sounds and flashes
 set noerrorbells " disable beep 
-set visualbell " enable flash
+set novisualbell " disable flash
 
 " Directory to store swap files
 set dir=~/.cache/vim
@@ -131,15 +131,16 @@ set nospell
 set spelllang=en_gb 
 set spellfile=~/.vim/spell/en_gb.utf-8.add
 
-" Use spaces instead of tabs
-set expandtab
-
 " Use smart tabs
 set smarttab
 
 " 1 tab == 4 spaces
-set shiftwidth=4
 set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+
+" Use spaces instead of tabs
+set expandtab
 
 " Set omnicompletion on
 filetype plugin on
@@ -164,14 +165,14 @@ call plug#begin('~/.vim/plugged')
     Plug 'lervag/vimtex'
     " Retro groove color scheme for Vim
     Plug 'morhetz/gruvbox'
-    " Vim script for text filtering and alignment 
-    Plug 'godlygeek/tabular'
+    " " Vim script for text filtering and alignment 
+    " Plug 'godlygeek/tabular'
     " A light and configurable statusline/tabline plugin for Vim
     Plug 'itchyny/lightline.vim' 
     " Provides the branch name of the current git repository
     Plug 'itchyny/vim-gitbranch'
-    "  The ultimate snippet solution for Vim
-    Plug 'SirVer/ultisnips'
+    " "  The ultimate snippet solution for Vim
+    " Plug 'SirVer/ultisnips'
 call plug#end()
 
 " Integrate Limelight to Goyo
@@ -211,3 +212,10 @@ let g:lightline = {
       \   'gitbranch': 'gitbranch#name'
       \ },
       \ }
+
+" UltiSnips settings
+let g:UltiSnipsSnippetsDir = "~/.vim/bundle/ultisnips/UltiSnips"
+let g:UltiSnipsEditSplit = "vertical"
+let g:UltiSnipsExpandTrigger="<tabs>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
