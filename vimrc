@@ -31,7 +31,7 @@ set backup
 set history=100
 
 " Show current position of cursor
-set ruler
+set noruler
 
 " Show line numbers relevant to current line
 set relativenumber
@@ -161,24 +161,47 @@ if has("autocmd")
   augroup END
 endif
 
+" Automatic installation for vim-plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
 " Plugins (to use with vim-plug; install with :PlugInstall)
 call plug#begin('~/.vim/plugged')
     " Distraction-free writing in Vim
     Plug 'junegunn/goyo.vim'
+    "
     " Hyperfocus-writing in Vim
     Plug 'junegunn/limelight.vim'
+    "
     " A modern vim plugin for editing LaTeX files
     Plug 'lervag/vimtex'
+    "
     " Retro groove color scheme for Vim
     Plug 'morhetz/gruvbox'
-    " Vim script for text filtering and alignment 
-    Plug 'godlygeek/tabular'
+    "
+    "   " Vim script for text filtering and alignment 
+    "   Plug 'godlygeek/tabular'
+    "
     " A light and configurable statusline/tabline plugin for Vim
     Plug 'itchyny/lightline.vim' 
+    "
     " Provides the branch name of the current git repository
-    Plug 'itchyny/vim-gitbranch'
-    " The ultimate snippet solution for Vim
-    Plug 'SirVer/ultisnips'
+    Plug 'itchyny/vim-gitbranch', { 'for': 'lightline' }
+    "
+    "   " A Git wrapper so awesome, it should be illegal
+    "   Plug 'tpope/vim-fugitive'
+    "
+    "   " The ultimate snippet solution for Vim
+    "   Plug 'SirVer/ultisnips'
+    "
+    " pandoc integration and utilities for vim 
+    Plug 'vim-pandoc/vim-pandoc'
+    "
+    " pandoc markdown syntax, to be installed alongside vim-pandoc
+    Plug 'vim-pandoc/vim-pandoc-syntax'
 call plug#end()
 
 " Integrate Limelight to Goyo
@@ -193,16 +216,14 @@ let g:goyo_width = 80
 set background=dark
 let g:gruvbox_italic=0
 let g:gruvbox_contrast_dark='hard'
-let g:gruvbox_contrast_light='medium'
+let g:gruvbox_contrast_light='hard'
 colorscheme gruvbox
 
 " LimeLight settings
 let g:limelight_default_coefficient = 0.7
-" Color name (:help cterm-colors) or ANSI code
 let g:limelight_conceal_ctermfg = 'gray'
 let g:limelight_conceal_ctermfg = 240
-" Set highlighting priority to -1 not to overrule hlsearch
-let g:limelight_priority = -1
+let g:limelight_priority = -1 " not to overrule hlsearch
 
 " lightline settings
 set laststatus=2
@@ -212,8 +233,10 @@ endif
 set noshowmode
 let g:lightline = {
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \   'left': [ [ 'mode', 'paste' ], 
+      \           [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+      \   'right': [ [ 'lineinfo' ], [ 'percent' ], 
+      \   [ 'fileformat' ] ]
       \ },
       \ 'component_function': {
       \   'gitbranch': 'gitbranch#name'
