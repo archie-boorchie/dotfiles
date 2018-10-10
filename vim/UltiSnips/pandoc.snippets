@@ -1,0 +1,38 @@
+snippet # "Header 1" b
+# ${1:Header Name}
+${2:Text}
+endsnippet
+
+snippet ## "Header 2" b
+## ${1:Header Name}
+${2:Text}
+endsnippet
+
+snippet sec "Section" b
+## ${2:Section Name}
+${3:Text}
+endsnippet
+
+snippet * "italics"
+*${1:text}* 
+endsnippet
+
+snippet ** "bold"
+**${1:text}** 
+endsnippet
+
+snippet *** "bold italics"
+***${1:text}*** 
+endsnippet
+
+snippet link "create a link"
+[${1:name}](${2:link}) 
+endsnippet
+
+snippet img "insert image"
+![${1:name}](${2:file}) 
+endsnippet
+
+snippet arxiv "arXiv links on the fly"
+arXiv:[${1:id}](https://arxiv.org/abs/$1) 
+endsnippet

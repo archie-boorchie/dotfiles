@@ -194,8 +194,8 @@ call plug#begin('~/.vim/plugged')
     "   " A Git wrapper so awesome, it should be illegal
     "   Plug 'tpope/vim-fugitive'
     "
-    "   " The ultimate snippet solution for Vim
-    "   Plug 'SirVer/ultisnips'
+    " The ultimate snippet solution for Vim
+    Plug 'SirVer/ultisnips'
     "
     " pandoc integration and utilities for vim 
     Plug 'vim-pandoc/vim-pandoc'
@@ -238,14 +238,28 @@ let g:lightline = {
       \   'right': [ [ 'lineinfo' ], [ 'percent' ], 
       \   [ 'fileformat' ] ]
       \ },
+      \ 'inactive': {
+      \   'left': [ 
+      \           [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
+      \   'right': [ ]
+      \ },
       \ 'component_function': {
       \   'gitbranch': 'gitbranch#name'
       \ },
       \ }
 
 " UltiSnips settings
-let g:UltiSnipsSnippetsDir = "~/.vim/bundle/ultisnips/UltiSnips"
+" use absolute path; ~ is not recognised when you try to expand snippet.
+let g:UltiSnipsSnippetDirectories = ['/home/lampros/.vim/UltiSnips']
 let g:UltiSnipsEditSplit = "vertical"
-let g:UltiSnipsExpandTrigger="<tabs>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsListSnippets = "<c-tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+" vimtex settings
+let g:vimtex_fold_automatic=0 
+let g:vimtex_fold_enabled=0
+
+" vim-pandoc settings
+let g:pandoc#modules#disabled = ["folding"] " turn off folding
