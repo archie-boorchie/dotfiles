@@ -39,51 +39,72 @@ cursor_shape = block
 scrollbar = off
 
 
+#### Colorschemes ####
+
+### gruvbox dark
 [colors]
+# hard contrast: background = #1d2021
+background = #282828
+# soft contrast: background = #32302f
+foreground = #ebdbb2
+foreground_bold = #ebdbb2
+# dark0 + gray
+color0 = #282828
+color8 = #928374
+# neutral_red + bright_red
+color1 = #cc241d
+color9 = #fb4934
+# neutral_green + bright_green
+color2 = #98971a
+color10 = #b8bb26
+# neutral_yellow + bright_yellow
+color3 = #d79921
+color11 = #fabd2f
+# neutral_blue + bright_blue
+color4 = #458588
+color12 = #83a598
+# neutral_purple + bright_purple
+color5 = #b16286
+color13 = #d3869b
+# neutral_aqua + faded_aqua
+color6 = #689d6a
+color14 = #8ec07c
+# light4 + light1
+color7 = #a89984
+color15 = #ebdbb2
 
-# special
-#foreground      = #ffffff
-#foreground_bold = #ffffff
-#cursor          = #ffffff
-#background      = #080008
+#   ### gruvbox light
+#   [colors]
+#   # hard contrast: background = #f9f5d7
+#   background = #fbf1c7
+#   # soft contrast: background = #f2e5bc
+#   foreground = #3c3836
+#   foreground_bold = #3c3836
+#   # light0 + gray
+#   color0 = #fbf1c7
+#   color8 = #928374
+#   # neutral_red + faded_red
+#   color1 = #cc241d
+#   color9 = #9d0006
+#   # neutral_green + faded_green
+#   color2 = #98971a
+#   color10 = #79740e
+#   # neutral_yellow + faded_yellow
+#   color3 = #d79921
+#   color11 = #b57614
+#   # neutral_blue + faded_blue
+#   color4 = #458588
+#   color12 = #076678
+#   # neutral_purple + faded_purple
+#   color5 = #b16286
+#   color13 = #8f3f71
+#   # neutral_aqua + faded_aqua
+#   color6 = #689d6a
+#   color14 = #427b58
+#   # dark4 + dark1
+#   color7 = #7c6f64
+#   color15 = #3c3836
 
-# black
-color0  = #1e2320
-color8  = #709080
-
-# red
-color1  = #705050
-color9  = #dca3a3
-
-# green
-color2  = #60b48a
-color10 = #c3bf9f
-
-# yellow
-color3  = #dfaf8f
-color11 = #f0dfaf
-
-# blue
-color4  = #506070
-color12 = #94bff3
-
-# magenta
-color5  = #dc8cc3
-color13 = #ec93d3
-
-# cyan
-color6  = #8cd0d3
-color14 = #93e0e3
-
-# white
-color7  = #dcdccc
-color15 = #ffffff
-
-# 7% background transparency (requires a compositor)
-background = rgba(11, 00, 13, 0.93)
-
-# If unset, will reverse foreground and background
-#highlight = #2f2f2f
 
 [hints]
 #font = Monospace 12
@@ -95,5 +116,3 @@ background = rgba(11, 00, 13, 0.93)
 #border = #3f3f3f
 #border_width = 0.5
 #roundness = 2.0
-
-# vim: ft=dosini cms=#%s
