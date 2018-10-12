@@ -189,7 +189,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'itchyny/lightline.vim' 
     "
     " Provides the branch name of the current git repository
-    Plug 'itchyny/vim-gitbranch', { 'for': 'lightline' }
+    Plug 'itchyny/vim-gitbranch'
     "
     "   " A Git wrapper so awesome, it should be illegal
     "   Plug 'tpope/vim-fugitive'
@@ -233,20 +233,24 @@ endif
 set noshowmode
 let g:lightline = {
       \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], 
-      \           [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
-      \   'right': [ [ 'lineinfo' ], [ 'percent' ], 
-      \   [ 'fileformat' ] ]
+      \   'left': [ [ 'mode', 'paste' ], [ 'filename' ] ],
+      \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'gitbranch' ] ]
       \ },
       \ 'inactive': {
-      \   'left': [ 
-      \           [ 'gitbranch', 'readonly', 'filename', 'modified' ] ],
-      \   'right': [ ]
+      \   'left': [ [ 'filename' ] ],
+      \   'right': [ [ 'percent' ], [ 'gitbranch' ] ]
       \ },
       \ 'component_function': {
+      \   'filename': 'LightlineFilename',
       \   'gitbranch': 'gitbranch#name'
       \ },
       \ }
+" merge modify symbol in filename
+function! LightlineFilename()
+  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+  let modified = &modified ? ' +' : ''
+  return filename . modified
+endfunction
 
 " UltiSnips settings
 " use absolute path; ~ is not recognised when you try to expand snippet.
