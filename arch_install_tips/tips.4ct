@@ -1,7 +1,0 @@
-\expandafter\ifx\csname doTocEntry\endcsname\relax \expandafter\endinput\fi 
-\doTocEntry\tocsection{1}{\csname a:TocLink\endcsname{3}{x3-10001}{QQ2-3-1}{Partition}}{4}\relax 
-\doTocEntry\tocsection{2}{\csname a:TocLink\endcsname{3}{x3-20002}{QQ2-3-2}{Network manager}}{5}\relax 
-\doTocEntry\tocsection{3}{\csname a:TocLink\endcsname{3}{x3-30003}{QQ2-3-3}{User add}}{5}\relax 
-\doTocEntry\tocsection{4}{\csname a:TocLink\endcsname{3}{x3-40004}{QQ2-3-4}{Prettify console}}{5}\relax 
-\doTocEntry\tocsection{5}{\csname a:TocLink\endcsname{3}{x3-50005}{QQ2-3-5}{Changing default shell}}{5}\relax 
-\par 
