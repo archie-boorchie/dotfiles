@@ -15,13 +15,13 @@ rofi.line-margin: 2
 rofi.separator-style: solid
 rofi.hide-scrollbar: false
 rofi.lines: 3
-rofi.width: -42
-rofi.padding: 370
+rofi.width: -50
+rofi.padding: 600
 rofi.bw: 0
 rofi.auto-select: false
 
 rofi.show-icons: true
-rofi.drun-icon-theme: Adwaita
+rofi.drun-icon-theme: numix-circle, adwaita
 
 rofi.matching: fuzzy
 

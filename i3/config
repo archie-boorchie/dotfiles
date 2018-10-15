@@ -68,6 +68,8 @@ bindsym $mod+Ctrl+v layout toggle split
 # Enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
+bindsym $mod+b bar mode toggle
+
 # Change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout toggle split
 bindsym $mod+Shift+s layout stacking
@@ -206,7 +208,7 @@ bar {
     position top
 	workspace_buttons yes
 	font pango: Source Code Pro Semibold, FontAwesome 7
-    status_command i3status --config ~/.config/i3/i3status.conf
+    status_command i3status # --config ~/.config/i3/i3status.conf
 }
 
 # Colors

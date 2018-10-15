@@ -54,24 +54,24 @@ zle -N down-line-or-beginning-search
 
 # Customize TTY 
 if [ "$TERM" = "linux" ]; then
-  prompt fade magenta
+  prompt fade black
   /bin/echo -e "
-  \e]P00a0f14
-  \e]P1c33027
-  \e]P226a98b
-  \e]P3edb54b
-  \e]P4195465
-  \e]P54e5165
-  \e]P633859d
-  \e]P798d1ce
-  \e]P810151b
-  \e]P9d26939
-  \e]PA081f2d
-  \e]PB245361
-  \e]PC093748
-  \e]PD888ba5
-  \e]PE599caa
-  \e]PFd3ebe9
+  \e]P0151515
+  \e]P1fb9fb1
+  \e]P2acc267
+  \e]P3ddb26f
+  \e]P46fc2ef
+  \e]P5e1a3ee
+  \e]P612cfc0
+  \e]P7d0d0d0
+  \e]P8505050
+  \e]P9fb9fb1
+  \e]PAacc267
+  \e]PBddb26f
+  \e]PC6fc2ef
+  \e]PDe1a3ee
+  \e]PE12cfc0
+  \e]PFf5f5f5
   "
   # get rid of artifacts
   clear
