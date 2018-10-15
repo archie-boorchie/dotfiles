@@ -248,12 +248,12 @@ let g:lightline = {
 " merge modify symbol in filename
 function! LightlineFilename()
   let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
-  let modified = &modified ? ' +' : ''
+  let modified = &modified ? ' ' : ''
   return filename . modified
 endfunction
 
 " UltiSnips settings
-" use absolute path; ~ is not recognised when you try to expand snippet.
+" use absolute path, not ~  or $HOME:
 let g:UltiSnipsSnippetDirectories = ['/home/lampros/.vim/UltiSnips']
 let g:UltiSnipsEditSplit = "vertical"
 let g:UltiSnipsExpandTrigger = "<tab>"
