@@ -26,11 +26,11 @@ floating_modifier $mod
 bindsym $mod+Return exec i3-sensible-terminal
 
 # Kill focused window
-bindsym $mod+Shift+q kill
+bindsym $mod+q kill
 
 # Start rofi (a program launcher)
-bindsym $mod+d exec rofi -config /home/lampros/.config/rofi/config -show drun 
-bindsym $mod+Shift+d exec rofi -config /home/lampros/.config/rofi/config -show window 
+bindsym $mod+d exec rofi -config ~/.config/rofi/config -show drun 
+bindsym $mod+Shift+d exec rofi -config ~/.config/rofi/config -show window 
 
 # Change focus
 bindsym $mod+h focus left
@@ -147,7 +147,7 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
 bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
 
 # Touchpad controls
-bindsym XF86TouchpadToggle exec ~/dotfiles/i3/.toggletouchpad.sh # toggle touchpad
+bindsym F5 exec sh ~/dotfiles/i3/.toggletouchpad.sh # toggle touchpad
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
@@ -260,11 +260,11 @@ bindsym $mod+minus scratchpad show
 
 # Autostart programs
 exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper.png
-exec_always --no-startup-id unclutter
+exec_always --no-startup-id unclutter --timeout 0.3 0.1 --ignore-scrolling
 exec_always setxkbmap -option grp:alt_shift_toggle us,gr
 exec --no-startup-id termite
 
 # Create a scratchpad terminal (termite) at startup
 for_window [instance="scratchmite"] floating enable
 for_window [instance="scratchmite"] move scratchpad
-exec --no-startup-id termite --name scratchmite --geometry=800x500
+exec --no-startup-id termite --name scratchmite --geometry=700x450
