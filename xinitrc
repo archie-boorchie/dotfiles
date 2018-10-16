@@ -34,6 +34,7 @@ fi
 
 [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
 
+xset b off
 xset r rate 200 60
 
 xcompmgr -c &

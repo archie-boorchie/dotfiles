@@ -52,6 +52,15 @@ zle -N down-line-or-beginning-search
 [[ -n "$key[Up]"   ]] && bindkey -- "$key[Up]"   up-line-or-beginning-search
 [[ -n "$key[Down]" ]] && bindkey -- "$key[Down]" down-line-or-beginning-search
 
+# Set default browser
+export BROWSER=qutebrowser
+
+# Set default terminal
+export TERMINAL=termite
+
+# Set default editor
+export EDITOR=vim
+
 # Customize TTY 
 if [ "$TERM" = "linux" ]; then
   prompt fade black
