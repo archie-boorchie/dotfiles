@@ -237,8 +237,8 @@ client.background       #ffffff
 
 # i3-gaps usage
 for_window [class="^.*"] border pixel 1
-gaps inner 8
-gaps outer 4
+gaps inner 10
+gaps outer 5
 smart_borders on
 
 # Change gaps on the fly

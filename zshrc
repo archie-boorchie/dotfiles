@@ -9,6 +9,27 @@ setopt histignorealldups sharehistory
 # Use emacs keybindings even if our EDITOR is set to vi
 bindkey -v
 
+# # The "command not found" hook that will automatically search the official
+# # repositories, when entering an unrecognized command
+# source /usr/share/doc/pkgfile/command-not-found.zsh
+
+# Enable help command in zsh
+autoload -Uz run-help
+unalias run-help
+alias help=run-help
+
+# run-help has helper functions that need to be enabled separately
+autoload -Uz run-help-git
+autoload -Uz run-help-ip
+autoload -Uz run-help-openssl
+autoload -Uz run-help-p4
+autoload -Uz run-help-sudo
+autoload -Uz run-help-svk
+autoload -Uz run-help-svn
+
+# Automatise 'rehash'
+zstyle ':completion:*' rehash true
+
 # Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
 HISTSIZE=10000
 SAVEHIST=10000
@@ -46,11 +67,14 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # History autocomplete
-autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+autoload up-line-or-beginning-search
+autoload down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
-[[ -n "$key[Up]"   ]] && bindkey -- "$key[Up]"   up-line-or-beginning-search
-[[ -n "$key[Down]" ]] && bindkey -- "$key[Down]" down-line-or-beginning-search
+bindkey "^[[A" up-line-or-beginning-search
+bindkey "^[[B" down-line-or-beginning-search
+#[[ -n "${key[Up]}" ]] && bindkey "${key[Up]}" up-line-or-beginning-search
+#[[ -n "${key[Down]}" ]] && bindkey "${key[Down]}" down-line-or-beginning-search
 
 # Set default browser
 export BROWSER=qutebrowser
