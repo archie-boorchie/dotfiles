@@ -255,11 +255,11 @@ bindsym $mod+minus scratchpad show
 
 # Autostart programs
 exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper.png
-exec_always --no-startup-id unclutter --timeout 0.2 --jitter 1 --ignore-scrolling --fork
+exec_always --no-startup-id unclutter --timeout 1 --jitter 10 --ignore-scrolling --fork
 exec_always setxkbmap -option grp:alt_shift_toggle us,gr
 exec --no-startup-id termite
 
 # Create a scratchpad terminal (termite) at startup
 for_window [instance="scratchmite"] floating enable
 for_window [instance="scratchmite"] move scratchpad
-exec --no-startup-id termite --name scratchmite --geometry=700x450
+exec --no-startup-id termite --name scratchmite --geometry=666x444

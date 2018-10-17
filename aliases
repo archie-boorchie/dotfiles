@@ -6,6 +6,9 @@ alias todolist='clear; echo "__________________________________________________"
 alias todonano='nano /home/lampros/todolist.txt'
 alias todoclear='echo "" > /home/lampros/todolist.txt'
 
+# sudo
+alias sudo='sudo '
+
 # USB Stick
 alias usb1='sudo mount /dev/sdb1 /media/usb1'
 alias usb2='sudo mount /dev/sdb2 /media/usb2'
