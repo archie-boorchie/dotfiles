@@ -1,15 +1,14 @@
 # Set up the prompt
-
 autoload -Uz promptinit
 promptinit
 prompt fade black
 
 setopt histignorealldups sharehistory
 
-# Use emacs keybindings even if our EDITOR is set to vi
+# Use vi keybings
 bindkey -v
 
-# # The "command not found" hook that will automatically search the official
+# # The "command not found" hook will automatically search the official
 # # repositories, when entering an unrecognized command
 # source /usr/share/doc/pkgfile/command-not-found.zsh
 

@@ -6,7 +6,7 @@ alias todolist='clear; echo "__________________________________________________"
 alias todonano='nano /home/lampros/todolist.txt'
 alias todoclear='echo "" > /home/lampros/todolist.txt'
 
-# sudo
+# Make sudo compatible with aliases
 alias sudo='sudo '
 
 # USB Stick
@@ -21,7 +21,6 @@ alias usbb3='sudo umount /media/usb3'
 alias r='ranger'
 
 # Misc
-alias d='dict'
 alias time='clear; echo -ne "\n\n\n\n\n\n"; figlet `date` | lolcat -a -d 1 -s 12; fortune;read -rsn1 -p" ";echo'
 alias timer='while true; do echo -ne "`date`\n" | lolcat -a -d 12 -s 12 || break; done'
 alias weather='curl wttr.in/ioannina'

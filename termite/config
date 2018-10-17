@@ -12,7 +12,7 @@ font = Source Code Pro Semibold 9
 # Length of the scrollback buffer, 0 disabled the scrollback buffer
 # and setting it to a negative value means "infinite scrollback"
 scrollback_lines = 1000
-#search_wrap = true
+search_wrap = true
 hyperlinks = true
 
 # $BROWSER is used by default if set, with xdg-open as a fallback
