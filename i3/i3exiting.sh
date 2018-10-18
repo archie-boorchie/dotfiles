@@ -3,7 +3,8 @@
 res=$(rofi -dmenu -lines 4 < ~/dotfiles/i3/.dmenu-i3exit)
 
 if [ $res = "lock" ]; then
-    i3lock exit
+    # i3lock exit # traditional i3lock
+    sh ~/dotfiles/i3/i3lock-blur.sh exit # blured screenshot i3lock
 fi
 
 if [ $res = "logout" ]; then

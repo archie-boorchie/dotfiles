@@ -250,6 +250,8 @@ exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper.png
 exec_always --no-startup-id unclutter --timeout 1 --jitter 15 --ignore-scrolling --fork
 exec_always setxkbmap -option grp:alt_shift_toggle us,gr
 exec_always --no-startup-id sleep 1 && xmodmap ~/.Xmodmap # gets overwritten in xinitrc
+#exec_always --no-startup-id sh $HOME/.config/polybar/launch.sh
+exec_always --no-startup-id nm-applet
 exec --no-startup-id termite
 
 # Create a scratchpad terminal (termite) at startup
