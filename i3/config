@@ -64,7 +64,11 @@ bindsym $mod+Ctrl+v layout toggle split
 # Enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
+# Toggle the bar
 bindsym $mod+b bar mode toggle
+
+# # Toggle polybar bars
+# bindsym $mod+b 
 
 # Change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout toggle split
@@ -250,7 +254,8 @@ exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper.png
 exec_always --no-startup-id unclutter --timeout 1 --jitter 15 --ignore-scrolling --fork
 exec_always setxkbmap -option grp:alt_shift_toggle us,gr
 exec_always --no-startup-id sleep 1 && xmodmap ~/.Xmodmap # gets overwritten in xinitrc
-#exec_always --no-startup-id sh $HOME/.config/polybar/launch.sh
+#exec_always --no-startup-id sh $HOME/.config/polybar/launch-top.sh
+#exec_always --no-startup-id sh $HOME/.config/polybar/launch-bottom.sh
 exec_always --no-startup-id nm-applet
 exec --no-startup-id termite
 

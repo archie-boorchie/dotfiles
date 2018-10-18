@@ -1,6 +1,6 @@
 rofi.modi: drun,window
 rofi.display-drun: run
-rofi.display-window: win
+rofi.display-window: window
 
 rofi.color-enabled: true
 rofi.color-window: argb:ea292d37, #292d37, #17a086
@@ -14,7 +14,7 @@ rofi.eh: 2
 rofi.line-margin: 2
 rofi.separator-style: solid
 rofi.hide-scrollbar: false
-rofi.lines: 3
+rofi.lines: 4
 rofi.width: -50
 rofi.padding: 600
 rofi.bw: 0
