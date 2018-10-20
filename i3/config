@@ -180,16 +180,16 @@ mode "resize" {
     # Pressing right will grow the window’s width.
     # Pressing up will shrink the window’s height.
     # Pressing down will grow the window’s height.
-    bindsym h resize shrink width 10 px or 10 ppt
-    bindsym j resize grow height 10 px or 10 ppt
-    bindsym k resize shrink height 10 px or 10 ppt
-    bindsym l resize grow width 10 px or 10 ppt
+    bindsym h resize shrink width 5 px or 5 ppt
+    bindsym j resize grow height 5 px or 5 ppt
+    bindsym k resize shrink height 5 px or 5 ppt
+    bindsym l resize grow width 5 px or 5 ppt
     
     # same bindings, but for the arrow keys
-    bindsym Left resize shrink width 10 px or 10 ppt
-    bindsym Down resize grow height 10 px or 10 ppt
-    bindsym Up resize shrink height 10 px or 10 ppt
-    bindsym Right resize grow width 10 px or 10 ppt
+    bindsym Left resize shrink width 5 px or 5 ppt
+    bindsym Down resize grow height 5 px or 5 ppt
+    bindsym Up resize shrink height 5 px or 5 ppt
+    bindsym Right resize grow width 5 px or 5 ppt
     
     # back to normal: Enter or Escape or $mod+r
     bindsym Return mode "default"
@@ -251,13 +251,13 @@ bindsym $mod+minus scratchpad show
 
 # Autostart programs
 exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper.png
-exec_always --no-startup-id unclutter --timeout 1 --jitter 15 --ignore-scrolling --fork
 exec_always setxkbmap -option grp:alt_shift_toggle us,gr
 exec_always --no-startup-id sleep 1 && xmodmap ~/.Xmodmap # gets overwritten in xinitrc
 #exec_always --no-startup-id sh $HOME/.config/polybar/launch-top.sh
 #exec_always --no-startup-id sh $HOME/.config/polybar/launch-bottom.sh
 exec_always --no-startup-id nm-applet
 exec --no-startup-id termite
+exec --no-startup-id unclutter --timeout 1 --jitter 15 --ignore-scrolling --fork
 
 # Create a scratchpad terminal (termite) at startup
 for_window [instance="scratchmite"] floating enable

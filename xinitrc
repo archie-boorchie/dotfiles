@@ -33,5 +33,5 @@ fi
 xset b off
 xset r rate 200 60
 
-xcompmgr -c &
+xcompmgr -cCfF -D 2 &
 exec i3

@@ -1,4 +1,5 @@
 rofi.modi: drun,window
+
 rofi.display-drun: run
 rofi.display-window: window
 
@@ -15,7 +16,7 @@ rofi.line-margin: 2
 rofi.separator-style: solid
 rofi.hide-scrollbar: false
 rofi.lines: 4
-rofi.width: -50
+rofi.width: -60
 rofi.padding: 600
 rofi.bw: 0
 rofi.auto-select: false
