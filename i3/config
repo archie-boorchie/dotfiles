@@ -180,16 +180,16 @@ mode "resize" {
     # Pressing right will grow the window’s width.
     # Pressing up will shrink the window’s height.
     # Pressing down will grow the window’s height.
-    bindsym h resize shrink width 5 px or 5 ppt
-    bindsym j resize grow height 5 px or 5 ppt
-    bindsym k resize shrink height 5 px or 5 ppt
-    bindsym l resize grow width 5 px or 5 ppt
+    bindsym h resize shrink width 2 px or 2 ppt
+    bindsym j resize grow height 2 px or 2 ppt
+    bindsym k resize shrink height 2 px or 2 ppt
+    bindsym l resize grow width 2 px or 2 ppt
     
     # same bindings, but for the arrow keys
-    bindsym Left resize shrink width 5 px or 5 ppt
-    bindsym Down resize grow height 5 px or 5 ppt
-    bindsym Up resize shrink height 5 px or 5 ppt
-    bindsym Right resize grow width 5 px or 5 ppt
+    bindsym Left resize shrink width 2 px or 2 ppt
+    bindsym Down resize grow height 2 px or 2 ppt
+    bindsym Up resize shrink height 2 px or 2 ppt
+    bindsym Right resize grow width 2 px or 2 ppt
     
     # back to normal: Enter or Escape or $mod+r
     bindsym Return mode "default"
@@ -198,6 +198,13 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
+# Minimum and maximum size for floating windows
+floating_minimum_size 100 x 100
+floating_maximum_size -1 x -1
+
+# Toggle sticky windows
+bindsym $mod+Ctrl+s sticky toggle
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -232,7 +239,7 @@ client.background       #ffffff
 
 # i3-gaps usage
 for_window [class="^.*"] border pixel 1
-for_window [class="Mathematica"] border normal 1 # I nead titles in .nb files
+for_window [title=" - Wolfram Mathematica"] border normal 1 # I nead titles in .nb files
 gaps inner 10
 gaps outer 5
 smart_borders on
@@ -250,7 +257,7 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 # Autostart programs
-exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper.png
+exec_always --no-startup-id feh --bg-scale ~/.wallpaper
 exec_always setxkbmap -option grp:alt_shift_toggle us,gr
 exec_always --no-startup-id sleep 1 && xmodmap ~/.Xmodmap # gets overwritten in xinitrc
 #exec_always --no-startup-id sh $HOME/.config/polybar/launch-top.sh
