@@ -247,11 +247,19 @@ bindsym $mod+Shift+g gaps inner all minus 1
 bindsym $mod+Ctrl+g gaps outer all plus 1
 bindsym $mod+Ctrl+Shift+g gaps outer all minus 1
 
-# Using a scratchpad 
+# Using a scratchpad
 # make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
 # show the first scratchpad window
 bindsym $mod+minus scratchpad show
+
+# Scratchpad terminals
+for_window [instance="scratchmite"] floating enable
+for_window [instance="scratchmite" window_role="startup"] move scratchpad
+# create a scratchpad terminal on the fly
+bindsym $mod+Shift+Return exec --no-startup-id termite --name scratchmite --geometry=666x413 && move scratchpad
+# create a scratchpad terminal at startup
+exec --no-startup-id termite --name scratchmite --role startup --geometry=666x413
 
 # Autostart programs
 exec_always --no-startup-id feh --bg-scale ~/.wallpaper
@@ -262,8 +270,3 @@ exec_always --no-startup-id sleep 1 && xmodmap ~/.Xmodmap # gets overwritten in 
 exec_always --no-startup-id nm-applet
 exec --no-startup-id termite
 exec --no-startup-id unclutter --timeout 1 --jitter 15 --ignore-scrolling --fork
-
-# Create a scratchpad terminal (termite) at startup
-for_window [instance="scratchmite"] floating enable
-for_window [instance="scratchmite"] move scratchpad
-exec --no-startup-id termite --name scratchmite --geometry=666x444
