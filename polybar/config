@@ -14,6 +14,8 @@ alert = #bd2c40
 
 [bar/main]
 ;monitor = ${env:MONITOR:HDMI-1}
+; Enable intel process messaging
+enable-ipc = true
 width = 100%
 height = 20
 ;offset-x = 1%
@@ -190,7 +192,7 @@ type = internal/memory
 format = <label> <bar-used>
 label = RAM
 
-bar-used-width = 10
+bar-used-width = 8
 bar-used-foreground-0 = #aaff77
 bar-used-foreground-1 = #aaff77
 bar-used-foreground-2 = #fba922

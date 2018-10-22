@@ -61,11 +61,8 @@ bindsym $mod+Shift+v split h
 # Enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
-# Toggle the bar
-bindsym $mod+b bar mode toggle
-
-# # Toggle polybar bars
-# bindsym $mod+b 
+# Toggle the bar (polybar)
+bindsym $mod+b exec polybar-msg cmd toggle
 
 # Change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout toggle split
