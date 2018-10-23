@@ -47,6 +47,9 @@ fi
 autoload -Uz compinit
 compinit
 
+# To autocomplete "/" after "cd .."
+zstyle ':completion:*' special-dirs true
+
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
@@ -71,9 +74,12 @@ autoload down-line-or-beginning-search
 zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search
-bindkey "^[[B" down-line-or-beginning-search
 #[[ -n "${key[Up]}" ]] && bindkey "${key[Up]}" up-line-or-beginning-search
+bindkey "^[[B" down-line-or-beginning-search
 #[[ -n "${key[Down]}" ]] && bindkey "${key[Down]}" down-line-or-beginning-search
+
+# Add ~/bin to PATH (used for custom scripts)
+export PATH=$PATH:~/bin
 
 # Set default browser
 export BROWSER=qutebrowser

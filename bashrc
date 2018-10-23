@@ -166,6 +166,9 @@ if [ "$TERM" = "linux" ]; then
     clear #for background artifacting
 fi
 
+# Add ~/bin to PATH (used for custom scripts)
+export PATH=$PATH:~/bin
+
 # Set vi mode
 set -o vi
 
