@@ -27,8 +27,14 @@ set colorcolumn=+1
 " Keep a backup file
 set backup
 
-" Keep 100 lines of command line history
-set history=100
+" Directory to store backup files
+set backupdir=~/.cache/vim/backup//
+
+" Directory to store swap files
+set dir=~/.cache/vim/swap//
+
+" Keep 10000 lines of command line history
+set history=10000
 
 " Show current position of cursor
 set noruler
@@ -71,16 +77,22 @@ set mouse=a
 set noerrorbells " disable beep 
 set novisualbell " disable flash
 
-" Directory to store swap files
-set dir=~/.cache/vim
-
 " Delete comment characters when joining lines
 set formatoptions+=j
 
-" Placeholders
-" Pressing ;; jumps to the next match
-:imap <buffer> ;; <C-O>/<++><CR><C-O>c4l
-:nmap <buffer> ;; /<++><CR>c4l
+" to use with explore
+let g:netrw_banner = 0
+let g:netrw_liststyle = 3
+let g:netrw_browse_split = 1
+let g:netrw_winsize = 25
+
+" Set default browser to be used with gx command in links
+
+
+" " Placeholders
+" " Pressing ;; jumps to the next match
+" :imap <buffer> ;; <C-O>/<++><CR><C-O>c4l
+" :nmap <buffer> ;; /<++><CR>c4l
 
 
 """""""""""

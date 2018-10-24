@@ -195,8 +195,8 @@ ramp-coreload-7-foreground = #ff5555
 
 [module/date]
 type = internal/date
-date = %%{F#99} %%{F#fff}%d-%m %%{F#99} %%{F#fff}%H:%M%%{F-}
-date-alt = %%{F#99} %%{F#fff}%A, %d %B %Y %%{F#99} %%{F#fff}%H:%M%%{F#666}:%%{F#fba922}%S%%{F-}
+date = %%{F#99} %%{F#fff}%b %e, %H:%M%%{F-}
+date-alt = %%{F#99} %%{F#fff}%A, %B %d %Y, %H:%M%%{F#666}:%%{F#fba922}%S%%{F-}
 
 
 [module/memory]
