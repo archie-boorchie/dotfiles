@@ -7,9 +7,10 @@ background = #dd111111
 background-alt = #aa444444
 ;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
-foreground-alt = #555
+foreground-alt = #99
+foreground-alt-darker = #55
 primary = #ffb52a
-secondary = #e60053
+secondary = #ff0000
 alert = #bd2c40
 
 [bar/main]
@@ -64,6 +65,7 @@ cursor-scroll = ns-resize
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:46:...%
+label-empty = " Powered by Arch Linux "
 
 
 [module/xkeyboard]
@@ -93,7 +95,7 @@ mount-1 = /home
 ;label-0 = /
 ;label-1 = ~
 
-label-mounted = %{F#0a81f5}%mountpoint%%{F-} %percentage_used%%
+label-mounted = %{F#99}%mountpoint%%{F-} %percentage_used%%
 ;label-mounted = %{F#0a81f5}%label%%{F-} %percentage_used%%
 label-unmounted = %mountpoint% not mounted
 ;label-unmounted = %label% not mounted
@@ -195,8 +197,8 @@ ramp-coreload-7-foreground = #ff5555
 
 [module/date]
 type = internal/date
-date = %%{F#99} %%{F#fff}%b %e, %H:%M%%{F-}
-date-alt = %%{F#99} %%{F#fff}%A, %B %d %Y, %H:%M%%{F#666}:%%{F#fba922}%S%%{F-}
+date = %%{F#99} %%{F#fff}%a %b %e, %H:%M%%{F#555}:%%{F#fba922}%S%%{F-}
+date-alt = %%{F#99} %%{F#fff}%A, %B %d %Y, %H:%M%%{F#555}:%%{F#fba922}%S%%{F-}
 
 
 [module/memory]
@@ -216,7 +218,7 @@ bar-used-fill = ─
 bar-used-fill-font = 0
 bar-used-empty = ─
 bar-used-empty-font = 0
-bar-used-empty-foreground = #444444
+bar-used-empty-foreground = ${colors.foreground-alt-darker}
 
 
 [module/mpd]
@@ -236,10 +238,19 @@ label-song-ellipsis = true
 [module/xbacklight]
 type = internal/xbacklight
 
-format = <label> <bar>
-label = BL
+;format = <label> <bar>
+format = <ramp> <label>
+label = %percentage%%
+label-foreground = ${root.foreground}
 
-bar-width = 8
+ramp-0 = 🌕
+ramp-1 = 🌔
+ramp-2 = 🌓
+ramp-3 = 🌒
+ramp-4 = 🌑
+ramp-foreground = ${colors.foreground-alt}
+
+bar-width = 5
 bar-indicator = |
 bar-indicator-foreground = #fff
 bar-indicator-font = 0
@@ -248,7 +259,7 @@ bar-fill-font = 0
 bar-fill-foreground = #9f78e1
 bar-empty = ─
 bar-empty-font = 0
-bar-empty-foreground = ${colors.foreground-alt}
+bar-empty-foreground = ${colors.foreground-alt-darker}
 
 
 [module/wlan]
@@ -258,7 +269,8 @@ interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
 format-connected-underline = #9f78e1
-label-connected = %essid%
+;label-connected = %essid%
+label-connected = %essid%  %local_ip%
 
 format-disconnected =
 ;format-disconnected = <label-disconnected>
@@ -280,11 +292,9 @@ interface = enp8s0
 interval = 3.0
 
 format-connected-underline = #55aa55
-format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.foreground-alt}
-label-connected = %local_ip%
+label-connected = %essid%
+; label-connected-alt = %essid%  %local_ip%
 
-format-disconnected =
 ;format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
@@ -294,14 +304,20 @@ format-disconnected =
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL %percentage%%
+; format-volume = <label-volume> <bar-volume>
+format-volume = <ramp-volume> <label-volume>
+label-volume = %percentage%%
 label-volume-foreground = ${root.foreground}
 
-label-muted = mute
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+ramp-volume-foreground = ${colors.foreground-alt}
+
+label-muted =  %percentage%%
 label-muted-foreground = #666
 
-bar-volume-width = 10
+bar-volume-width = 5
 bar-volume-foreground-0 = #55aa55
 bar-volume-foreground-1 = #55aa55
 bar-volume-foreground-2 = #55aa55
@@ -316,7 +332,7 @@ bar-volume-fill = ─
 bar-volume-fill-font = 0
 bar-volume-empty = ─
 bar-volume-empty-font = 0
-bar-volume-empty-foreground = ${colors.foreground-alt}
+bar-volume-empty-foreground = ${colors.foreground-alt-darker}
 
 
 [module/alsa]
@@ -352,11 +368,14 @@ bar-volume-empty-foreground = ${colors.foreground-alt}
 type = internal/battery
 battery = BAT1
 adapter = ACAD
-full-at = 96
+full-at = 98
+time-format = %H:%M
 
 format-charging = <animation-charging> <label-charging>
-
 format-discharging = <ramp-capacity> <label-discharging>
+
+label-charging = %{F#99}%time%%{F-} %percentage%%
+label-discharging = %{F#99}%time%%{F-} %percentage%%
 
 format-full-prefix = "full"
 format-full-prefix-foreground = ${colors.foreground-alt}
@@ -381,20 +400,21 @@ animation-charging-framerate = 900
 type = internal/temperature
 thermal-zone = 0
 warn-temperature = 60
+interval = 10.0
 
-format = <ramp> <label>
-format-warn = <ramp> <label-warn>
+format = <ramp-temp> <label>
+format-warn = <ramp-temp> <label-warn>
 
 label = %temperature-c%
 label-warn = %temperature-c%
-label-warn-foreground = ${colors.secondary}
+label-warn-foreground = ${colors.alert}
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-3 = 
-ramp-4 = 
-ramp-foreground = ${colors.foreground-alt}
+ramp-temp-0 = 
+ramp-temp-1 = 
+ramp-temp-2 = 
+ramp-temp-3 = 
+ramp-temp-4 = 
+ramp-temp-foreground = ${colors.foreground-alt}
 
 
 [module/powermenu]
@@ -409,9 +429,9 @@ label-open-foreground = ${colors.secondary}
 label-close = 
 label-close-foreground = ${colors.secondary}
 label-separator = 
-label-separator-foreground = ${colors.foreground-alt}
+label-separator-foreground = ${colors.foreground-alt-darker}
 
-menu-0-0 = 
+menu-0-0 = " "
 ;menu-0-0 = shutdown
 menu-0-0-exec = poweroff
 menu-0-1 = 
