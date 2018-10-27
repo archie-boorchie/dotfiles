@@ -67,7 +67,7 @@ bindsym $mod+f fullscreen toggle
 bindsym $mod+b exec polybar-msg cmd toggle
 
 # Change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout toggle split
+bindsym $mod+Shift+s layout toggle split
 bindsym $mod+Ctrl+s layout stacking
 bindsym $mod+t layout tabbed
 
@@ -200,7 +200,7 @@ floating_minimum_size 100 x 100
 floating_maximum_size -1 x -1
 
 # Toggle sticky windows
-bindsym $mod+Shift+s sticky toggle
+bindsym $mod+s sticky toggle
 
 # Colors
 # class                 border  backgr. text    indicator child_border
@@ -209,21 +209,56 @@ client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
 client.unfocused        #333333 #222222 #aaaaaa #292d2e   #222222
 client.urgent           #2f343a #900000 #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
-
 client.background       #ffffff
 
-# i3-gaps usage
+# i3-gaps
 for_window [class="^.*"] border pixel 1
 for_window [title=" - Wolfram Mathematica"] border normal 1 # I nead titles in .nb files
-gaps inner 15
-gaps outer 0
-smart_borders on
+set $in_gaps 15
+set $out_gaps 0
+gaps inner $in_gaps
+gaps outer $out_gaps
+smart_borders no_gaps
 
-# Change gaps on the fly
-bindsym $mod+g gaps inner all plus 1
-bindsym $mod+Shift+g gaps inner all minus 1
-bindsym $mod+Ctrl+g gaps outer all plus 1
-bindsym $mod+Ctrl+Shift+g gaps outer all minus 1
+# i3-gaps resizing modes
+set $mode_gaps_inner Gaps (inner)
+bindsym $mod+g mode "$mode_gaps_inner"
+set $mode_gaps_outer Gaps (outer)
+bindsym $mod+Shift+g mode "$mode_gaps_outer"
+
+mode "$mode_gaps_inner" {
+        bindsym Shift+plus gaps inner all plus 1
+        bindsym minus gaps inner all minus 1
+        bindsym plus gaps inner all set $in_gaps
+        bindsym 0 gaps inner all set 0
+
+        bindsym Ctrl+Shift+plus gaps inner current plus 1
+        bindsym Ctrl+minus gaps inner current minus 1
+        bindsym Ctrl+plus gaps inner current set $in_gaps
+        bindsym Ctrl+0 gaps inner current set 0
+
+        bindsym o mode "$mode_gaps_outer"
+        bindsym i mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_outer" {
+        bindsym Shift+plus gaps outer all plus 1
+        bindsym minus gaps outer all minus 1
+        bindsym plus gaps outer all set $out_gaps
+        bindsym 0 gaps outer all set 0
+
+        bindsym Ctrl+Shift+plus gaps outer current plus 1
+        bindsym Ctrl+minus gaps outer current minus 1
+        bindsym Ctrl+plus gaps outer current set $out_gaps
+        bindsym Ctrl+0 gaps outer current set 0
+
+        bindsym i mode "$mode_gaps_inner"
+        bindsym o mode "$mode_gaps_outer"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
 
 # Using a scratchpad
 # make the currently focused window a scratchpad

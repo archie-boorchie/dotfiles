@@ -1,4 +1,5 @@
 lock
 logout
-restart
-shutdown
+suspend
+reboot
+poweroff

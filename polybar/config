@@ -267,23 +267,15 @@ type = internal/network
 interface = wlp7s0
 interval = 3.0
 
-format-connected = <ramp-signal> <label-connected>
+format-connected = <label-connected>
 format-connected-underline = #9f78e1
 ;label-connected = %essid%
-label-connected = %essid%  %local_ip%
+label-connected = %essid%  %local_ip% (%signal%%)
 
-format-disconnected =
 ;format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
-
-ramp-signal-0 =  
-ramp-signal-1 =  
-ramp-signal-2 =  
-ramp-signal-3 =  
-ramp-signal-4 =  
-ramp-signal-foreground = ${colors.foreground-alt}
 
 
 [module/eth]
@@ -292,8 +284,8 @@ interface = enp8s0
 interval = 3.0
 
 format-connected-underline = #55aa55
-label-connected = %essid%
-; label-connected-alt = %essid%  %local_ip%
+label-connected =  %local_ip%
+; label-connected-alt = %essid%
 
 ;format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
@@ -440,9 +432,18 @@ menu-0-1-exec = reboot
 menu-0-2 = 
 ;menu-0-2 = logout
 menu-0-2-exec = i3-msg exit
-menu-0-3 = 
-;menu-0-3 = lock
-menu-0-3-exec = sh ~/dotfiles/i3/i3lock-blur.sh
+menu-0-3 = 
+;menu-0-3 = suspend
+menu-0-3-exec = sh ~/dotfiles/i3/i3lock-blur.sh && systemctl suspend
+menu-0-4 = 
+;menu-0-4 = lock
+menu-0-4-exec = sh ~/dotfiles/i3/i3lock-blur.sh
+
+
+[module/updates-arch-combined]
+type = custom/script
+exec = ~/dotfiles/polybar/updates-arch-combined.sh
+interval = 3600
 
 
 [settings]
