@@ -65,7 +65,7 @@ cursor-scroll = ns-resize
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:46:...%
-label-empty = " Powered by Arch Linux "
+label-empty = " Powered by Arch Linux "
 
 
 [module/xkeyboard]
@@ -301,9 +301,8 @@ format-volume = <ramp-volume> <label-volume>
 label-volume = %percentage%%
 label-volume-foreground = ${root.foreground}
 
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
+ramp-volume-0 = 
+ramp-volume-1 = 
 ramp-volume-foreground = ${colors.foreground-alt}
 
 label-muted =  %percentage%%
