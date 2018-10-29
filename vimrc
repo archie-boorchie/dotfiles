@@ -73,9 +73,10 @@ nmap Q gqap
 " Enable mouse
 set mouse=a
 
-" Turn off error sounds and flashes
-set noerrorbells " disable beep 
-set novisualbell " disable flash
+" Disable audible and visual bells
+set noerrorbells
+set novisualbell
+set t_vb=
 
 " Delete comment characters when joining lines
 set formatoptions+=j
@@ -83,8 +84,19 @@ set formatoptions+=j
 " to use with explore
 let g:netrw_banner = 0
 let g:netrw_liststyle = 3
-let g:netrw_browse_split = 1
-let g:netrw_winsize = 25
+let g:netrw_browse_split = 0
+let g:netrw_winsize = 50
+
+" Change cursor shape according to mode
+if empty($TMUX)
+  let &t_SI = "\<esc>[5 q"
+  let &t_EI = "\<esc>[2 q"
+  let &t_SR = "\<esc>[3 q"
+else
+  let &t_SI = "\<esc>Ptmux;\<esc>\<esc>[5 q\<esc>\\"
+  let &t_EI = "\<esc>Ptmux;\<esc>\<esc>[2 q\<esc>\\"
+  let &t_SR = "\<esc>Ptmux;\<esc>\<esc>[3 q\<esc>\\"
+endif
 
 " Set default browser to be used with gx command in links
 
@@ -296,3 +308,9 @@ let g:vimtex_fold_enabled=0
 
 " vim-pandoc settings
 let g:pandoc#modules#disabled = ["folding"] " turn off folding
+
+" comfortable-motion.vim settings
+let g:comfortable_motion_scroll_down_key = "j"
+let g:comfortable_motion_scroll_up_key = "k"
+let g:comfortable_motion_friction = 80.0
+let g:comfortable_motion_air_drag = 2.0
