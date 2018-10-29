@@ -167,9 +167,8 @@ set omnifunc=syntaxcomplete#Complete
 " Insert template according to the file's extension
 if has("autocmd")
   augroup templates
-  autocmd BufNewFile *.sh 0r ~/Templates/skeleton.sh
-  autocmd BufNewFile *.apstex 0r ~/Templates/apssamp.tex
-  autocmd BufNewFile *.tex 0r ~/Templates/Template_LT/main.tex
+  autocmd BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh
+  autocmd BufNewFile *.tex 0r ~/.vim/templates/skeleton.tex
   augroup END
 endif
 
