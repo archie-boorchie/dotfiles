@@ -208,11 +208,29 @@ call plug#begin('~/.vim/plugged')
     " The ultimate snippet solution for Vim
     Plug 'SirVer/ultisnips'
     "
-    " pandoc integration and utilities for vim 
+    " Pandoc integration and utilities for vim 
     Plug 'vim-pandoc/vim-pandoc'
     "
-    " pandoc markdown syntax, to be installed alongside vim-pandoc
+    " Pandoc markdown syntax, to be installed alongside vim-pandoc
     Plug 'vim-pandoc/vim-pandoc-syntax'
+    "
+    " Repeat resizing commands without repeating <c-w>
+    Plug 'roxma/vim-window-resize-easy'
+    "
+    " Easily search for, substitute, and abbreviate multiple variants of a word
+    Plug 'tpope/vim-abolish'
+    "
+    "   " Combine with netrw to create a delicious salad dressing
+    "   Plug 'tpope/vim-vinegar'
+    "
+    " Directory viewer for Vim
+    Plug 'justinmk/vim-dirvish'
+    "
+    " Quoting/parenthesizing made simple
+    Plug 'tpope/vim-surround'
+    "
+    " Brings physics-based smooth scrolling to the Vim world!
+    Plug 'yuttie/comfortable-motion.vim'
 call plug#end()
 
 " Integrate Limelight to Goyo
