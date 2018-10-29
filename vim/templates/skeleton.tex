@@ -17,8 +17,6 @@
 \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}%Sections have dots in ToC
 
 \usepackage{authblk}
-\renewcommand\Authfont{\scshape\large}
-\renewcommand\Affilfont{\slshape\small}
 
 \usepackage{slashed} %to use Feynman slash notation
 
@@ -30,6 +28,23 @@
     label.#3(btex #4 etex, point 0.5 of p shifted 6 #2);
     enddef;}
     \fmf{marrow#1,tension=0}{#5}} %momenta arrows
+\newcommand{\counterterm}[1]{\fmfv{decor.shape=circle,decor.filled=0,decor.size=4thick,label=$\boldsymbol{\times}$,label.dist=0}{#1}}
+\newcommand{\opi}[1]{\fmfv{decor.shape=circle,decor.filled=10,decor.size=12thick,label=$\text{1PI}$,label.dist=0}{#1}}
+\newcommand{\blob}[1]{\fmfv{decor.shape=circle,decor.filled=60,decor.size=8thick}{#1}}
+\newcommand{\blobsmall}[1]{\fmfv{decor.shape=circle,decor.filled=60,decor.size=6thick}{#1}}
+\newcommand{\fmfsquare}[1]{\fmfv{decor.shape=square,decor.filled=full,decor.size=2thick}{#1}}
+%
+
+% we redefine \left and \right to avoid unwanted blank spaces
+\let\originalleft\left \let\originalright\right
+\renewcommand{\left}{\mathopen{}\mathclose\bgroup\originalleft}
+\renewcommand{\right}{\aftergroup\egroup\originalright}
+%
+
+% for comments
+\usepackage{color}
+\newcommand{\lt}[1]{\color{red}#1\color{black}}
+%
 
 \usepackage[dvipsnames]{xcolor}
 
@@ -49,20 +64,21 @@ linkbordercolor={RedViolet},
 urlbordercolor={cyan}]
 {hyperref}
 
-\setlength{\unitlength}{0.1\linewidth}
+\setlength{\unitlength}{0.01\linewidth}
 
 
 \begin{document}
-\begin{fmffile}{xi}
+\begin{fmffile}{fmf}
 
 \title{Title of Project}
 \author{Lampros \scshape{Trifyllis}$^{1}$%
   \thanks{email: \href{mailto:ltrifyl@cc.uoi.gr}{\texttt{ltrifyl@cc.uoi.gr}}}}
 \affil{$^{1}$Department of Physics, Division of Theoretical Physics,\protect\\
 University of Ioannina, GR 45110 Ioannina, Greece}
+
 \date{\today}
 
-{\Large\bfseries \maketitle \par}
+\maketitle
 
 \begin{abstract}
 This is an abstract.
