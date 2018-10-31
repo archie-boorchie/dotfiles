@@ -6,12 +6,6 @@ if v:progname =~? "evim"
   finish
 endif
 
-" Hide menus etc in gvim 
-set guioptions-=m  "remove menu bar
-set guioptions-=T  "remove toolbar
-set guioptions-=r  "remove right-hand scroll bar
-set guioptions-=L  "remove left-hand scroll bar
-
 " Fast terminal
 set ttyfast
 
@@ -24,6 +18,15 @@ set textwidth=80
 " Highlight column after wrap 
 set colorcolumn=+1
 
+" Don't put two spaces after a period when joining lines
+set nojoinspaces
+
+" Delete comment characters when joining lines
+set formatoptions+=j
+
+" Yank till the end of line
+nnoremap Y y$
+
 " Keep a backup file
 set backup
 
@@ -33,11 +36,11 @@ set backupdir=~/.cache/vim/backup//
 " Directory to store swap files
 set dir=~/.cache/vim/swap//
 
-" Keep 10000 lines of command line history
-set history=10000
+" Keep 100 lines of command line history
+set history=100
 
 " Show current position of cursor
-set noruler
+set ruler
 
 " Show line numbers relevant to current line
 set relativenumber
@@ -53,7 +56,7 @@ syntax enable
 set hlsearch 
 " ignore case when searching
 set ignorecase
-" switch search to case-sensitive when search query contains an uppercase letter
+" switch search to case-sensitive when search query contains uppercase letters
 set smartcase 
 " incremental search that shows partial matches
 set incsearch
@@ -78,36 +81,29 @@ set noerrorbells
 set novisualbell
 set t_vb=
 
-" Delete comment characters when joining lines
-set formatoptions+=j
-
-" to use with explore
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-let g:netrw_browse_split = 0
-let g:netrw_winsize = 50
-
 " Change cursor shape according to mode
 if empty($TMUX)
   let &t_SI = "\<esc>[5 q"
-  let &t_EI = "\<esc>[2 q"
+  let &t_EI = "\<esc>[1 q"
   let &t_SR = "\<esc>[3 q"
 else
   let &t_SI = "\<esc>Ptmux;\<esc>\<esc>[5 q\<esc>\\"
-  let &t_EI = "\<esc>Ptmux;\<esc>\<esc>[2 q\<esc>\\"
+  let &t_EI = "\<esc>Ptmux;\<esc>\<esc>[1 q\<esc>\\"
   let &t_SR = "\<esc>Ptmux;\<esc>\<esc>[3 q\<esc>\\"
 endif
 
 " Set default browser to be used with gx command in links
 
+" Hide menus etc in gvim 
+set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L  "remove left-hand scroll bar
 
 " " Placeholders
 " " Pressing ;; jumps to the next match
 " :imap <buffer> ;; <C-O>/<++><CR><C-O>c4l
 " :nmap <buffer> ;; /<++><CR>c4l
-
-
-"""""""""""
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
@@ -122,9 +118,6 @@ if has("autocmd")
   augroup vimrcEx
   au!
 
-  " For all text files set 'textwidth' to 68 characters.
-  autocmd FileType text setlocal textwidth=68
-
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
   " (happens when dropping a file on gvim).
@@ -136,14 +129,7 @@ if has("autocmd")
     \ endif
 
   augroup END
-
-else
-
-  set autoindent		" always set autoindenting on
-
 endif " has("autocmd")
-
-"""""""""""
 
 " Set autoindenting on
 set autoindent
@@ -158,7 +144,7 @@ endif
 
 " Spell check options
 set nospell
-set spelllang=en_gb 
+set spelllang=en_gb
 set spellfile=~/.vim/spell/en_gb.utf-8.add
 
 " Use smart tabs
@@ -184,7 +170,7 @@ if has("autocmd")
   augroup END
 endif
 
-" Automatic installation for vim-plug
+" Automatically install vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -193,6 +179,13 @@ endif
 
 " Plugins (to use with vim-plug; install with :PlugInstall)
 call plug#begin('~/.vim/plugged')
+    "
+    " Minimalist Vim Plugin Manager
+    Plug 'junegunn/vim-plug'
+    "
+    " Helpers for UNIX
+    Plug 'tpope/vim-eunuch'
+    "
     " Distraction-free writing in Vim
     Plug 'junegunn/goyo.vim'
     "
@@ -214,8 +207,8 @@ call plug#begin('~/.vim/plugged')
     " Provides the branch name of the current git repository
     Plug 'itchyny/vim-gitbranch'
     "
-    "   " A Git wrapper so awesome, it should be illegal
-    "   Plug 'tpope/vim-fugitive'
+    " A Git wrapper so awesome, it should be illegal
+    Plug 'tpope/vim-fugitive'
     "
     " The ultimate snippet solution for Vim
     Plug 'SirVer/ultisnips'
@@ -232,17 +225,24 @@ call plug#begin('~/.vim/plugged')
     " Easily search for, substitute, and abbreviate multiple variants of a word
     Plug 'tpope/vim-abolish'
     "
-    "   " Combine with netrw to create a delicious salad dressing
-    "   Plug 'tpope/vim-vinegar'
+    " Combine with netrw to create a delicious salad dressing
+    Plug 'tpope/vim-vinegar'
     "
-    " Directory viewer for Vim
-    Plug 'justinmk/vim-dirvish'
+    "   " Directory viewer for Vim
+    "   Plug 'justinmk/vim-dirvish'
     "
     " Quoting/parenthesizing made simple
     Plug 'tpope/vim-surround'
     "
+    " Enable repeating supported plugin maps with .
+    Plug 'tpope/vim-repeat'
+    "
+    " Make the yanked region apparent!
+    Plug 'machakann/vim-highlightedyank'
+    "
     " Brings physics-based smooth scrolling to the Vim world!
     Plug 'yuttie/comfortable-motion.vim'
+    "
 call plug#end()
 
 " Integrate Limelight to Goyo
@@ -310,7 +310,10 @@ let g:vimtex_fold_enabled=0
 let g:pandoc#modules#disabled = ["folding"] " turn off folding
 
 " comfortable-motion.vim settings
-let g:comfortable_motion_scroll_down_key = "j"
-let g:comfortable_motion_scroll_up_key = "k"
 let g:comfortable_motion_friction = 80.0
 let g:comfortable_motion_air_drag = 2.0
+let g:comfortable_motion_scroll_down_key = "j"
+let g:comfortable_motion_scroll_up_key = "k"
+
+" vim-highlightedyank settings
+let g:highlightedyank_highlight_duration = 200

@@ -28,7 +28,8 @@ bindsym $mod+d exec rofi -config ~/.config/rofi/config -show drun
 bindsym $mod+Shift+d exec rofi -config ~/.config/rofi/config -show window 
 
 # Take a screenshot
-bindsym $mod+y exec maim -u -m 10 ~/Pictures/screenshots/`date +%d-%m-%Y_%T`.png
+bindsym $mod+y exec maim -u -m 10 ~/Pictures/screenshots/src_`date +%d-%m-%Y_%T`.png
+bindsym $mod+Shift+y exec maim -u -m 10 -s ~/Pictures/screenshots/src_`date +%d-%m-%Y_%T`.png
 
 # Change focus
 bindsym $mod+h focus left
