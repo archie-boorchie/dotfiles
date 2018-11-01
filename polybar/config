@@ -370,13 +370,16 @@ label-discharging = %{F#99}%time%%{F-} %percentage%%
 
 format-full-prefix = "full"
 format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-prefix-underline = ${colors.foreground-alt}
 
-ramp-capacity-0 = 
+ramp-capacity-0 = low 
 ramp-capacity-1 = 
 ramp-capacity-2 = 
 ramp-capacity-3 = 
 ramp-capacity-4 = 
 ramp-capacity-foreground = ${colors.foreground-alt}
+ramp-capacity-0-foreground = ${colors.alert}
+ramp-capacity-0-underline = ${colors.alert}
 
 animation-charging-0 = 
 animation-charging-1 = 
@@ -391,21 +394,23 @@ animation-charging-framerate = 900
 type = internal/temperature
 thermal-zone = 0
 warn-temperature = 60
-interval = 10.0
+interval = 20.0
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon0/temp1_input
 
-format = <ramp-temp> <label>
-format-warn = <ramp-temp> <label-warn>
+format = <ramp> <label>
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${colors.alert}
 
 label = %temperature-c%
 label-warn = %temperature-c%
 label-warn-foreground = ${colors.alert}
 
-ramp-temp-0 = 
-ramp-temp-1 = 
-ramp-temp-2 = 
-ramp-temp-3 = 
-ramp-temp-4 = 
-ramp-temp-foreground = ${colors.foreground-alt}
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-4 = 
+ramp-foreground = ${colors.foreground-alt}
 
 
 [module/powermenu]
