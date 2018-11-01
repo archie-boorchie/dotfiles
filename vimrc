@@ -73,6 +73,9 @@ set encoding=utf8
 " Display incomplete commands
 set showcmd
 
+" Faster update time
+set updatetime=100
+
 " Use Q for fast formatting
 " format selection
 vmap Q gq 
@@ -216,6 +219,9 @@ call plug#begin('~/.vim/plugged')
     " A Git wrapper so awesome, it should be illegal
     Plug 'tpope/vim-fugitive'
     "
+    " A Vim plugin which shows a git diff in the gutter (sign column) and stages/undoes hunks.
+    Plug 'airblade/vim-gitgutter'
+    "
     " The ultimate snippet solution for Vim
     Plug 'SirVer/ultisnips'
     "
@@ -255,6 +261,9 @@ call plug#begin('~/.vim/plugged')
     " More useful word motions for Vim
     Plug 'chaoren/vim-wordmotion'
     "
+    " Smart selection of the closest text object
+    Plug 'gcmt/wildfire.vim'
+    "
 call plug#end()
 
 " Integrate Limelight to Goyo
@@ -264,7 +273,7 @@ autocmd! User GoyoLeave Limelight!
 " Goyo settings
 let g:goyo_width = 80
 
-" For gruvbox colors
+" Gruvbox settings
 " set termguicolors
 set background=dark
 let g:gruvbox_italic=0
@@ -278,7 +287,7 @@ let g:limelight_conceal_ctermfg = 'gray'
 let g:limelight_conceal_ctermfg = 240
 let g:limelight_priority = -1 " not to overrule hlsearch
 
-" lightline settings
+" Lightline settings
 set laststatus=2
 if !has('gui_running')
     set t_Co=256
@@ -306,7 +315,7 @@ function! LightlineFilename()
 endfunction
 
 " UltiSnips settings
-" use absolute path, not ~  or $HOME:
+" use absolute path, not ~ or $HOME:
 let g:UltiSnipsSnippetDirectories = ['/home/lampros/.vim/UltiSnips']
 let g:UltiSnipsEditSplit = "vertical"
 let g:UltiSnipsExpandTrigger = "<tab>"
@@ -314,18 +323,18 @@ let g:UltiSnipsListSnippets = "<c-tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
-" vimtex settings
+" Vimtex settings
 let g:vimtex_fold_automatic=0 
 let g:vimtex_fold_enabled=0
 
-" vim-pandoc settings
-let g:pandoc#modules#disabled = ["folding"] " turn off folding
+" Vim-pandoc settings
+let g:pandoc#modules#disabled = ["folding"]
 
-" comfortable-motion.vim settings
+" Comfortable-motion.vim settings
 let g:comfortable_motion_friction = 80.0
 let g:comfortable_motion_air_drag = 2.0
 let g:comfortable_motion_scroll_down_key = "j"
 let g:comfortable_motion_scroll_up_key = "k"
 
-" vim-highlightedyank settings
+" Vim-highlightedyank settings
 let g:highlightedyank_highlight_duration = 140
