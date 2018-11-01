@@ -27,6 +27,12 @@ set formatoptions+=j
 " Yank till the end of line
 nnoremap Y y$
 
+" Easily paste the last yanked text
+noremap <leader>p "0p
+nnoremap <leader>P "0P
+xnoremap <leader>p "0p
+xnoremap <leader>P "0P
+
 " Keep a backup file
 set backup
 
@@ -243,6 +249,12 @@ call plug#begin('~/.vim/plugged')
     " Brings physics-based smooth scrolling to the Vim world!
     Plug 'yuttie/comfortable-motion.vim'
     "
+    " Undo a :quit -- reopen the last window you closed
+    Plug 'AndrewRadev/undoquit.vim'
+    "
+    " More useful word motions for Vim
+    Plug 'chaoren/vim-wordmotion'
+    "
 call plug#end()
 
 " Integrate Limelight to Goyo
@@ -316,4 +328,4 @@ let g:comfortable_motion_scroll_down_key = "j"
 let g:comfortable_motion_scroll_up_key = "k"
 
 " vim-highlightedyank settings
-let g:highlightedyank_highlight_duration = 200
+let g:highlightedyank_highlight_duration = 140
