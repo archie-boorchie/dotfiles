@@ -368,15 +368,17 @@ format-discharging = <ramp-capacity> <label-discharging>
 label-charging = %{F#99}%time%%{F-} %percentage%%
 label-discharging = %{F#99}%time%%{F-} %percentage%%
 
-format-full-prefix = "full"
-format-full-prefix-foreground = ${colors.foreground-alt}
-format-full-prefix-underline = ${colors.foreground-alt}
+format-full-prefix = "full "
+format-full-prefix-foreground = ${colors.foreground}
+format-full-prefix-underline = ${colors.foreground}
 
-ramp-capacity-0 = low 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
+ramp-capacity-0 =   
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-5 = 
+ramp-capacity-6 = full 
 ramp-capacity-foreground = ${colors.foreground-alt}
 ramp-capacity-0-foreground = ${colors.alert}
 ramp-capacity-0-underline = ${colors.alert}

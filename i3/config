@@ -27,9 +27,10 @@ bindsym $mod+q kill
 bindsym $mod+d exec rofi -config ~/.config/rofi/config -show drun 
 bindsym $mod+Shift+d exec rofi -config ~/.config/rofi/config -show window 
 
-# Take a screenshot
-bindsym $mod+y exec maim -u -m 10 ~/Pictures/screenshots/src_`date +%d-%m-%Y_%T`.png
-bindsym $mod+Shift+y exec maim -u -m 10 -s ~/Pictures/screenshots/src_`date +%d-%m-%Y_%T`.png
+# Take a screenshot (yank screen)
+bindsym $mod+y exec maim -u -m 10 ~/Pictures/screenshots/src_`date +%s`.png
+bindsym $mod+Shift+y exec maim -u -m 10 -s ~/Pictures/screenshots/src_`date +%s`.png
+bindsym $mod+Ctrl+y exec maim -u -m 10 -i $(xdotool getactivewindow) ~/Pictures/screenshots/src_`date +%s`.png
 
 # Change focus
 bindsym $mod+h focus left

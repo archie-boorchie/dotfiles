@@ -18,6 +18,9 @@ set textwidth=80
 " Highlight column after wrap 
 set colorcolumn=+1
 
+" Keep some lines above and below cursor always visible
+set scrolloff=3
+
 " Don't put two spaces after a period when joining lines
 set nojoinspaces
 
@@ -66,6 +69,9 @@ set ignorecase
 set smartcase 
 " incremental search that shows partial matches
 set incsearch
+
+" Easily turn-off search highlighting
+nmap <silent> <Leader>/ :nohlsearch<CR>
 
 " Set standard encoding
 set encoding=utf8
@@ -171,6 +177,13 @@ set expandtab
 filetype plugin on
 set omnifunc=syntaxcomplete#Complete
 
+" Show command matches above the command line
+set wildmenu
+set wildmode=longest,full
+
+" Ignore case in filenames
+set wildignorecase
+
 " Insert template according to the file's extension
 if has("autocmd")
   augroup templates
@@ -237,11 +250,11 @@ call plug#begin('~/.vim/plugged')
     " Easily search for, substitute, and abbreviate multiple variants of a word
     Plug 'tpope/vim-abolish'
     "
-    " Combine with netrw to create a delicious salad dressing
-    Plug 'tpope/vim-vinegar'
+    "   " Combine with netrw to create a delicious salad dressing
+    "   Plug 'tpope/vim-vinegar'
     "
-    "   " Directory viewer for Vim
-    "   Plug 'justinmk/vim-dirvish'
+    " Directory viewer for Vim
+    Plug 'justinmk/vim-dirvish'
     "
     " Quoting/parenthesizing made simple
     Plug 'tpope/vim-surround'
