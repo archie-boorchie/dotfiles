@@ -226,8 +226,8 @@ call plug#begin('~/.vim/plugged')
     " A light and configurable statusline/tabline plugin for Vim
     Plug 'itchyny/lightline.vim' 
     "
-    " Provides the branch name of the current git repository
-    Plug 'itchyny/vim-gitbranch'
+    "   " Provides the branch name of the current git repository
+    "   Plug 'itchyny/vim-gitbranch'
     "
     " A Git wrapper so awesome, it should be illegal
     Plug 'tpope/vim-fugitive'
@@ -309,7 +309,7 @@ set noshowmode
 let g:lightline = {
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'filename' ] ],
-      \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'gitbranch' ] ]
+      \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'gitbranch' ], [ 'readonly' ] ]
       \ },
       \ 'inactive': {
       \   'left': [ [ 'filename' ] ],
@@ -317,7 +317,7 @@ let g:lightline = {
       \ },
       \ 'component_function': {
       \   'filename': 'LightlineFilename',
-      \   'gitbranch': 'gitbranch#name'
+      \   'gitbranch': 'GitBranchWithSymbol'
       \ },
       \ }
 " merge modify symbol in filename
@@ -325,6 +325,12 @@ function! LightlineFilename()
   let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
   let modified = &modified ? ' ' : ''
   return filename . modified
+endfunction
+" add git symbol in gitbranch
+function! GitBranchWithSymbol()
+  let gitbranchname = fugitive#head() !=# '' ? fugitive#head() : ''
+  let gitbranchsymbol = fugitive#head() !=# '' ? "  " : ''
+  return gitbranchsymbol . gitbranchname
 endfunction
 
 " UltiSnips settings
@@ -350,4 +356,4 @@ let g:comfortable_motion_scroll_down_key = "j"
 let g:comfortable_motion_scroll_up_key = "k"
 
 " Vim-highlightedyank settings
-let g:highlightedyank_highlight_duration = 140
+let g:highlightedyank_highlight_duration = 150
