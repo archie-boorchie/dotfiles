@@ -342,6 +342,17 @@ let g:UltiSnipsListSnippets = "<c-tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
+" Gitgutter settings
+" using h for hunks
+nmap ]h <Plug>GitGutterNextHunk
+nmap [h <Plug>GitGutterPrevHunk
+omap ih <Plug>GitGutterTextObjectInnerPending
+omap ah <Plug>GitGutterTextObjectOuterPending
+xmap ih <Plug>GitGutterTextObjectInnerVisual
+xmap ah <Plug>GitGutterTextObjectOuterVisual
+" refresh gitgutter when focusing
+let g:gitgutter_terminal_reports_focus=0
+
 " Vimtex settings
 let g:vimtex_fold_automatic=0 
 let g:vimtex_fold_enabled=0
