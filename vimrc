@@ -30,6 +30,9 @@ set formatoptions+=j
 " Yank till the end of line
 nnoremap Y y$
 
+" Better movement for snake_case words
+set iskeyword-=_
+
 " Easily paste the last yanked text
 noremap <leader>p "0p
 nnoremap <leader>P "0P
@@ -250,11 +253,11 @@ call plug#begin('~/.vim/plugged')
     " Easily search for, substitute, and abbreviate multiple variants of a word
     Plug 'tpope/vim-abolish'
     "
-    "   " Combine with netrw to create a delicious salad dressing
-    "   Plug 'tpope/vim-vinegar'
+    " Combine with netrw to create a delicious salad dressing
+    Plug 'tpope/vim-vinegar'
     "
-    " Directory viewer for Vim
-    Plug 'justinmk/vim-dirvish'
+    "   " Directory viewer for Vim
+    "   Plug 'justinmk/vim-dirvish'
     "
     " Quoting/parenthesizing made simple
     Plug 'tpope/vim-surround'
@@ -271,8 +274,8 @@ call plug#begin('~/.vim/plugged')
     " Undo a :quit -- reopen the last window you closed
     Plug 'AndrewRadev/undoquit.vim'
     "
-    " More useful word motions for Vim
-    Plug 'chaoren/vim-wordmotion'
+    "   " More useful word motions for Vim
+    "   Plug 'chaoren/vim-wordmotion'
     "
     " Smart selection of the closest text object
     Plug 'gcmt/wildfire.vim'

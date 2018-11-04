@@ -27,6 +27,9 @@ bindsym $mod+q kill
 bindsym $mod+d exec rofi -config ~/.config/rofi/config -show drun 
 bindsym $mod+Shift+d exec rofi -config ~/.config/rofi/config -show window 
 
+# Manage clipboard with dmenu
+bindsym $mod+p exec clipmenu -i -fn Terminus:size=8 -nb '#002b36' -nf '#839496' -sb '#073642' -sf '#93a1a1'
+
 # Take a screenshot (yank screen)
 bindsym $mod+y exec maim -u -m 10 ~/Pictures/screenshots/src_`date +%s`.png
 bindsym $mod+Shift+y exec maim -u -m 10 -s ~/Pictures/screenshots/src_`date +%s`.png
@@ -273,14 +276,15 @@ for_window [instance="scratchmite"] floating enable
 for_window [instance="scratchmite" window_role="startup"] move scratchpad
 # create a scratchpad terminal on the fly
 bindsym $mod+Shift+Return exec --no-startup-id termite --name scratchmite --geometry=666x413 && move scratchpad
-# create a scratchpad terminal at startup
-exec --no-startup-id termite --name scratchmite --role startup --geometry=666x413
 
 # Autostart programs
 exec_always --no-startup-id feh --bg-scale ~/.wallpaper
-exec_always setxkbmap -option grp:alt_shift_toggle us,gr
-exec_always --no-startup-id sleep 1 && xmodmap ~/.Xmodmap # gets overwritten in xinitrc
-exec_always --no-startup-id sh ~/dotfiles/polybar/launch.sh
-# exec_always --no-startup-id nm-applet
 exec --no-startup-id termite
+exec_always --no-startup-id sh ~/dotfiles/polybar/launch.sh
+exec_always setxkbmap -option grp:alt_shift_toggle us,gr
+# this gets overwritten in xinitrc
+exec_always --no-startup-id sleep 1 && xmodmap ~/.Xmodmap
 exec --no-startup-id unclutter --timeout 1 --jitter 15 --ignore-scrolling --fork
+exec --no-startup-id clipmenud
+# create a scratchpad terminal at startup
+exec --no-startup-id termite --name scratchmite --role startup --geometry=666x413
