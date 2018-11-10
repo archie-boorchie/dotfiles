@@ -29,6 +29,7 @@ bindsym $mod+Shift+d exec rofi -config ~/.config/rofi/config -show window
 
 # Manage clipboard with dmenu
 bindsym $mod+p exec clipmenu -i -fn Terminus:size=8 -nb '#002b36' -nf '#839496' -sb '#073642' -sf '#93a1a1'
+bindsym $mod+Ctrl+p exec clipdel -d ".*"
 
 # Take a screenshot (yank screen)
 bindsym $mod+y exec maim -u -m 10 ~/Pictures/screenshots/src_`date +%s`.png
@@ -282,8 +283,11 @@ exec_always --no-startup-id feh --bg-scale ~/.wallpaper
 exec --no-startup-id termite
 exec_always --no-startup-id sh ~/dotfiles/polybar/launch.sh
 exec_always setxkbmap -option grp:alt_shift_toggle us,gr
-# this gets overwritten in xinitrc
+# this is also in xinitrc but it gets overwritten 
 exec_always --no-startup-id sleep 1 && xmodmap ~/.Xmodmap
+# these two commands remap the lock key to escape (pressed) or ctrl (hold)
+exec_always setxkbmap -option 'caps:ctrl_modifier'
+exec_always xcape -e 'Caps_Lock=Escape'
 exec --no-startup-id unclutter --timeout 1 --jitter 15 --ignore-scrolling --fork
 exec --no-startup-id clipmenud
 # create a scratchpad terminal at startup

@@ -39,8 +39,10 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = NotoSans-Regular:size=8;0
-font-1 = FontAwesome:size=8;0
+font-0 = NotoSans-Regular:size=8;-1
+; font-0 = SourceSansProSemiBold:size=8;-1
+font-1 = MaterialIcons:size=9;0
+font-2 = FontAwesome:size=9;0
 
 modules-left = i3
 modules-center = xwindow
@@ -65,7 +67,8 @@ cursor-scroll = ns-resize
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:46:...%
-label-empty = " Powered by Arch Linux "
+label-empty = "  Powered by Git and Arch  "
+label-empty-foreground = #fba922
 
 
 [module/xkeyboard]
@@ -372,16 +375,21 @@ format-full-prefix = "full "
 format-full-prefix-foreground = ${colors.foreground}
 format-full-prefix-underline = ${colors.foreground}
 
-ramp-capacity-0 =   
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
-ramp-capacity-5 = 
-ramp-capacity-6 = full 
+ramp-capacity-0 = Plug me!   
+ramp-capacity-1 =   
+ramp-capacity-2 =  
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-5 = 
+ramp-capacity-6 = 
+ramp-capacity-7 = 
+ramp-capacity-8 = 
+ramp-capacity-9 = 
 ramp-capacity-foreground = ${colors.foreground-alt}
 ramp-capacity-0-foreground = ${colors.alert}
+ramp-capacity-1-foreground = ${colors.alert}
 ramp-capacity-0-underline = ${colors.alert}
+ramp-capacity-1-underline = ${colors.alert}
 
 animation-charging-0 = 
 animation-charging-1 = 

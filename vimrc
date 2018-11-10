@@ -27,17 +27,33 @@ set nojoinspaces
 " Delete comment characters when joining lines
 set formatoptions+=j
 
-" Yank till the end of line
-nnoremap Y y$
-
 " Better movement for snake_case words
 set iskeyword-=_
+
+" Set leader to spacebar
+noremap <SPACE> <Nop>
+let mapleader = "\<Space>"
+
+" Amount of time to wait for key sequence
+set timeoutlen=1000
+
+" Don't wait for other keys after Escape
+set ttimeoutlen=1
+
+" Yank till the end of line
+nnoremap Y y$
 
 " Easily paste the last yanked text
 noremap <leader>p "0p
 nnoremap <leader>P "0P
 xnoremap <leader>p "0p
 xnoremap <leader>P "0P
+
+" " In insert mode use j+direction for action
+" imap jh <Backspace>
+" imap jj <Esc>o
+" imap jk <Esc>O
+" imap jl <Esc>
 
 " Keep a backup file
 set backup
@@ -48,8 +64,8 @@ set backupdir=~/.cache/vim/backup//
 " Directory to store swap files
 set dir=~/.cache/vim/swap//
 
-" Keep 100 lines of command line history
-set history=100
+" Keep 1000 lines of command line history
+set history=1000
 
 " Show current position of cursor
 set ruler
@@ -60,9 +76,21 @@ set relativenumber
 " Instead of 0 show real line number in current line, when relativenumber is set
 set number
 
+" Enable file type detection and language-dependent indentation
+filetype plugin indent on
+
+" Set autoindenting on
+set autoindent
+ 
 " Enable syntax highlighting
 syntax enable
- 
+
+" Set omnicompletion on
+set omnifunc=syntaxcomplete#Complete
+
+" Jump to the last known cursor position when opening a file
+autocmd BufReadPost * normal `"
+
 " Search highlighting
 " enable search highlighting
 set hlsearch 
@@ -84,6 +112,16 @@ set showcmd
 
 " Faster update time
 set updatetime=100
+
+" Preview changes of current file before saving
+function! s:DiffWithSaved()
+  let filetype=&ft
+  diffthis
+  vnew | r # | normal! 1Gdd
+  diffthis
+  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+endfunction
+com! DiffSaved call s:DiffWithSaved()
 
 " Use Q for fast formatting
 " format selection
@@ -123,43 +161,6 @@ set guioptions-=L  "remove left-hand scroll bar
 " :imap <buffer> ;; <C-O>/<++><CR><C-O>c4l
 " :nmap <buffer> ;; /<++><CR>c4l
 
-" Only do this part when compiled with support for autocommands.
-if has("autocmd")
-
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
-
-  " Put these in an autocmd group, so that we can delete them easily.
-  augroup vimrcEx
-  au!
-
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  " Also don't do it when the mark is in the first line, that is the default
-  " position when opening a file.
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
-
-  augroup END
-endif " has("autocmd")
-
-" Set autoindenting on
-set autoindent
-
-" Convenient command to see the difference between the current buffer and the
-" file it was loaded from, thus the changes you made.
-" Only define it when not defined already.
-if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r ++edit # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
-endif
-
 " Spell check options
 set nospell
 set spelllang=en_gb
@@ -176,10 +177,6 @@ set shiftwidth=4
 " Use spaces instead of tabs
 set expandtab
 
-" Set omnicompletion on
-filetype plugin on
-set omnifunc=syntaxcomplete#Complete
-
 " Show command matches above the command line
 set wildmenu
 set wildmode=longest,full
@@ -188,12 +185,13 @@ set wildmode=longest,full
 set wildignorecase
 
 " Insert template according to the file's extension
-if has("autocmd")
-  augroup templates
-  autocmd BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh
-  autocmd BufNewFile *.tex 0r ~/.vim/templates/skeleton.tex
-  augroup END
-endif
+augroup templates
+autocmd BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh
+autocmd BufNewFile *.tex 0r ~/.vim/templates/skeleton.tex
+augroup END
+
+
+""" Plugins and their settings 
 
 " Automatically install vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -202,7 +200,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
     autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-" Plugins (to use with vim-plug; install with :PlugInstall)
+" Plugins (to manage with vim-plug; update all with :PlugUpdate)
 call plug#begin('~/.vim/plugged')
     "
     " Minimalist Vim Plugin Manager
@@ -274,20 +272,34 @@ call plug#begin('~/.vim/plugged')
     " Undo a :quit -- reopen the last window you closed
     Plug 'AndrewRadev/undoquit.vim'
     "
-    "   " More useful word motions for Vim
-    "   Plug 'chaoren/vim-wordmotion'
+    " A Vim plugin for visually displaying indent levels in code
+    Plug 'nathanaelkane/vim-indent-guides'
     "
-    " Smart selection of the closest text object
-    Plug 'gcmt/wildfire.vim'
+    " Start a * or # search from a visual block
+    Plug 'nelstrom/vim-visual-star-search'
+    "
+    " The fancy start screen for Vim
+    Plug 'mhinz/vim-startify'
+    "
+    " Text outlining and task management for Vim based on Emacs' Org-Mode
+    Plug 'jceb/vim-orgmode'
+    "
+    " Use CTRL-A/CTRL-X to increment dates, times, and more
+    Plug 'tpope/vim-speeddating'
     "
 call plug#end()
 
-" Integrate Limelight to Goyo
+" Goyo settings
+let g:goyo_width = 80
+" integrate Limelight to Goyo
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
 
-" Goyo settings
-let g:goyo_width = 80
+" LimeLight settings
+let g:limelight_default_coefficient = 0.7
+let g:limelight_conceal_ctermfg = 'gray'
+let g:limelight_conceal_ctermfg = 240
+let g:limelight_priority = -1 " don't overrule hlsearch
 
 " Gruvbox settings
 " set termguicolors
@@ -296,12 +308,6 @@ let g:gruvbox_italic=0
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_contrast_light='hard'
 colorscheme gruvbox
-
-" LimeLight settings
-let g:limelight_default_coefficient = 0.7
-let g:limelight_conceal_ctermfg = 'gray'
-let g:limelight_conceal_ctermfg = 240
-let g:limelight_priority = -1 " not to overrule hlsearch
 
 " Lightline settings
 set laststatus=2
@@ -316,7 +322,7 @@ let g:lightline = {
       \ },
       \ 'inactive': {
       \   'left': [ [ 'filename' ] ],
-      \   'right': [ [ 'percent' ], [ 'gitbranch' ] ]
+      \   'right': [ [ 'percent' ], [ 'gitbranch' ], [ 'readonly' ] ]
       \ },
       \ 'component_function': {
       \   'filename': 'LightlineFilename',
@@ -339,7 +345,7 @@ endfunction
 " UltiSnips settings
 " use absolute path, not ~ or $HOME:
 let g:UltiSnipsSnippetDirectories = ['/home/lampros/.vim/UltiSnips']
-let g:UltiSnipsEditSplit = "vertical"
+let g:UltiSnipsEditSplit = "context"
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsListSnippets = "<c-tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
@@ -363,11 +369,37 @@ let g:vimtex_fold_enabled=0
 " Vim-pandoc settings
 let g:pandoc#modules#disabled = ["folding"]
 
-" Comfortable-motion.vim settings
+" Comfortable-motion settings
 let g:comfortable_motion_friction = 80.0
 let g:comfortable_motion_air_drag = 2.0
 let g:comfortable_motion_scroll_down_key = "j"
 let g:comfortable_motion_scroll_up_key = "k"
 
-" Vim-highlightedyank settings
+" Highlightedyank settings
 let g:highlightedyank_highlight_duration = 150
+
+" Startify settings
+let g:startify_fortune_use_unicode = 1
+let g:ascii = [
+        \ '                                ',
+        \ '            __                  ',
+        \ '    __  __ /\_\    ___ ___      ',
+        \ '   /\ \/\ \\/\ \ /'' __` __`\   ',
+        \ '   \ \ \_/ |\ \ \/\ \/\ \/\ \   ',
+        \ '    \ \___/  \ \_\ \_\ \_\ \_\  ',
+        \ '     \/__/    \/_/\/_/\/_/\/_/  ',
+        \ ]
+let g:startify_custom_header =
+      \ map(g:ascii + startify#fortune#boxed(), '"   ".v:val')
+let g:startify_lists = [
+      \ { 'type': 'bookmarks', 'header': ['   Bookmarks'] },
+      \ { 'type': 'sessions',  'header': ['   Sessions'] },
+      \ { 'type': 'files',     'header': ['   Recently opened'] },
+      \ { 'type': 'commands',  'header': ['   Commands'] }
+      \ ]
+let g:startify_bookmarks = [ 
+      \ { 'vim': '~/dotfiles/vimrc' },
+      \ { 'i3': '~/dotfiles/i3/config' },
+      \ { 'pol': '~/dotfiles/polybar/config' },
+      \ { 'zsh': '~/dotfiles/zshrc' }
+      \ ]
