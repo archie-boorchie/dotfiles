@@ -33,6 +33,7 @@ set iskeyword-=_
 " Set leader to spacebar
 noremap <SPACE> <Nop>
 let mapleader = "\<Space>"
+let maplocalleader = "\<Space>"
 
 " Amount of time to wait for key sequence
 set timeoutlen=1000
@@ -44,10 +45,16 @@ set ttimeoutlen=1
 nnoremap Y y$
 
 " Easily paste the last yanked text
-noremap <leader>p "0p
+nnoremap <leader>p "0p
 nnoremap <leader>P "0P
 xnoremap <leader>p "0p
 xnoremap <leader>P "0P
+
+" Exchange ; and : to easily access command mode
+nno : ;
+nno ; :
+vno : ;
+vno ; :
 
 " " In insert mode use j+direction for action
 " imap jh <Backspace>
@@ -102,7 +109,7 @@ set smartcase
 set incsearch
 
 " Easily turn-off search highlighting
-nmap <silent> <Leader>/ :nohlsearch<CR>
+noremap <Leader>/ :nohlsearch<CR>
 
 " Set standard encoding
 set encoding=utf8
@@ -287,6 +294,12 @@ call plug#begin('~/.vim/plugged')
     " Use CTRL-A/CTRL-X to increment dates, times, and more
     Plug 'tpope/vim-speeddating'
     "
+    " Only show line numbers in the active window
+    Plug 'auwsmit/vim-active-numbers'
+    "
+    " A Vim cheat sheet that makes sense, inside Vim!
+    Plug 'lifepillar/vim-cheat40'
+    "
 call plug#end()
 
 " Goyo settings
@@ -302,7 +315,6 @@ let g:limelight_conceal_ctermfg = 240
 let g:limelight_priority = -1 " don't overrule hlsearch
 
 " Gruvbox settings
-" set termguicolors
 set background=dark
 let g:gruvbox_italic=0
 let g:gruvbox_contrast_dark='hard'
@@ -360,11 +372,12 @@ omap ah <Plug>GitGutterTextObjectOuterPending
 xmap ih <Plug>GitGutterTextObjectInnerVisual
 xmap ah <Plug>GitGutterTextObjectOuterVisual
 " refresh gitgutter when focusing
-let g:gitgutter_terminal_reports_focus=0
+let g:gitgutter_terminal_reports_focus = 0
 
 " Vimtex settings
-let g:vimtex_fold_automatic=0 
-let g:vimtex_fold_enabled=0
+let g:vimtex_fold_automatic = 0 
+let g:vimtex_fold_enabled = 0
+let g:tex_flavor = 'latex'
 
 " Vim-pandoc settings
 let g:pandoc#modules#disabled = ["folding"]
@@ -392,14 +405,15 @@ let g:ascii = [
 let g:startify_custom_header =
       \ map(g:ascii + startify#fortune#boxed(), '"   ".v:val')
 let g:startify_lists = [
+      \ { 'type': 'files',     'header': ['   Recently opened'] },
       \ { 'type': 'bookmarks', 'header': ['   Bookmarks'] },
       \ { 'type': 'sessions',  'header': ['   Sessions'] },
-      \ { 'type': 'files',     'header': ['   Recently opened'] },
       \ { 'type': 'commands',  'header': ['   Commands'] }
       \ ]
 let g:startify_bookmarks = [ 
-      \ { 'vim': '~/dotfiles/vimrc' },
-      \ { 'i3': '~/dotfiles/i3/config' },
-      \ { 'pol': '~/dotfiles/polybar/config' },
-      \ { 'zsh': '~/dotfiles/zshrc' }
+      \ { 'bi': '~/dotfiles/i3/config' },
+      \ { 'bp': '~/dotfiles/polybar/config' },
+      \ { 'bt': '~/dotfiles/termite/config' },
+      \ { 'bv': '~/dotfiles/vimrc' },
+      \ { 'bz': '~/dotfiles/zshrc' }
       \ ]

@@ -276,19 +276,19 @@ bindsym $mod+minus scratchpad show
 for_window [instance="scratchmite"] floating enable
 for_window [instance="scratchmite" window_role="startup"] move scratchpad
 # create a scratchpad terminal on the fly
-bindsym $mod+Shift+Return exec --no-startup-id termite --name scratchmite --geometry=666x413 && move scratchpad
+bindsym $mod+Shift+Return exec --no-startup-id termite --name scratchmite && move scratchpad
 
 # Autostart programs
+# this is also in xinitrc but it gets overwritten 
+exec_always --no-startup-id sleep 1 && xmodmap ~/.Xmodmap
 exec_always --no-startup-id feh --bg-scale ~/.wallpaper
 exec --no-startup-id termite
 exec_always --no-startup-id sh ~/dotfiles/polybar/launch.sh
 exec_always setxkbmap -option grp:alt_shift_toggle us,gr
-# this is also in xinitrc but it gets overwritten 
-exec_always --no-startup-id sleep 1 && xmodmap ~/.Xmodmap
 # these two commands remap the lock key to escape (pressed) or ctrl (hold)
 exec_always setxkbmap -option 'caps:ctrl_modifier'
 exec_always xcape -e 'Caps_Lock=Escape'
 exec --no-startup-id unclutter --timeout 1 --jitter 15 --ignore-scrolling --fork
 exec --no-startup-id clipmenud
 # create a scratchpad terminal at startup
-exec --no-startup-id termite --name scratchmite --role startup --geometry=666x413
+exec --no-startup-id termite --name scratchmite --role startup

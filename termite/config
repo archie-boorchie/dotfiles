@@ -45,8 +45,8 @@ color8 = #928374
 color1 = #cc241d
 color9 = #fb4934
 # neutral_green + bright_green
-color2 = #98971a
-color10 = #b8bb26
+color2 = #78aa1a
+color10 = #98dd26
 # neutral_yellow + bright_yellow
 color3 = #d79921
 color11 = #fabd2f

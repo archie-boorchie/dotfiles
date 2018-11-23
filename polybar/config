@@ -43,6 +43,7 @@ font-0 = NotoSans-Regular:size=8;-1
 ; font-0 = SourceSansProSemiBold:size=8;-1
 font-1 = MaterialIcons:size=9;0
 font-2 = FontAwesome:size=9;0
+font-3 = MaterialDesignIcons:size=10;-2
 
 modules-left = i3
 modules-center = xwindow
@@ -67,7 +68,7 @@ cursor-scroll = ns-resize
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:46:...%
-label-empty = "  Powered by Git and Arch  "
+label-empty = "   Powered by Arch Linux   "
 label-empty-foreground = #fba922
 
 
