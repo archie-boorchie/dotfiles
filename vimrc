@@ -3,7 +3,7 @@ set nocompatible
 
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
-  finish
+    finish
 endif
 
 " Fast terminal
@@ -41,6 +41,10 @@ set timeoutlen=1000
 " Don't wait for other keys after Escape
 set ttimeoutlen=1
 
+" Scroll the screen and advance the cursor at the same time
+map <c-j> j<c-e>
+map <c-k> k<c-y>
+
 " Yank till the end of line
 nnoremap Y y$
 
@@ -70,6 +74,10 @@ set backupdir=~/.cache/vim/backup//
 
 " Directory to store swap files
 set dir=~/.cache/vim/swap//
+
+" Keeping an undo file
+set undofile
+set undodir=~/.cache/vim/undo//
 
 " Keep 1000 lines of command line history
 set history=1000
@@ -109,7 +117,7 @@ set smartcase
 set incsearch
 
 " Easily turn-off search highlighting
-noremap <Leader>/ :nohlsearch<CR>
+noremap <Leader>/ :nohlsearch<CR>:<backspace>
 
 " Set standard encoding
 set encoding=utf8
@@ -122,11 +130,11 @@ set updatetime=100
 
 " Preview changes of current file before saving
 function! s:DiffWithSaved()
-  let filetype=&ft
-  diffthis
-  vnew | r # | normal! 1Gdd
-  diffthis
-  exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
+    let filetype=&ft
+    diffthis
+    vnew | r # | normal! 1Gdd
+    diffthis
+    exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
 endfunction
 com! DiffSaved call s:DiffWithSaved()
 
@@ -146,13 +154,13 @@ set t_vb=
 
 " Change cursor shape according to mode
 if empty($TMUX)
-  let &t_SI = "\<esc>[5 q"
-  let &t_EI = "\<esc>[1 q"
-  let &t_SR = "\<esc>[3 q"
+    let &t_SI = "\<esc>[5 q"
+    let &t_EI = "\<esc>[1 q"
+    let &t_SR = "\<esc>[3 q"
 else
-  let &t_SI = "\<esc>Ptmux;\<esc>\<esc>[5 q\<esc>\\"
-  let &t_EI = "\<esc>Ptmux;\<esc>\<esc>[1 q\<esc>\\"
-  let &t_SR = "\<esc>Ptmux;\<esc>\<esc>[3 q\<esc>\\"
+    let &t_SI = "\<esc>Ptmux;\<esc>\<esc>[5 q\<esc>\\"
+    let &t_EI = "\<esc>Ptmux;\<esc>\<esc>[1 q\<esc>\\"
+    let &t_SR = "\<esc>Ptmux;\<esc>\<esc>[3 q\<esc>\\"
 endif
 
 " Set default browser to be used with gx command in links
@@ -186,7 +194,7 @@ set expandtab
 
 " Show command matches above the command line
 set wildmenu
-set wildmode=longest,full
+set wildmode=longest:full,full
 
 " Ignore case in filenames
 set wildignorecase
@@ -252,9 +260,6 @@ call plug#begin('~/.vim/plugged')
     " Pandoc markdown syntax, to be installed alongside vim-pandoc
     Plug 'vim-pandoc/vim-pandoc-syntax'
     "
-    " Repeat resizing commands without repeating <c-w>
-    Plug 'roxma/vim-window-resize-easy'
-    "
     " Easily search for, substitute, and abbreviate multiple variants of a word
     Plug 'tpope/vim-abolish'
     "
@@ -300,6 +305,11 @@ call plug#begin('~/.vim/plugged')
     " A Vim cheat sheet that makes sense, inside Vim!
     Plug 'lifepillar/vim-cheat40'
     "
+    " Block-breaking game in vim 8.0
+    Plug 'johngrib/vim-game-code-break'
+    "
+    " Simpler Rainbow Parentheses
+    Plug 'junegunn/rainbow_parentheses.vim'
 call plug#end()
 
 " Goyo settings
@@ -328,30 +338,30 @@ if !has('gui_running')
 endif
 set noshowmode
 let g:lightline = {
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ], [ 'filename' ] ],
-      \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'gitbranch' ], [ 'readonly' ] ]
-      \ },
-      \ 'inactive': {
-      \   'left': [ [ 'filename' ] ],
-      \   'right': [ [ 'percent' ], [ 'gitbranch' ], [ 'readonly' ] ]
-      \ },
-      \ 'component_function': {
-      \   'filename': 'LightlineFilename',
-      \   'gitbranch': 'GitBranchWithSymbol'
-      \ },
-      \ }
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ], [ 'filename' ] ],
+        \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'gitbranch' ], [ 'readonly' ] ]
+        \ },
+        \ 'inactive': {
+        \   'left': [ [ 'filename' ] ],
+        \   'right': [ [ 'percent' ], [ 'gitbranch' ], [ 'readonly' ] ]
+        \ },
+        \ 'component_function': {
+        \   'filename': 'LightlineFilename',
+        \   'gitbranch': 'GitBranchWithSymbol'
+        \ },
+        \ }
 " merge modify symbol in filename
 function! LightlineFilename()
-  let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
-  let modified = &modified ? ' ' : ''
-  return filename . modified
+    let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
+    let modified = &modified ? ' ' : ''
+    return filename . modified
 endfunction
 " add git symbol in gitbranch
 function! GitBranchWithSymbol()
-  let gitbranchname = fugitive#head() !=# '' ? fugitive#head() : ''
-  let gitbranchsymbol = fugitive#head() !=# '' ? "  " : ''
-  return gitbranchsymbol . gitbranchname
+    let gitbranchname = fugitive#head() !=# '' ? fugitive#head() : ''
+    let gitbranchsymbol = fugitive#head() !=# '' ? "  " : ''
+    return gitbranchsymbol . gitbranchname
 endfunction
 
 " UltiSnips settings
@@ -405,15 +415,19 @@ let g:ascii = [
 let g:startify_custom_header =
       \ map(g:ascii + startify#fortune#boxed(), '"   ".v:val')
 let g:startify_lists = [
-      \ { 'type': 'files',     'header': ['   Recently opened'] },
-      \ { 'type': 'bookmarks', 'header': ['   Bookmarks'] },
-      \ { 'type': 'sessions',  'header': ['   Sessions'] },
-      \ { 'type': 'commands',  'header': ['   Commands'] }
-      \ ]
+        \ { 'type': 'files',     'header': ['   Recently opened'] },
+        \ { 'type': 'bookmarks', 'header': ['   Bookmarks'] },
+        \ { 'type': 'sessions',  'header': ['   Sessions'] },
+        \ { 'type': 'commands',  'header': ['   Commands'] }
+        \ ]
 let g:startify_bookmarks = [ 
-      \ { 'bi': '~/dotfiles/i3/config' },
-      \ { 'bp': '~/dotfiles/polybar/config' },
-      \ { 'bt': '~/dotfiles/termite/config' },
-      \ { 'bv': '~/dotfiles/vimrc' },
-      \ { 'bz': '~/dotfiles/zshrc' }
-      \ ]
+        \ { 'bi': '~/dotfiles/i3/config' },
+        \ { 'bp': '~/dotfiles/polybar/config' },
+        \ { 'bt': '~/dotfiles/termite/config' },
+        \ { 'bv': '~/dotfiles/vimrc' },
+        \ { 'bz': '~/dotfiles/zshrc' }
+        \ ]
+
+" Rainbow parentheses settings
+let g:rainbow#max_level = 36
+let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}'], ['<', '>']]

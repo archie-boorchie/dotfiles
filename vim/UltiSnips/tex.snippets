@@ -32,8 +32,12 @@ snippet latex "correct LaTeX typography"
 \LaTex 
 endsnippet
 
-snippet eq "refer to equation(s)"
+snippet eq "refer to equation"
 ${1:eq.~}\eqref{eq:${2:equation}} 
+endsnippet
+
+snippet eqs "refer to equations"
+${1:eqs.~}\eqref{eq:${2:equation},eq:${3:equation},eq:${4:equation}} 
 endsnippet
 
 snippet "sec(t)?(ion)?" "section" br

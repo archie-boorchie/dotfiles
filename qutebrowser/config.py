@@ -35,6 +35,8 @@ c.url.searchengines = {
     'lg': 'http://libgen.io/search.php?req={}',
     # library genesis (articles)
     'lgp': 'http://libgen.io/scimag/index.php?s={}',
+    # google search
+    'google': 'https://www.google.com/search?hl=en&q={}',
     # google translate (english to greek)
     'tr': 'https://translate.google.com/#en/el/{}'
 }

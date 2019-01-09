@@ -130,6 +130,10 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 bindsym $mod+Shift+greater move container to output right
 bindsym $mod+Shift+less    move container to output left
 
+# Move focused workspace between monitors
+bindsym $mod+Ctrl+greater move workspace to output right
+bindsym $mod+Ctrl+less    move workspace to output left
+
 # Reload the configuration file
 bindsym $mod+Shift+c reload
 

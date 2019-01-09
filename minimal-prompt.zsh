@@ -1,18 +1,23 @@
 # A minimalistic zsh prompt, taken from https://github.com/subnixr/minimal
 
-# Global settings
-MNML_OK_COLOR="${MNML_OK_COLOR:-4}"
-MNML_ERR_COLOR="${MNML_ERR_COLOR:-1}"
+# The archlinux symbol needs ttf-material-design-icons-git; all other symbols
+# are either unicode or font-awesome
 
-MNML_USER_CHAR="${MNML_USER_CHAR:-  }" # needs ttf-material-design-icons-git
+# Global settings
+MNML_OK_COLOR=4
+MNML_ERR_COLOR=1
+MNML_GitClean_COLOR=2
+MNML_GitDirty_COLOR=3
+
+MNML_USER_CHAR="${MNML_USER_CHAR:-  }"
 MNML_INSERT_CHAR="${MNML_INSERT_CHAR:-}"
 MNML_NORMAL_CHAR="${MNML_NORMAL_CHAR:-᛫}"
 
 [ "${+MNML_PROMPT}" -eq 0 ] && MNML_PROMPT=(mnml_ssh mnml_pyenv mnml_status mnml_keymap)
-[ "${+MNML_RPROMPT}" -eq 0 ] && MNML_RPROMPT=('mnml_cwd 2 0' mnml_git)
+[ "${+MNML_RPROMPT}" -eq 0 ] && MNML_RPROMPT=('mnml_cwd 3 16' mnml_git)
 [ "${+MNML_INFOLN}" -eq 0 ] && MNML_INFOLN=(mnml_err mnml_jobs mnml_uhp mnml_files)
 
-[ "${+MNML_MAGICENTER}" -eq 0 ] && MNML_MAGICENTER=(mnml_me_dirs mnml_me_ls mnml_me_git)
+[ "${+MNML_MAGICENTER}" -eq 0 ] && MNML_MAGICENTER=(mnml_me_ls mnml_me_git)
 
 # Components
 function mnml_status {
@@ -30,7 +35,7 @@ function mnml_status {
         err_ansi="$MNML_ERR_COLOR"
     fi
 
-    echo -n "%{\e[$job_ansi;3${err_ansi}m%}%(!.  .$uchar)%{\e[0m%}"
+    echo -n "%{\e[$job_ansi;3${err_ansi}m%}%(!. # .$uchar)%{\e[0m%}"
 }
 
 function mnml_keymap {
@@ -62,7 +67,7 @@ function mnml_cwd {
     for i in {1..${#cwd}}; do
         pi="$cwd[$i]"
         if [ "$seg_len" -gt 0 ] && [ "${#pi}" -gt "$seg_len" ]; then
-            cwd[$i]="${pi:0:$seg_hlen}$_w..$_g${pi: -$seg_hlen}"
+            cwd[$i]="${pi:0:$seg_hlen}$_w $_g${pi: -$seg_hlen}"
         fi
     done
 
@@ -70,24 +75,30 @@ function mnml_cwd {
 }
 
 function mnml_git {
-    local statc="%{\e[0;3${MNML_OK_COLOR}m%}" # assume clean
+    local _w="%{\e[0m%}"
+    local _g="%{\e[38;5;248m%}"
+    local statc="%{\e[0;3${MNML_GitClean_COLOR}m%}" # assume clean
+    local statsymb=" " # assume clean
     local bname="$(git rev-parse --abbrev-ref HEAD 2> /dev/null)"
 
     if [ -n "$bname" ]; then
         if [ -n "$(git status --porcelain 2> /dev/null)" ]; then
-            statc="%{\e[0;3${MNML_ERR_COLOR}m%}"
+            statc="%{\e[0;3${MNML_GitDirty_COLOR}m%}"
+            statsymb=" "
         fi
-        echo -n "$statc$bname%{\e[0m%}"
+        echo -n "$_g $bname$statc$statsymb$_w"
     fi
 }
 
 function mnml_uhp {
     local _w="%{\e[0m%}"
-    local _g="%{\e[38;5;244m%}"
+    local _gl="%{\e[38;5;248m%}"
+    local _gm="%{\e[38;5;244m%}"
+    local _gd="%{\e[38;5;240m%}"
     local cwd="%~"
     cwd="${(%)cwd}"
 
-    echo -n "$_g%n$_w@$_g%m$_w:$_g${cwd//\//$_w/$_g}$_w"
+    echo -n "$_gl%n$_gm@$_gl%m$_gm:$_gd${cwd//\//$_gd/$_gm}$_w"
 }
 
 function mnml_ssh {
@@ -124,32 +135,24 @@ function mnml_jobs {
 
 function mnml_files {
     local _w="%{\e[0m%}"
-    local _g="%{\e[38;5;244m%}"
+    local _gm="%{\e[38;5;244m%}"
+    local _gd="%{\e[38;5;240m%}"
+    local _gb="%{\e[38;5;238m%}"
 
     local a_files="$(ls -1A | sed -n '$=')"
     local v_files="$(ls -1 | sed -n '$=')"
     local h_files="$((a_files - v_files))"
 
-    local output="${_w}[$_g${v_files:-0}"
+    local output="${_gb}[$_gd${v_files:-0}"
     if [ "${h_files:-0}" -gt 0 ]; then
-        output="$output $_w($_g$h_files$_w)"
+        output="$output$_gb|$h_files"
     fi
-    output="$output${_w}]"
+    output="$output${_gb}]${_w}"
 
     echo -n "$output"
 }
 
 # Magic enter functions
-function mnml_me_dirs {
-    local _w="\e[0m"
-    local _g="\e[38;5;244m"
-
-    if [ "$(dirs -p | sed -n '$=')" -gt 1 ]; then
-        local stack="$(dirs)"
-        echo "$_g${stack//\//$_w/$_g}$_w"
-    fi
-}
-
 function mnml_me_ls {
     if [ "$(uname)" = "Darwin" ] && ! ls --version &> /dev/null; then
         COLUMNS=$COLUMNS CLICOLOR_FORCE=1 ls -C -G -F

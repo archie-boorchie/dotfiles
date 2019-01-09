@@ -1,19 +1,18 @@
 # Functions for shell (if you use bash, change &! to &)
 
-# To create a new directory and instantly jump to that directory.
+# Create a new directory and instantly jump to that directory.
 mkdircd () { mkdir -p $1; cd $1; }
 
 # Use xdg-open in 'silent mode'
 go () { xdg-open "$1" >/dev/null 2>&1 &! }
+o () { xdg-open "$1" >/dev/null 2>&1 &! }
+g () { xdg-open "$1" >/dev/null 2>&1 &! }
 
-# less for pdf view
+# Use less for pdf view
 pdfless() {pdftotext -layout $1 - | less}
 
-# less for md view
+# Use man for markdown view
 mdless() {pandoc -s -f markdown -t man "$1" | man -l -}
-
-# Use gedit in 'silent mode' in the background
-gedit () { nohup gedit "$1" >/dev/null 2>&1 &! }
 
 # To extract any type of file.
 extract () {
@@ -61,6 +60,19 @@ function sysinfo()
     echo -e "\nMachine status :" ; uptime
     echo -e "\nMemory status :" ; free
     echo -e "\nFilesystem status :"; df -h
+}
+
+# Colourful man pages
+man() {
+  env \
+    LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+    LESS_TERMCAP_md=$(printf "\e[1;31m") \
+    LESS_TERMCAP_me=$(printf "\e[0m") \
+    LESS_TERMCAP_se=$(printf "\e[0m") \
+    LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+    LESS_TERMCAP_ue=$(printf "\e[0m") \
+    LESS_TERMCAP_us=$(printf "\e[1;32m") \
+    man "$@"
 }
 
 # Provides a y/n question to turn off laptop screen.

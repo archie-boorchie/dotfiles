@@ -3,50 +3,30 @@
 # To-do List
 alias todo='clear; echo "Please enter new task"; read task; echo "$task" >> /home/lampros/todolist.txt'
 alias todolist='clear; echo "__________________________________________________"; echo "___________________ TO DO LIST ___________________"; echo "__________________________________________________"; echo ""; cat -b /home/lampros/todolist.txt; echo ""; echo "__________________________________________________";  echo "__________________________________________________"; echo ""'
-alias todonano='nano /home/lampros/todolist.txt'
 alias todoclear='echo "" > /home/lampros/todolist.txt'
 
 # Make sudo compatible with aliases
 alias sudo='sudo '
 
-# USB Stick
-alias usb1='sudo mount /dev/sdb1 /media/usb1'
-alias usb2='sudo mount /dev/sdb2 /media/usb2'
-alias usb3='sudo mount /dev/sdb3 /media/usb3'
-alias usbb1='sudo umount /media/usb1'
-alias usbb2='sudo umount /media/usb2'
-alias usbb3='sudo umount /media/usb3'
-
 # Ranger shortcut
 alias r='ranger'
-
-# Misc
-alias time='clear; echo -ne "\n\n\n\n\n\n"; figlet `date` | lolcat -a -d 1 -s 12; fortune;read -rsn1 -p" ";echo'
-alias timer='while true; do echo -ne "`date`\n" | lolcat -a -d 12 -s 12 || break; done'
-alias weather='curl wttr.in/ioannina'
-alias cdc='cd;clear'
 
 # Handy short cuts
 alias h='history'
 alias c='clear'
 alias j='jobs -l'
 alias e='exit'
+alias q='exit'
 alias p='pwd'
 alias rmrf='rm -rf'
+alias cdc='cd;clear'
 
 # Better less 
 alias bless="LESS='-RS#3NM~g' less"
 
-# Vanishing Cursor
-# alias noc='unclutter -idle 0.3 -root &!'
-
-# Internet shortcut
-alias q='nohup qutebrowser >/dev/null 2>&1 &!'
-alias f='nohup firefox >/dev/null 2>&1 &!'
-
 # Volume and Backlight
 alias bri='xbacklight -set'
-alias vol='pactl set-sink-volume 1'
+alias vol='pactl set-sink-volume 0'
 
 # For battery status in terminal
 alias battery='upower -i $(upower -e | grep '/battery') | \
@@ -56,8 +36,28 @@ alias battery='upower -i $(upower -e | grep '/battery') | \
 alias monitoron='xrandr --output eDP1 --auto' 
 
 # List shortcuts
-alias ls='ls --color=auto'
 alias l='ls --color=auto'
-alias ll='ls -la --color=auto'
+alias ls='ls --color=auto'
 alias la='ls -a --color=auto' 
+alias ll='ls -l --color=auto'
+alias lla='ls -la --color=auto'
 alias l.='ls -d .* --color=auto'
+alias ll.='ls -l -d .* --color=auto'
+
+# Misc
+alias time='clear; echo -ne "\n"; figlet `date` | lolcat -a -d 1 -s 12; fortune;echo'
+alias timer='while true; do echo -ne "`date`\n" | lolcat -a -d 12 -s 12 || break; done'
+alias weather='curl wttr.in/ioannina'
+
+# Start an application with a specific program
+alias -s txt=vim
+alias -s tex=vim
+alias -s md=vim
+alias -s html=qutebrowser
+alias -s pdf=mupdf
+
+# Global aliases - can be used anywhere in the command line
+alias -g ...='../..'
+alias -g ....='../../..'
+alias -g L="| less"
+alias -g NUL="> /dev/null 2>&1"

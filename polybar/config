@@ -7,14 +7,14 @@ background = #dd111111
 background-alt = #aa444444
 ;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
-foreground-alt = #99
-foreground-alt-darker = #55
+foreground-alt = #999999
+foreground-alt-darker = #555555
 primary = #ffb52a
 secondary = #ff0000
 alert = #bd2c40
 
 [bar/main]
-;monitor = ${env:MONITOR:HDMI-1}
+monitor = ${env:MONITOR:}
 ; Enable intel process messaging
 enable-ipc = true
 width = 100%
@@ -68,8 +68,10 @@ cursor-scroll = ns-resize
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:46:...%
+label-underline = ${colors.foreground-alt}
 label-empty = "   Powered by Arch Linux   "
 label-empty-foreground = #fba922
+label-empty-underline = #aafba922
 
 
 [module/xkeyboard]
@@ -136,7 +138,7 @@ index-sort = true
 wrapping-scroll = false
 
 ; Only show workspaces on the same output as the bar
-;pin-workspaces = true
+pin-workspaces = true
 
 label-mode-padding = 2
 label-mode-foreground = #000

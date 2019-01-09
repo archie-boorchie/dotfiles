@@ -11,20 +11,33 @@ bindkey -v
 # Use fish-like syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Ignore all duplicates in history
-setopt histignorealldups
-
-# Share history between terminals
-setopt sharehistory
-
-# Keep 10000 lines of history
-HISTSIZE=10000
-SAVEHIST=10000
-HISTFILE=~/.zsh_history
-
 # Use a pkgfile hook to automatically search the official repositories when
 # entering an unrecognized command
 source /usr/share/doc/pkgfile/command-not-found.zsh
+
+# History
+# set history file
+HISTFILE=~/.zsh_history
+# ignore all duplicates in history
+setopt histignorealldups
+# share history between terminals
+setopt sharehistory
+# keep 1000 lines of history
+HISTSIZE=1000
+SAVEHIST=1000
+# don't add commands that start with space in history
+setopt HIST_IGNORE_SPACE
+# don't add failed commands in history
+zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
+# fish-like history search
+source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
+# fish-like autosuggestion
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+bindkey '^W' forward-word
 
 # Automatically reset the terminal if needed
 ttyctl -f
@@ -52,18 +65,16 @@ zstyle ':completion:*' rehash true
 # Add ~/bin to PATH (used for custom scripts)
 export PATH=$PATH:~/bin
 
-# Import user defined aliases
+# Import user defined aliases and functions
 if [ -f ~/.aliases ]; then
     . ~/.aliases
 fi
-
-# Import user defined functions
 if [ -f ~/.functions ]; then
     . ~/.functions
 fi
 
 # Use modern completion system
-autoload -Uz compinit
+autoload -U compinit
 compinit
 
 # To autocomplete "/" after "cd .."
@@ -86,16 +97,15 @@ zstyle ':completion:*' verbose true
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
-# History autocompletion
-# fish-like history search
-source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
-bindkey '^[[A' history-substring-search-up
-bindkey '^[[B' history-substring-search-down
-bindkey -M vicmd 'k' history-substring-search-up
-bindkey -M vicmd 'j' history-substring-search-down
-# fish-like autosuggestion
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-bindkey '^W' forward-word
+# Directory navigation
+# omit cd prefix
+setopt autocd
+# add each visited directory to dirs list
+setopt autopushd
+# ignore directory duplicates
+setopt pushdignoredups
+# keep 10 most recently visit directories in memory
+DIRSTACKSIZE=11
 
 # Set default apps
 export EDITOR=vim
@@ -131,3 +141,38 @@ if [ "$TERM" = "linux" ]; then
   # get rid of artifacts
   clear
 fi
+
+# Pressing tab on an empty buffer starts autocompletion of files and directories
+function complete_pwd_items_on_empty_buffer
+{
+    if [[ -z $BUFFER ]]; then
+        BUFFER="./"
+        CURSOR=2
+        zle list-choices
+    else
+        zle expand-or-complete
+    fi
+}
+zle -N complete_pwd_items_on_empty_buffer
+# bind to tab
+bindkey '^I' complete_pwd_items_on_empty_buffer
+
+# Window title
+case $TERM in
+  termite|*xterm*|rxvt|rxvt-unicode|rxvt-256color|rxvt-unicode-256color|(dt|k|E)term)
+    precmd () {
+      print -Pn "\e]0;%n@%M [%~]\a"
+    }
+    preexec () { print -Pn "\e]0;%n@%M [%~] ($1)\a" }
+    ;;
+  screen|screen-256color)
+    precmd () {
+      print -Pn "\e]83;title \"$1\"\a"
+      print -Pn "\e]0;$TERM - (%L) %n@%M [%~]\a"
+    }
+    preexec () {
+      print -Pn "\e]83;title \"$1\"\a"
+      print -Pn "\e]0;$TERM - (%L) %n@%M %# [%~] ($1)\a"
+    }
+    ;;
+esac
