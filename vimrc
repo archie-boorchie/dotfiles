@@ -310,6 +310,9 @@ call plug#begin('~/.vim/plugged')
     "
     " Simpler Rainbow Parentheses
     Plug 'junegunn/rainbow_parentheses.vim'
+    "   "
+    "   " Vim plugin to dim inactive windows
+    "   Plug 'blueyed/vim-diminactive'
 call plug#end()
 
 " Goyo settings
