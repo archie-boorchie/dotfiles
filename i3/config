@@ -175,6 +175,9 @@ for_window [class="Tor Browser"] floating enable
 # Jump to previous workspace
 bindsym $mod+Tab workspace back_and_forth
 
+# Cycle through workspaces on current output
+bindsym $mod+Shift+Tab workspace next_on_output
+
 # Jump to urgent window
 bindsym $mod+x [urgent=last] focus
 

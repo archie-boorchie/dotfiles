@@ -27,16 +27,19 @@ c.url.searchengines = {
     # arxiv (paper id)
     'ar': 'https://arxiv.org/abs/{}',
     # arxiv (search)
-    'arxiv': 'https://arxiv.org/search/?query={}&searchtype=all&source=header',
+    'ars': 'https://arxiv.org/search/?query={}&searchtype=all&source=header',
     # youtube
     'yt': 'https://youtube.com/search?q={}',
     # library genesis (standard)
-    'libgen': 'http://libgen.io/search.php?req={}',
     'lg': 'http://libgen.io/search.php?req={}',
-    # library genesis (articles)
+    # library genesis (scientific articles)
     'lgp': 'http://libgen.io/scimag/index.php?s={}',
+    # library genesis (fiction)
+    'lgf': 'http://libgen.io/foreignfiction/index.php?s={}',
     # google search
-    'google': 'https://www.google.com/search?hl=en&q={}',
+    'gg': 'https://www.google.com/search?hl=en&q={}',
     # google translate (english to greek)
-    'tr': 'https://translate.google.com/#en/el/{}'
+    'tr': 'https://translate.google.com/#en/el/{}',
+    # local files
+    'lf': 'file://{}'
 }

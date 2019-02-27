@@ -48,7 +48,7 @@ map <c-k> k<c-y>
 " Yank till the end of line
 nnoremap Y y$
 
-" Easily paste the last yanked text
+" Paste the last yanked text
 nnoremap <leader>p "0p
 nnoremap <leader>P "0P
 xnoremap <leader>p "0p
@@ -60,11 +60,11 @@ nno ; :
 vno : ;
 vno ; :
 
-" " In insert mode use j+direction for action
-" imap jh <Backspace>
-" imap jj <Esc>o
-" imap jk <Esc>O
-" imap jl <Esc>
+" In insert mode use j+direction for action
+imap jk <Esc>
+imap jj <Esc>ddI
+imap jh <Esc>bi
+imap jl <Esc>wea
 
 " Keep a backup file
 set backup
@@ -179,7 +179,7 @@ set guioptions-=L  "remove left-hand scroll bar
 " Spell check options
 set nospell
 set spelllang=en_gb
-set spellfile=~/.vim/spell/en_gb.utf-8.add
+set spellfile=~/.vim/spell/en-gb.utf-8.add
 
 " Use smart tabs
 set smarttab
@@ -313,7 +313,27 @@ call plug#begin('~/.vim/plugged')
     "   "
     "   " Vim plugin to dim inactive windows
     "   Plug 'blueyed/vim-diminactive'
+    "
+    " A calendar application for Vim
+    Plug 'itchyny/calendar.vim'
+    "
+    " Vim plugin for intensely orgasmic commenting
+    Plug 'scrooloose/nerdcommenter'
 call plug#end()
+
+" NerdCommenter settings
+" add spaces after comment delimiters by default
+let g:NERDSpaceDelims = 1
+" use compact syntax for prettified multi-line comments
+let g:NERDCompactSexyComs = 1
+" align line-wise comment delimiters flush left instead of following code indentation
+let g:NERDDefaultAlign = 'left'
+" allow commenting and inverting empty lines (useful when commenting a region)
+let g:NERDCommentEmptyLines = 1
+" enable trimming of trailing whitespace when uncommenting
+let g:NERDTrimTrailingWhitespace = 1
+" check all selected lines is commented or not
+let g:NERDToggleCheckAllLines = 1
 
 " Goyo settings
 let g:goyo_width = 80
@@ -388,9 +408,13 @@ xmap ah <Plug>GitGutterTextObjectOuterVisual
 let g:gitgutter_terminal_reports_focus = 0
 
 " Vimtex settings
-let g:vimtex_fold_automatic = 0 
+let g:vimtex_fold_automatic = 0
 let g:vimtex_fold_enabled = 0
 let g:tex_flavor = 'latex'
+let g:vimtex_view_method = 'mupdf'
+if has('nvim')
+  let g:vimtex_compiler_progname = 'nvr'
+endif
 
 " Vim-pandoc settings
 let g:pandoc#modules#disabled = ["folding"]

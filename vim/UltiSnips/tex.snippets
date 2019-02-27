@@ -1,4 +1,4 @@
-snippet "b(e)?(gin)?" "create environment" br
+snippet "(\\)?b(e)?(gin)?" "create environment" br
 \begin{${1:equation}}
 \label{${2:eq}:${3:label}}
 	${4:content}
@@ -6,7 +6,8 @@ snippet "b(e)?(gin)?" "create environment" br
 
 endsnippet
 
-snippet fig "figure environment" b
+
+snippet "fig(ure)?" "figure environment" br
 \begin{figure}[${1:t}]
 \centering
 \includegraphics[${2:width=\textwidth}]{${3:filename}}
@@ -16,32 +17,84 @@ snippet fig "figure environment" b
 
 endsnippet
 
-snippet "fr(ac)?(tion)?" "fraction" r
+
+snippet \ "command" i
+\\${1:command}{${2: }} 
+endsnippet
+
+
+snippet $ "inline equation"
+\$$1\$
+endsnippet
+
+
+snippet "(\\)?fr(ac)?(tion)?" "fraction" r
 \frac{${1:${VISUAL}}}{${2}} 
 endsnippet
+
+
+snippet _ "lowerscripts" i
+_{$1}
+endsnippet
+
+
+snippet ^ "upperscripts" i
+^{$1}
+endsnippet
+
+
+snippet ** "lowerscripts and upperscripts" i
+_{$1}^{$2}
+endsnippet
+
 
 snippet ... "make three dots latex-correct" i
 \ldots 
 endsnippet
 
-snippet * "mimic markdown emphasis" i
+
+snippet * "mimic markdown emphasis"
 \emph{$1} 
 endsnippet
+
 
 snippet latex "correct LaTeX typography"
 \LaTex 
 endsnippet
 
+
 snippet eq "refer to equation"
 ${1:eq.~}\eqref{eq:${2:equation}} 
 endsnippet
 
-snippet eqs "refer to equations"
-${1:eqs.~}\eqref{eq:${2:equation},eq:${3:equation},eq:${4:equation}} 
+
+snippet eqs "refer to multiple equations using cleveref package"
+${1:eqs.~}\cref{eq:${2:equation},eq:${3:equation},eq:${4:equation}} 
 endsnippet
 
-snippet "sec(t)?(ion)?" "section" br
+
+snippet "(\\)?sec(t)?(ion)?" "section" br
 \\${1:section}{${2:title}}
 \label{$1:${3:label}}
 
+endsnippet
+
+
+snippet ref "cite a reference"
+${1:ref.~}\cite{$2} 
+endsnippet
+
+
+snippet refs "cite multiple references"
+${1:refs.~}\cite{$2,$3,$4} 
+endsnippet
+
+
+snippet h2zg "h -> Z gamma"
+\$h\to Z\gamma\$ 
+endsnippet
+
+
+snippet h2gg "h -> gamma gamma"
+\$h\to \gamma\gamma\$ 
 endsnippet
