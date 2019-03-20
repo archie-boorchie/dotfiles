@@ -420,6 +420,10 @@ let g:vimtex_view_method = 'zathura'
 if has('nvim')
   let g:vimtex_compiler_progname = 'nvr'
 endif
+if get(g:, 'vimtex_enabled', 1)
+    nmap \ <plug>(vimtex-cmd-create)
+    xmap \ <plug>(vimtex-cmd-create)
+endif
 
 " Vim-pandoc settings
 let g:pandoc#modules#disabled = ["folding"]
