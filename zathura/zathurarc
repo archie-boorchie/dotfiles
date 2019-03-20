@@ -1,0 +1,13 @@
+# enable copy to clipboard
+set selection-clipboard clipboard
+
+# set window title
+set window-title-basename true
+set window-title-home-tilde true
+
+# set status bar title
+set statusbar-home-tilde true
+#set statusbar-basename true
+
+# easily access command mode
+map ; focus_inputbar :

@@ -62,9 +62,9 @@ vno ; :
 
 " In insert mode use j+direction for action
 imap jk <Esc>
-imap jj <Esc>ddI
-imap jh <Esc>bi
-imap jl <Esc>wea
+imap jj <C-O>dd
+imap jh <C-O>b
+imap jl <C-O>w
 
 " Keep a backup file
 set backup
@@ -319,6 +319,10 @@ call plug#begin('~/.vim/plugged')
     "
     " Vim plugin for intensely orgasmic commenting
     Plug 'scrooloose/nerdcommenter'
+    "
+    " A powerful grammar checker for Vim using LanguageTool
+    Plug 'rhysd/vim-grammarous'
+    "
 call plug#end()
 
 " NerdCommenter settings
@@ -408,10 +412,11 @@ xmap ah <Plug>GitGutterTextObjectOuterVisual
 let g:gitgutter_terminal_reports_focus = 0
 
 " Vimtex settings
+let g:vimtex_quickfix_mode = 0
 let g:vimtex_fold_automatic = 0
 let g:vimtex_fold_enabled = 0
 let g:tex_flavor = 'latex'
-let g:vimtex_view_method = 'mupdf'
+let g:vimtex_view_method = 'zathura'
 if has('nvim')
   let g:vimtex_compiler_progname = 'nvr'
 endif
@@ -454,6 +459,9 @@ let g:startify_bookmarks = [
         \ { 'bv': '~/dotfiles/vimrc' },
         \ { 'bz': '~/dotfiles/zshrc' }
         \ ]
+
+" GrammarCheck settings
+let g:grammarous#use_vim_spelllang = 1
 
 " Rainbow parentheses settings
 let g:rainbow#max_level = 36

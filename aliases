@@ -21,6 +21,9 @@ alias p='pwd'
 alias rmrf='rm -rf'
 alias cdc='cd;clear'
 
+# Start vim with servername
+alias vim='vim --servername VIM'
+
 # Better less 
 alias bless="LESS='-RS#3NM~g' less"
 
@@ -47,7 +50,6 @@ alias ll.='ls -l -d .* --color=auto'
 # Misc
 alias time='clear; echo -ne "\n"; figlet `date` | lolcat -a -d 1 -s 12; fortune;echo'
 alias timer='while true; do echo -ne "`date`\n" | lolcat -a -d 12 -s 12 || break; done'
-alias weather='curl wttr.in/ioannina'
 
 # Start an application with a specific program
 alias -s txt=vim

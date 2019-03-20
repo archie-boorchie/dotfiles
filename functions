@@ -75,6 +75,13 @@ man() {
     man "$@"
 }
 
+# Weather information
+weather () {
+    echo -ne "\n\nPlease enter a city name:  "
+    read mycity
+    curl wttr.in/"$mycity"
+}
+
 # Provides a y/n question to turn off laptop screen.
 monitordump () {
 	x=0
