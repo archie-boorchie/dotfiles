@@ -1,10 +1,8 @@
-" Use Vim rather than Vi settings (this command must be first)
+" Use Vim rather than Vi (this command must be first)
 set nocompatible
 
-" When started as "evim", evim.vim will already have done these settings.
-if v:progname =~? "evim"
-    finish
-endif
+" Set standard encoding
+set encoding=utf8
 
 " Fast terminal
 set ttyfast
@@ -35,6 +33,15 @@ noremap <SPACE> <Nop>
 let mapleader = "\<Space>"
 let maplocalleader = "\<Space>"
 
+" Write file more easily
+nnoremap <leader>w :w<cr>
+
+" Exit unmodified file more easily
+nnoremap <leader>q :q<cr>
+
+" Force exit modified file more easily
+nnoremap <leader>Q :q!<cr>
+
 " Amount of time to wait for key sequence
 set timeoutlen=1000
 
@@ -61,8 +68,8 @@ vno : ;
 vno ; :
 
 " In insert mode use j+direction for action
-imap jk <Esc>
-imap jj <C-O>dd
+imap jj <Esc>
+imap jk <C-O>dd
 imap jh <C-O>b
 imap jl <C-O>w
 
@@ -91,6 +98,12 @@ set relativenumber
 " Instead of 0 show real line number in current line, when relativenumber is set
 set number
 
+" Display incomplete commands
+set showcmd
+
+" Faster update time
+set updatetime=100
+
 " Enable file type detection and language-dependent indentation
 filetype plugin indent on
 
@@ -104,7 +117,10 @@ syntax enable
 set omnifunc=syntaxcomplete#Complete
 
 " Jump to the last known cursor position when opening a file
-autocmd BufReadPost * normal `"
+autocmd BufReadPost *
+    \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+    \ |   exe "normal! g`\""
+    \ | endif
 
 " Search highlighting
 " enable search highlighting
@@ -119,15 +135,6 @@ set incsearch
 " Easily turn-off search highlighting
 noremap <Leader>/ :nohlsearch<CR>:<backspace>
 
-" Set standard encoding
-set encoding=utf8
-
-" Display incomplete commands
-set showcmd
-
-" Faster update time
-set updatetime=100
-
 " Preview changes of current file before saving
 function! s:DiffWithSaved()
     let filetype=&ft
@@ -137,6 +144,9 @@ function! s:DiffWithSaved()
     exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
 endfunction
 com! DiffSaved call s:DiffWithSaved()
+
+" Always open diffs vertically
+set diffopt+=vertical
 
 " Use Q for fast formatting
 " format selection
@@ -163,18 +173,11 @@ else
     let &t_SR = "\<esc>Ptmux;\<esc>\<esc>[3 q\<esc>\\"
 endif
 
-" Set default browser to be used with gx command in links
-
 " Hide menus etc in gvim 
 set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
 set guioptions-=L  "remove left-hand scroll bar
-
-" " Placeholders
-" " Pressing ;; jumps to the next match
-" :imap <buffer> ;; <C-O>/<++><CR><C-O>c4l
-" :nmap <buffer> ;; /<++><CR>c4l
 
 " Spell check options
 set nospell
@@ -201,12 +204,12 @@ set wildignorecase
 
 " Insert template according to the file's extension
 augroup templates
-autocmd BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh
-autocmd BufNewFile *.tex 0r ~/.vim/templates/skeleton.tex
+    autocmd BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh
+    autocmd BufNewFile *.tex 0r ~/.vim/templates/skeleton.tex
 augroup END
 
 
-""" Plugins and their settings 
+" Plugins and their settings 
 
 " Automatically install vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -323,6 +326,9 @@ call plug#begin('~/.vim/plugged')
     " A powerful grammar checker for Vim using LanguageTool
     Plug 'rhysd/vim-grammarous'
     "
+    " Even better %
+    Plug 'andymass/vim-matchup'
+    "
 call plug#end()
 
 " NerdCommenter settings
@@ -365,19 +371,19 @@ if !has('gui_running')
 endif
 set noshowmode
 let g:lightline = {
-        \ 'active': {
-        \   'left': [ [ 'mode', 'paste' ], [ 'filename' ] ],
-        \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'gitbranch' ], [ 'readonly' ] ]
-        \ },
-        \ 'inactive': {
-        \   'left': [ [ 'filename' ] ],
-        \   'right': [ [ 'percent' ], [ 'gitbranch' ], [ 'readonly' ] ]
-        \ },
-        \ 'component_function': {
-        \   'filename': 'LightlineFilename',
-        \   'gitbranch': 'GitBranchWithSymbol'
-        \ },
-        \ }
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ], [ 'filename' ] ],
+    \   'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'gitbranch' ], [ 'readonly' ] ]
+    \ },
+    \ 'inactive': {
+    \   'left': [ [ 'filename' ] ],
+    \   'right': [ [ 'percent' ], [ 'gitbranch' ], [ 'readonly' ] ]
+    \ },
+    \ 'component_function': {
+    \   'filename': 'LightlineFilename',
+    \   'gitbranch': 'GitBranchWithSymbol'
+    \ },
+    \ }
 " merge modify symbol in filename
 function! LightlineFilename()
     let filename = expand('%:t') !=# '' ? expand('%:t') : '[No Name]'
@@ -412,18 +418,39 @@ xmap ah <Plug>GitGutterTextObjectOuterVisual
 let g:gitgutter_terminal_reports_focus = 0
 
 " Vimtex settings
+let g:tex_flavor = 'latex'
 let g:vimtex_quickfix_mode = 0
 let g:vimtex_fold_automatic = 0
 let g:vimtex_fold_enabled = 0
-let g:tex_flavor = 'latex'
 let g:vimtex_view_method = 'zathura'
 if has('nvim')
-  let g:vimtex_compiler_progname = 'nvr'
+    let g:vimtex_compiler_progname = 'nvr'
 endif
 if get(g:, 'vimtex_enabled', 1)
     nmap \ <plug>(vimtex-cmd-create)
     xmap \ <plug>(vimtex-cmd-create)
 endif
+" math mode mappings about greek letters
+call vimtex#imaps#add_map(
+    \{ 'lhs' : 'c', 'rhs' : '\psi', 'wraper' : 'vimtex#imaps#math_wrap'} )
+call vimtex#imaps#add_map(
+    \{ 'lhs' : 'C', 'rhs' : '\Psi', 'wraper' : 'vimtex#imaps#math_wrap'} )
+call vimtex#imaps#add_map(
+    \{ 'lhs' : 'u', 'rhs' : '\theta', 'wraper' : 'vimtex#imaps#math_wrap'} )
+call vimtex#imaps#add_map(
+    \{ 'lhs' : 'U', 'rhs' : '\Theta', 'wraper' : 'vimtex#imaps#math_wrap'} )
+call vimtex#imaps#add_map(
+    \{ 'lhs' : 'vu', 'rhs' : '\vartheta', 'wraper' : 'vimtex#imaps#math_wrap'} )
+call vimtex#imaps#add_map(
+    \{ 'lhs' : 'y', 'rhs' : '\upsilon', 'wraper' : 'vimtex#imaps#math_wrap'} )
+call vimtex#imaps#add_map(
+    \{ 'lhs' : 'Y', 'rhs' : '\Upsilon', 'wraper' : 'vimtex#imaps#math_wrap'} )
+call vimtex#imaps#add_map(
+    \{ 'lhs' : 'v', 'rhs' : '\omega', 'wraper' : 'vimtex#imaps#math_wrap'} )
+call vimtex#imaps#add_map(
+    \{ 'lhs' : 'V', 'rhs' : '\Omega', 'wraper' : 'vimtex#imaps#math_wrap'} )
+call vimtex#imaps#add_map(
+    \{ 'lhs' : '2', 'rhs' : '\to', 'wraper' : 'vimtex#imaps#math_wrap'} )
 
 " Vim-pandoc settings
 let g:pandoc#modules#disabled = ["folding"]
@@ -440,29 +467,29 @@ let g:highlightedyank_highlight_duration = 150
 " Startify settings
 let g:startify_fortune_use_unicode = 1
 let g:ascii = [
-        \ '                                ',
-        \ '            __                  ',
-        \ '    __  __ /\_\    ___ ___      ',
-        \ '   /\ \/\ \\/\ \ /'' __` __`\   ',
-        \ '   \ \ \_/ |\ \ \/\ \/\ \/\ \   ',
-        \ '    \ \___/  \ \_\ \_\ \_\ \_\  ',
-        \ '     \/__/    \/_/\/_/\/_/\/_/  ',
-        \ ]
+            \ '                                ',
+            \ '            __                  ',
+            \ '    __  __ /\_\    ___ ___      ',
+            \ '   /\ \/\ \\/\ \ /'' __` __`\   ',
+            \ '   \ \ \_/ |\ \ \/\ \/\ \/\ \   ',
+            \ '    \ \___/  \ \_\ \_\ \_\ \_\  ',
+            \ '     \/__/    \/_/\/_/\/_/\/_/  ',
+            \ ]
 let g:startify_custom_header =
-      \ map(g:ascii + startify#fortune#boxed(), '"   ".v:val')
+            \ map(g:ascii + startify#fortune#boxed(), '"   ".v:val')
 let g:startify_lists = [
-        \ { 'type': 'files',     'header': ['   Recently opened'] },
-        \ { 'type': 'bookmarks', 'header': ['   Bookmarks'] },
-        \ { 'type': 'sessions',  'header': ['   Sessions'] },
-        \ { 'type': 'commands',  'header': ['   Commands'] }
-        \ ]
+            \ { 'type': 'files',     'header': ['   Recently opened'] },
+            \ { 'type': 'bookmarks', 'header': ['   Bookmarks'] },
+            \ { 'type': 'sessions',  'header': ['   Sessions'] },
+            \ { 'type': 'commands',  'header': ['   Commands'] }
+            \ ]
 let g:startify_bookmarks = [ 
-        \ { 'bi': '~/dotfiles/i3/config' },
-        \ { 'bp': '~/dotfiles/polybar/config' },
-        \ { 'bt': '~/dotfiles/termite/config' },
-        \ { 'bv': '~/dotfiles/vimrc' },
-        \ { 'bz': '~/dotfiles/zshrc' }
-        \ ]
+            \ { 'bi': '~/dotfiles/i3/config' },
+            \ { 'bp': '~/dotfiles/polybar/config' },
+            \ { 'bt': '~/dotfiles/termite/config' },
+            \ { 'bv': '~/dotfiles/vimrc' },
+            \ { 'bz': '~/dotfiles/zshrc' }
+            \ ]
 
 " GrammarCheck settings
 let g:grammarous#use_vim_spelllang = 1
@@ -470,3 +497,23 @@ let g:grammarous#use_vim_spelllang = 1
 " Rainbow parentheses settings
 let g:rainbow#max_level = 36
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}'], ['<', '>']]
+
+" Count words-per-minute (WPM)
+function! s:wpm() abort
+    if get(b:, 'wpm_start', 0) is 0
+        let b:wpm_start = [reltime(), wordcount()]
+    else
+        let l:time = reltime(b:wpm_start[0])
+        let l:words = wordcount()['words'] - b:wpm_start[1]['words']
+        unlet b:wpm_start
+        echom printf('%s WPM',
+                    \ float2nr(round( 60.0 * l:words / max([1, l:time[0]]) )))
+    endif
+endfunction
+command! WPM call s:wpm()
+" automatically do this when entering/leaving insert mode.
+augroup wpm
+    autocmd!
+    autocmd InsertEnter * :WPM
+    autocmd InsertLeave * :WPM
+augroup end

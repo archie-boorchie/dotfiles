@@ -1,8 +1,7 @@
 #!/bin/bash
 
-# This is a script from petvas ath github. 
-# It uses i3lock to lock the screen, while showing a blured version of the
-# current screen.
+# This is a script from petvas at github. It uses i3lock to lock the screen,
+# while showing a blured version of the current screen.
 
 TMPBG=/tmp/screen.png
 LOCK=$HOME/dotfiles/i3/.lock.png

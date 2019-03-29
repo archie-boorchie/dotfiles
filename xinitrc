@@ -34,4 +34,5 @@ xset b off
 xset r rate 200 60
 
 xcompmgr -cCfF -D 1 &
+
 exec i3

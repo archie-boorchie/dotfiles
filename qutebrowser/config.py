@@ -41,5 +41,7 @@ c.url.searchengines = {
     # google translate (english to greek)
     'tr': 'https://translate.google.com/#en/el/{}',
     # local files
-    'lf': 'file://{}'
+    'lf': 'file://{}',
+    # inspire
+    'in': 'http://inspirehep.net/search?ln=en&p={}&of=hb&action_search=Search&sf=earliestdate&so=d'
 }
