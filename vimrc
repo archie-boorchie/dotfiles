@@ -36,6 +36,9 @@ let maplocalleader = "\<Space>"
 " Write file more easily
 nnoremap <leader>w :w<cr>
 
+" Write file as root
+cmap w!! w !sudo tee %
+
 " Exit unmodified file more easily
 nnoremap <leader>q :q<cr>
 
@@ -135,6 +138,9 @@ set incsearch
 " Easily turn-off search highlighting
 noremap <Leader>/ :nohlsearch<CR>:<backspace>
 
+" Search for duplicate words
+nnoremap <leader>d/ /\(\<\w\+\>\)\_s*\1<CR>
+
 " Preview changes of current file before saving
 function! s:DiffWithSaved()
     let filetype=&ft
@@ -207,6 +213,9 @@ augroup templates
     autocmd BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh
     autocmd BufNewFile *.tex 0r ~/.vim/templates/skeleton.tex
 augroup END
+
+" Maximize the maximum amount of memory (in Kbyte) to use for pattern matching
+set maxmempattern=2000000
 
 
 " Plugins and their settings 

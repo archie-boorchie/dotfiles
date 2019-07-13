@@ -31,7 +31,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 xset b off
-xset r rate 200 60
+xset r rate 250 60
 
 xcompmgr -cCfF -D 1 &
 

@@ -7,7 +7,11 @@ set window-title-home-tilde true
 
 # set status bar title
 set statusbar-home-tilde true
-#set statusbar-basename true
+set statusbar-basename false
 
 # easily access command mode
 map ; focus_inputbar :
+
+# hide the input and title-bar and display v-scrollbar
+set guioptions v
+set show-v-scrollbar true

@@ -144,8 +144,8 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec source ~/dotfiles/i3/i3exiting.sh
 
 # Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +1% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -1% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 
 # Sreen brightness controls
@@ -199,6 +199,9 @@ mode "resize" {
     bindsym Down resize grow height 2 px or 2 ppt
     bindsym Up resize shrink height 2 px or 2 ppt
     bindsym Right resize grow width 2 px or 2 ppt
+
+    # trigger floating window resize mode
+    bindsym f mode "resize floating window"; focus floating
     
     # back to normal: Enter or Escape or $mod+r
     bindsym Return mode "default"
@@ -206,6 +209,28 @@ mode "resize" {
     bindsym $mod+r mode "default"
 }
 
+# Resize floating windows easily
+mode "resize floating window" {
+    # horizontal orientation
+    bindsym s resize set 350 250
+    bindsym m resize set 520 350
+    bindsym l resize set 720 420
+
+    # vertical orientation
+    bindsym Shift+s resize set 250 350
+    bindsym Shift+m resize set 450 520
+    bindsym Shift+l resize set 520 620
+
+    # moving through the floating windows
+    bindsym f focus left
+
+    # Enter or Escape for normal mode; r or $mod+r for regular resize mode
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym r mode "resize"
+    bindsym $mod+r mode "resize"
+}
+    
 bindsym $mod+r mode "resize"
 
 # Minimum and maximum size for floating windows
@@ -227,7 +252,7 @@ client.background       #ffffff
 # i3-gaps
 for_window [class="^.*"] border pixel 1
 for_window [title=" - Wolfram Mathematica"] border normal 1 # I nead titles in .nb files
-set $in_gaps 15
+set $in_gaps 4
 set $out_gaps 0
 gaps inner $in_gaps
 gaps outer $out_gaps
@@ -274,6 +299,20 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
+# External monitor modes
+set $mode_external_monitor Monitor(s): [d]ual, [e]xternal, [l]aptop, [m]irror
+bindsym $mod+m mode "$mode_external_monitor"
+
+mode "$mode_external_monitor" {
+        bindsym d exec --no-startup-id sh ~/dotfiles/i3/dual-screen.sh d; mode "default"
+        bindsym e exec --no-startup-id sh ~/dotfiles/i3/dual-screen.sh e; mode "default"
+        bindsym l exec --no-startup-id sh ~/dotfiles/i3/dual-screen.sh l; mode "default"
+        bindsym m exec --no-startup-id sh ~/dotfiles/i3/dual-screen.sh m; mode "default"
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
 # Using a scratchpad
 # make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -281,10 +320,10 @@ bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
 # Scratchpad terminals
-for_window [instance="scratchmite"] floating enable
+for_window [instance="scratchmite"] floating enable sticky enable
 for_window [instance="scratchmite" window_role="startup"] move scratchpad
 # create a scratchpad terminal on the fly
-bindsym $mod+Shift+Return exec --no-startup-id termite --name scratchmite && move scratchpad
+bindsym $mod+Shift+Return exec --no-startup-id termite --name scratchmite
 
 # Autostart programs
 # this is also in xinitrc but it gets overwritten 
@@ -296,3 +335,5 @@ exec --no-startup-id unclutter --timeout 1 --jitter 15 --ignore-scrolling --fork
 exec --no-startup-id clipmenud
 # create a scratchpad terminal at startup
 exec --no-startup-id termite --name scratchmite --role startup
+# reminds you to take a break
+exec --no-startup-id sh ~/dotfiles/i3/.take_a_break.sh

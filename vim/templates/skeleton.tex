@@ -1,39 +1,60 @@
-\documentclass[11pt,a4paper]{article}
+\documentclass[aps,prd,reprint,nofootinbib]{revtex4-2}
+%superscriptaddress,linenumbers,eqsecnum,raggedbottom
 
+% math packages
+\usepackage{amsmath}
+\usepackage{amsthm}
+% \usepackage{amssymb} % already imported by stix
+\usepackage{slashed} % Feynman slash notation
+\usepackage{braket}
+%
+
+% fonts
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+% \usepackage{stix2}
+% \usepackage{tgtermes}
+\usepackage{newtxtext}
+\usepackage[subscriptcorrection]{newtxmath}
+%
 
-\usepackage{amsmath,amsthm,amssymb}
-
-\usepackage{geometry}
- \geometry{
- left=20mm,
- right=20mm,
- top=30mm,
- bottom=30mm,
- }
-
-\usepackage{tocloft}
-\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}%Sections have dots in ToC
-
-\usepackage{authblk}
-
-\usepackage{slashed} %to use Feynman slash notation
-
-% for Feynman Diagrams
+% Feynman Diagrams
 \usepackage{feynmp-auto}
 \newcommand{\marrow}[5]{%
     \fmfcmd{style_def marrow#1
-    expr p = drawarrow subpath (1/4, 3/4) of p shifted 6 #2 withpen pencircle scaled 0.4;
-    label.#3(btex #4 etex, point 0.5 of p shifted 6 #2);
+        expr p = drawarrow subpath (1/4, 3/4) of p shifted 6%
+        #2 withpen pencircle scaled 0.4;
+        label.#3(btex #4 etex, point 0.5 of p shifted 6 #2);
     enddef;}
-    \fmf{marrow#1,tension=0}{#5}} %momenta arrows
-\newcommand{\counterterm}[1]{\fmfv{decor.shape=circle,decor.filled=0,decor.size=4thick,label=$\boldsymbol{\times}$,label.dist=0}{#1}}
-\newcommand{\opi}[1]{\fmfv{decor.shape=circle,decor.filled=10,decor.size=12thick,label=$\text{1PI}$,label.dist=0}{#1}}
-\newcommand{\blob}[1]{\fmfv{decor.shape=circle,decor.filled=60,decor.size=8thick}{#1}}
-\newcommand{\blobsmall}[1]{\fmfv{decor.shape=circle,decor.filled=60,decor.size=6thick}{#1}}
-\newcommand{\fmfsquare}[1]{\fmfv{decor.shape=square,decor.filled=full,decor.size=2thick}{#1}}
+\fmf{marrow#1,tension=0}{#5}} % momenta arrows
+\newcommand{\fmfcounterterm}[1]{\fmfv{decor.shape=circle,decor.filled=0,%
+    decor.size=4thick,label=$\boldsymbol{\times}$,label.dist=0}{#1}}
+\newcommand{\fmfblobbig}[1]{\fmfv{decor.shape=circle,decor.filled=50,%
+    decor.size=8thick}{#1}}
+\newcommand{\fmfblobsmall}[1]{\fmfv{decor.shape=circle,decor.filled=50,%
+    decor.size=5thick}{#1}}
+\newcommand{\fmfsquare}[1]{\fmfv{decor.shape=square,decor.filled=full,
+    decor.size=3thick}{#1}}
 %
+
+\usepackage{graphicx}
+
+\usepackage[svgnames]{xcolor}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=NavyBlue,
+    citecolor=NavyBlue,
+    filecolor=NavyBlue,
+    urlcolor=NavyBlue,
+    linktocpage=true
+}
+
+\usepackage{microtype} % better typography
+
+\usepackage{booktabs} % better looking tables
+
 
 % we redefine \left and \right to avoid unwanted blank spaces
 \let\originalleft\left \let\originalright\right
@@ -41,58 +62,94 @@
 \renewcommand{\right}{\aftergroup\egroup\originalright}
 %
 
-% for comments
-\usepackage{color}
-\newcommand{\lt}[1]{\color{red}#1\color{black}}
+% number 'stared' equations - opposite of \nonumber
+\newcommand\numberthis{\addtocounter{equation}{1}\tag{\theequation}}
 %
 
-\usepackage[dvipsnames]{xcolor}
+% equation ref parentheses are the same color as the numbers inside
+\makeatletter
+\renewcommand*{\eqref}[1]{%
+  \hyperref[{#1}]{\textup{\tagform@{\ref*{#1}}}}%
+}
+\makeatother
+%
 
-\usepackage[backend=biber,sorting=none]{biblatex}
-\addbibresource{refs.bib} %Imports the bibliography file
+% citation brackets are the same color as the numbers inside
+\bibpunct{\color{NavyBlue}{[}}{\color{NavyBlue}{]}}{,\,\!\!}{n}{}{;}
+%
 
-\usepackage{graphicx}
-%\graphicspath{ {figures/} }
-\usepackage{float}
-\usepackage{caption}
-\usepackage{subcaption}
-
-\usepackage[
-linktocpage=true,
-colorlinks=false,
-linkbordercolor={RedViolet},
-urlbordercolor={cyan}]
-{hyperref}
-
-\setlength{\unitlength}{0.01\linewidth}
+\usepackage{lipsum} % for dummy text
 
 
 \begin{document}
-\begin{fmffile}{fmf}
+% \begin{fmffile}{x} % create Feynamn diagrams with feynmp
+
 
 \title{Title of Project}
-\author{Lampros \scshape{Trifyllis}$^{1}$%
-  \thanks{email: \href{mailto:ltrifyl@cc.uoi.gr}{\texttt{ltrifyl@cc.uoi.gr}}}}
-\affil{$^{1}$Department of Physics, Division of Theoretical Physics,\protect\\
-University of Ioannina, GR 45110 Ioannina, Greece}
 
-\date{\today}
+\author{Lampros Trifyllis}
+\email[e-mail: ]{ltrifyl@cc.uoi.gr}
+% \affiliation{Department of Physics, Division of Theoretical Physics,\\
+% University of Ioannina, GR 45110 Ioannina, Greece}
+\affiliation{Section of Theoretical Physics, University of Ioannina, Greece}
 
-\maketitle
+\date{\today\,--- Draft, v1} % added draft version for easy reference
+
 
 \begin{abstract}
-This is an abstract.
+    \lipsum[4]
 \end{abstract}
 
-\vspace{1cm}
-\begin{center}
-\line(1,0){3}
-\end{center}
+
+\maketitle
 \tableofcontents
-\vspace{1cm}
+% \listoffigures
+% \listoftables
 
-\section{Some Useful Information}
-Here is the main content.
 
-\end{fmffile}
+\section{Introduction}
+
+\lipsum[5-6]
+\begin{align*}
+\label{eq:sm}
+\mathcal{L} = &-\tfrac{1}{4} F_{\mu\nu} F^{\mu\nu} \\&
++i \bar\psi \slashed{D} \psi +\text{h.c.} \\&
++\psi_{i} y_{ij} \psi_{j} \varphi +\text{h.c.} \\&
++|D_{\mu} \varphi|^{2} -V(\varphi) \,. \numberthis
+\end{align*}
+\lipsum[6-7]
+
+\begin{widetext}
+    \lipsum[13-15]
+\end{widetext}
+
+\lipsum[9]
+
+
+\subsection{Extra Info}
+\lipsum[44]
+
+
+\subsubsection{More Info}
+\lipsum[1]
+
+
+\paragraph*{PRL style section.---\!\!\!\!\!}
+\lipsum[4]
+\begin{equation}
+\label{eq:gr}
+    G_{\mu\nu} = 8\pi G T_{\mu\nu}\,,
+\end{equation}
+\lipsum[1]
+
+\begin{acknowledgements}
+    \lipsum[43]
+\end{acknowledgements}
+
+
+\bibliographystyle{JHEP}
+\bibliography{references}
+
+
+% \end{fmffile}
 \end{document}
