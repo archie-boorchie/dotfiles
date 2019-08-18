@@ -4,17 +4,23 @@ set nocompatible
 " Set standard encoding
 set encoding=utf8
 
-" Fast terminal
+" Take advantage of fast terminal
 set ttyfast
+
+" Enable mouse
+set mouse=a
+
+" Disable audible and visual bells
+set noerrorbells
+set novisualbell
+set t_vb=
 
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-" Set word wrap to 80 characters
-set textwidth=80
-
-" Highlight column after wrap 
-set colorcolumn=+1
+" Word wrapping
+set textwidth=80    " set word wrap to 80 characters
+set colorcolumn=+1  " highlight column after wrap 
 
 " Keep some lines above and below cursor always visible
 set scrolloff=3
@@ -22,8 +28,15 @@ set scrolloff=3
 " Don't put two spaces after a period when joining lines
 set nojoinspaces
 
-" Delete comment characters when joining lines
-set formatoptions+=j
+" Better automatic formating
+set formatoptions+=croqnlj
+
+" Fast formatting
+vmap Q gq|    " format selection
+nmap Q gqap|  " format current paragraph
+
+" Remove octal support from CTRL+A and CTRL+X commands
+set nrformats-=octal
 
 " Better movement for snake_case words
 set iskeyword-=_
@@ -33,17 +46,14 @@ noremap <SPACE> <Nop>
 let mapleader = "\<Space>"
 let maplocalleader = "\<Space>"
 
-" Write file more easily
-nnoremap <leader>w :w<cr>
+" Write and quit shortcuts
+nnoremap <leader>w :w<cr>|   " write file more easily
+cmap w!! w !sudo tee %|      " write file as root
+nnoremap <leader>q :q<cr>|   " exit unmodified file more easily
+nnoremap <leader>Q :q!<cr>|  " force exit modified file more easily
 
-" Write file as root
-cmap w!! w !sudo tee %
-
-" Exit unmodified file more easily
-nnoremap <leader>q :q<cr>
-
-" Force exit modified file more easily
-nnoremap <leader>Q :q!<cr>
+" Faster update time
+set updatetime=100
 
 " Amount of time to wait for key sequence
 set timeoutlen=1000
@@ -65,10 +75,10 @@ xnoremap <leader>p "0p
 xnoremap <leader>P "0P
 
 " Exchange ; and : to easily access command mode
-nno : ;
-nno ; :
-vno : ;
-vno ; :
+nnoremap : ;
+nnoremap ; :
+vnoremap : ;
+vnoremap ; :
 
 " In insert mode use j+direction for action
 imap jj <Esc>
@@ -78,16 +88,17 @@ imap jl <C-O>w
 
 " Keep a backup file
 set backup
-
-" Directory to store backup files
 set backupdir=~/.cache/vim/backup//
+if !isdirectory(&backupdir) | call mkdir(&backupdir, 'p', 0700) | endif
 
 " Directory to store swap files
 set dir=~/.cache/vim/swap//
+if !isdirectory(&dir) | call mkdir(&dir, 'p', 0700) | endif
 
-" Keeping an undo file
+" Persistent undo history
 set undofile
 set undodir=~/.cache/vim/undo//
+if !isdirectory(&undodir) | call mkdir(&undodir, 'p', 0700) | endif
 
 " Keep 1000 lines of command line history
 set history=1000
@@ -98,24 +109,21 @@ set ruler
 " Show line numbers relevant to current line
 set relativenumber
 
-" Instead of 0 show real line number in current line, when relativenumber is set
+" Show line number in current line when relativenumber is set
 set number
 
 " Display incomplete commands
 set showcmd
 
-" Faster update time
-set updatetime=100
-
 " Enable file type detection and language-dependent indentation
 filetype plugin indent on
+
+" Enable syntax highlighting
+syntax enable
 
 " Set autoindenting on
 set autoindent
  
-" Enable syntax highlighting
-syntax enable
-
 " Set omnicompletion on
 set omnifunc=syntaxcomplete#Complete
 
@@ -126,20 +134,19 @@ autocmd BufReadPost *
     \ | endif
 
 " Search highlighting
-" enable search highlighting
-set hlsearch 
-" ignore case when searching
-set ignorecase
-" switch search to case-sensitive when search query contains uppercase letters
-set smartcase 
-" incremental search that shows partial matches
-set incsearch
+set hlsearch    " enable search highlighting
+set ignorecase  " ignore case when searching
+set smartcase   " case-sensitive search when query contains uppercase letters
+set incsearch   " incremental search that shows partial matches
 
 " Easily turn-off search highlighting
 noremap <Leader>/ :nohlsearch<CR>:<backspace>
 
 " Search for duplicate words
 nnoremap <leader>d/ /\(\<\w\+\>\)\_s*\1<CR>
+
+" Always open diffs vertically
+set diffopt+=vertical
 
 " Preview changes of current file before saving
 function! s:DiffWithSaved()
@@ -149,24 +156,7 @@ function! s:DiffWithSaved()
     diffthis
     exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
 endfunction
-com! DiffSaved call s:DiffWithSaved()
-
-" Always open diffs vertically
-set diffopt+=vertical
-
-" Use Q for fast formatting
-" format selection
-vmap Q gq 
-" format current paragraph
-nmap Q gqap
-
-" Enable mouse
-set mouse=a
-
-" Disable audible and visual bells
-set noerrorbells
-set novisualbell
-set t_vb=
+command! DiffSaved call s:DiffWithSaved()
 
 " Change cursor shape according to mode
 if empty($TMUX)
@@ -180,26 +170,22 @@ else
 endif
 
 " Hide menus etc in gvim 
-set guioptions-=m  "remove menu bar
-set guioptions-=T  "remove toolbar
-set guioptions-=r  "remove right-hand scroll bar
-set guioptions-=L  "remove left-hand scroll bar
+set guioptions-=m   "remove menu bar
+set guioptions-=T   "remove toolbar
+set guioptions-=r   "remove right-hand scroll bar
+set guioptions-=L   "remove left-hand scroll bar
 
 " Spell check options
 set nospell
 set spelllang=en_gb
 set spellfile=~/.vim/spell/en-gb.utf-8.add
 
-" Use smart tabs
-set smarttab
-
-" 1 tab == 4 spaces
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-
-" Use spaces instead of tabs
-set expandtab
+" Tab behaviour
+set smarttab       " backspace removes 'shiftwidth' worth of spaces
+set tabstop=4      " tab equals 4 spaces
+set softtabstop=4  " tab equals 4 spaces
+set shiftwidth=4   " tab equals 4 spaces
+set expandtab      " use spaces instead of tabs
 
 " Show command matches above the command line
 set wildmenu
@@ -208,7 +194,7 @@ set wildmode=longest:full,full
 " Ignore case in filenames
 set wildignorecase
 
-" Insert template according to the file's extension
+" Insert template according to file's extension
 augroup templates
     autocmd BufNewFile *.sh 0r ~/.vim/templates/skeleton.sh
     autocmd BufNewFile *.tex 0r ~/.vim/templates/skeleton.tex
@@ -216,6 +202,26 @@ augroup END
 
 " Maximize the maximum amount of memory (in Kbyte) to use for pattern matching
 set maxmempattern=2000000
+
+" Count words-per-minute (WPM)
+function! s:wpm() abort
+    if get(b:, 'wpm_start', 0) is 0
+        let b:wpm_start = [reltime(), wordcount()]
+    else
+        let l:time = reltime(b:wpm_start[0])
+        let l:words = wordcount()['words'] - b:wpm_start[1]['words']
+        unlet b:wpm_start
+        echom printf('%s WPM',
+                    \ float2nr(round( 60.0 * l:words / max([1, l:time[0]]) )))
+    endif
+endfunction
+command! WPM call s:wpm()
+" automatically do this when entering/leaving insert mode.
+augroup wpm
+    autocmd!
+    autocmd InsertEnter * :WPM
+    autocmd InsertLeave * :WPM
+augroup END
 
 
 " Plugins and their settings 
@@ -229,115 +235,133 @@ endif
 
 " Plugins (to manage with vim-plug; update all with :PlugUpdate)
 call plug#begin('~/.vim/plugged')
-    "
+
     " Minimalist Vim Plugin Manager
     Plug 'junegunn/vim-plug'
-    "
+
     " Helpers for UNIX
     Plug 'tpope/vim-eunuch'
-    "
+
     " Distraction-free writing in Vim
     Plug 'junegunn/goyo.vim'
-    "
+
     " Hyperfocus-writing in Vim
     Plug 'junegunn/limelight.vim'
-    "
+
     " A modern vim plugin for editing LaTeX files
     Plug 'lervag/vimtex'
-    "
+
     " Retro groove color scheme for Vim
     Plug 'morhetz/gruvbox'
-    "
-    "   " Vim script for text filtering and alignment 
-    "   Plug 'godlygeek/tabular'
-    "
+
     " A light and configurable statusline/tabline plugin for Vim
     Plug 'itchyny/lightline.vim' 
-    "
-    "   " Provides the branch name of the current git repository
-    "   Plug 'itchyny/vim-gitbranch'
-    "
+
     " A Git wrapper so awesome, it should be illegal
     Plug 'tpope/vim-fugitive'
-    "
+
     " A Vim plugin which shows a git diff in the gutter (sign column) and stages/undoes hunks.
     Plug 'airblade/vim-gitgutter'
-    "
+
     " The ultimate snippet solution for Vim
     Plug 'SirVer/ultisnips'
-    "
+
     " Pandoc integration and utilities for vim 
     Plug 'vim-pandoc/vim-pandoc'
-    "
+
     " Pandoc markdown syntax, to be installed alongside vim-pandoc
     Plug 'vim-pandoc/vim-pandoc-syntax'
-    "
+
     " Easily search for, substitute, and abbreviate multiple variants of a word
     Plug 'tpope/vim-abolish'
-    "
+
     " Combine with netrw to create a delicious salad dressing
     Plug 'tpope/vim-vinegar'
-    "
-    "   " Directory viewer for Vim
-    "   Plug 'justinmk/vim-dirvish'
-    "
+
+    " " Directory viewer for Vim
+    " Plug 'justinmk/vim-dirvish'
+
     " Quoting/parenthesizing made simple
     Plug 'tpope/vim-surround'
-    "
+
     " Enable repeating supported plugin maps with .
     Plug 'tpope/vim-repeat'
-    "
+
     " Make the yanked region apparent!
     Plug 'machakann/vim-highlightedyank'
-    "
+
+    " Range, pattern and substitute preview for Vim
+    Plug 'markonm/traces.vim'
+
     " Brings physics-based smooth scrolling to the Vim world!
     Plug 'yuttie/comfortable-motion.vim'
-    "
+
     " Undo a :quit -- reopen the last window you closed
     Plug 'AndrewRadev/undoquit.vim'
-    "
+
     " A Vim plugin for visually displaying indent levels in code
     Plug 'nathanaelkane/vim-indent-guides'
-    "
+
     " Start a * or # search from a visual block
     Plug 'nelstrom/vim-visual-star-search'
-    "
+
     " The fancy start screen for Vim
     Plug 'mhinz/vim-startify'
-    "
+
     " Text outlining and task management for Vim based on Emacs' Org-Mode
     Plug 'jceb/vim-orgmode'
-    "
+
     " Use CTRL-A/CTRL-X to increment dates, times, and more
     Plug 'tpope/vim-speeddating'
-    "
+
     " Only show line numbers in the active window
     Plug 'auwsmit/vim-active-numbers'
-    "
+
     " A Vim cheat sheet that makes sense, inside Vim!
     Plug 'lifepillar/vim-cheat40'
-    "
+
     " Block-breaking game in vim 8.0
     Plug 'johngrib/vim-game-code-break'
-    "
+
     " Simpler Rainbow Parentheses
     Plug 'junegunn/rainbow_parentheses.vim'
-    "   "
+
     "   " Vim plugin to dim inactive windows
     "   Plug 'blueyed/vim-diminactive'
-    "
+
     " A calendar application for Vim
     Plug 'itchyny/calendar.vim'
-    "
+
     " Vim plugin for intensely orgasmic commenting
     Plug 'scrooloose/nerdcommenter'
-    "
+
     " A powerful grammar checker for Vim using LanguageTool
     Plug 'rhysd/vim-grammarous'
-    "
+
     " Even better %
     Plug 'andymass/vim-matchup'
-    "
+
+    " Stop repeating yourself
+    Plug 'dbmrq/vim-ditto'
+
+    " Vim motions on speed!
+    Plug 'easymotion/vim-easymotion'
+
+    " Syntax checking hacks for vim
+    Plug 'vim-syntastic/syntastic'
+
+    " A unite.vim integration of redpen for automatic proof reading
+    Plug 'rhysd/unite-redpen.vim'
+
+    " Syntax checking hacks for vim
+    Plug 'vim-syntastic/syntastic'
+
+    " Vim plugin to diff two directories
+    Plug 'will133/vim-dirdiff'
+
+    " Make blockwise Visual mode more useful
+    Plug 'kana/vim-niceblock'
+
 call plug#end()
 
 " NerdCommenter settings
@@ -364,7 +388,7 @@ autocmd! User GoyoLeave Limelight!
 let g:limelight_default_coefficient = 0.7
 let g:limelight_conceal_ctermfg = 'gray'
 let g:limelight_conceal_ctermfg = 240
-let g:limelight_priority = -1 " don't overrule hlsearch
+let g:limelight_priority = -1  " don't overrule hlsearch
 
 " Gruvbox settings
 set background=dark
@@ -439,7 +463,7 @@ if get(g:, 'vimtex_enabled', 1)
     nmap \ <plug>(vimtex-cmd-create)
     xmap \ <plug>(vimtex-cmd-create)
 endif
-" math mode mappings about greek letters
+" math mode mappings
 call vimtex#imaps#add_map(
     \{ 'lhs' : 'c', 'rhs' : '\psi', 'wraper' : 'vimtex#imaps#math_wrap'} )
 call vimtex#imaps#add_map(
@@ -460,6 +484,8 @@ call vimtex#imaps#add_map(
     \{ 'lhs' : 'V', 'rhs' : '\Omega', 'wraper' : 'vimtex#imaps#math_wrap'} )
 call vimtex#imaps#add_map(
     \{ 'lhs' : '2', 'rhs' : '\to', 'wraper' : 'vimtex#imaps#math_wrap'} )
+call vimtex#imaps#add_map(
+    \{ 'lhs' : '>', 'rhs' : '\implies', 'wraper' : 'vimtex#imaps#math_wrap'} )
 
 " Vim-pandoc settings
 let g:pandoc#modules#disabled = ["folding"]
@@ -507,22 +533,5 @@ let g:grammarous#use_vim_spelllang = 1
 let g:rainbow#max_level = 36
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}'], ['<', '>']]
 
-" Count words-per-minute (WPM)
-function! s:wpm() abort
-    if get(b:, 'wpm_start', 0) is 0
-        let b:wpm_start = [reltime(), wordcount()]
-    else
-        let l:time = reltime(b:wpm_start[0])
-        let l:words = wordcount()['words'] - b:wpm_start[1]['words']
-        unlet b:wpm_start
-        echom printf('%s WPM',
-                    \ float2nr(round( 60.0 * l:words / max([1, l:time[0]]) )))
-    endif
-endfunction
-command! WPM call s:wpm()
-" automatically do this when entering/leaving insert mode.
-augroup wpm
-    autocmd!
-    autocmd InsertEnter * :WPM
-    autocmd InsertLeave * :WPM
-augroup end
+" EasyMotion settings
+map <Leader> <Plug>(easymotion-prefix)

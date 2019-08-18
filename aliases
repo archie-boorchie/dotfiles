@@ -1,42 +1,7 @@
 # Aliases for shell (it works with zsh and with bash by changing &! to &)
 
-# To-do List
-alias todo='clear; echo "Please enter new task"; read task; echo "$task" >> /home/lampros/todolist.txt'
-alias todolist='clear; echo "__________________________________________________"; echo "___________________ TO DO LIST ___________________"; echo "__________________________________________________"; echo ""; cat -b /home/lampros/todolist.txt; echo ""; echo "__________________________________________________";  echo "__________________________________________________"; echo ""'
-alias todoclear='echo "" > /home/lampros/todolist.txt'
-
 # Make sudo compatible with aliases
 alias sudo='sudo '
-
-# Ranger shortcut
-alias r='ranger'
-
-# Handy short cuts
-alias h='history'
-alias c='clear'
-alias j='jobs -l'
-alias e='exit'
-alias q='exit'
-alias p='pwd'
-alias rmrf='rm -rf'
-alias cdc='cd;clear'
-
-# Start vim with servername
-alias vim='vim --servername VIM'
-
-# Better less 
-alias bless="LESS='-RS#3NM~g' less"
-
-# Volume and Backlight
-alias bri='xbacklight -set'
-alias vol='pactl set-sink-volume 0'
-
-# For battery status in terminal
-alias battery='upower -i $(upower -e | grep '/battery') | \
-               grep --color=never -E "state|to\ full|to\ empty|percentage"'
-
-# To turn monitor back on. See monitordump in .bash_functions for more
-alias monitoron='xrandr --output eDP1 --auto' 
 
 # List shortcuts
 alias l='ls --color=auto'
@@ -47,7 +12,35 @@ alias lla='ls -la --color=auto'
 alias l.='ls -d .* --color=auto'
 alias ll.='ls -l -d .* --color=auto'
 
-# Misc
+# Handy shortcuts
+alias c='clear'
+alias cdc='cd;clear'
+alias rmrf='rm -rf'
+alias e='exit'
+alias q='exit'
+alias p='pwd'
+alias j='jobs -l'
+alias h='history'
+
+# Application shortcuts
+alias r='ranger'
+alias pdfdiff='diffpdf'
+
+# Start vim with servername
+alias vim='vim --servername VIM'
+
+# Better less 
+alias bless="LESS='-RS#3NM~g' less"
+
+# Set volume and backlight
+alias bri='xbacklight -set'
+alias vol='pactl set-sink-volume 0'
+
+# Check battery status
+alias battery='upower -i $(upower -e | grep '/battery') | \
+               grep --color=never -E "state|to\ full|to\ empty|percentage"'
+
+# Checking time with style
 alias time='clear; echo -ne "\n"; figlet `date` | lolcat -a -d 1 -s 12; fortune;echo'
 alias timer='while true; do echo -ne "`date`\n" | lolcat -a -d 12 -s 12 || break; done'
 
@@ -56,10 +49,15 @@ alias -s txt=vim
 alias -s tex=vim
 alias -s md=vim
 alias -s html=qutebrowser
-alias -s pdf=mupdf
+alias -s pdf=zathura
 
 # Global aliases - can be used anywhere in the command line
 alias -g ...='../..'
 alias -g ....='../../..'
 alias -g L="| less"
 alias -g NUL="> /dev/null 2>&1"
+
+# To-do List
+alias todo='clear; echo "Please enter new task"; read task; echo "$task" >> /home/lampros/todolist.txt'
+alias todolist='clear; echo "__________________________________________________"; echo "___________________ TO DO LIST ___________________"; echo "__________________________________________________"; echo ""; cat -b /home/lampros/todolist.txt; echo ""; echo "__________________________________________________";  echo "__________________________________________________"; echo ""'
+alias todoclear='echo "" > /home/lampros/todolist.txt'

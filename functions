@@ -1,12 +1,27 @@
-# Functions for shell (if you use bash, change &! to &)
+# Functions for shell (if you use bash shell instead of zsh, change &! to &)
 
 # Create a new directory and instantly jump to that directory.
 mkdircd () { mkdir -p $1; cd $1; }
 
+# Preview the differences of two directories using Vim and the Vim plugin
+# vim-dirdiff (https://github.com/will133/vim-dirdiff)
+function dirdiff()
+{
+    # Shell-escape each path:
+    DIR1=$(printf '%q' "$1"); shift
+    DIR2=$(printf '%q' "$1"); shift
+    vim $@ -c "DirDiff $DIR1 $DIR2"
+}
+
+# Weather information
+weather () {
+    echo -ne "\n\nPlease enter a city name:  "
+    read mycity
+    curl wttr.in/"$mycity"
+}
+
 # Use xdg-open in 'silent mode'
-go () { xdg-open "$1" >/dev/null 2>&1 &! }
 o () { xdg-open "$1" >/dev/null 2>&1 &! }
-g () { xdg-open "$1" >/dev/null 2>&1 &! }
 
 # Use less for pdf view
 pdfless() {pdftotext -layout $1 - | less}
@@ -73,36 +88,4 @@ man() {
     LESS_TERMCAP_ue=$(printf "\e[0m") \
     LESS_TERMCAP_us=$(printf "\e[1;32m") \
     man "$@"
-}
-
-# Weather information
-weather () {
-    echo -ne "\n\nPlease enter a city name:  "
-    read mycity
-    curl wttr.in/"$mycity"
-}
-
-# Provides a y/n question to turn off laptop screen.
-monitordump () {
-	x=0
-	while [ $x -eq 0 ]
-	do
-	echo "CAUTION! THIS WILL DISABLE LAPTOP SCREEN! Would you like to turn off laptop screen? [y/n]"
-	read ans
-	if [ $ans = y -o $ans = Y -o $ans = yes -o $ans = Yes -o $ans = YES ]
-	then
-		echo "Laptop monitor turned off. To turn back on please type ' xrandr --output eDP1 --auto ' "
-		 xrandr --output eDP1 --off
-		x=1	
-	elif [ $ans = n -o $ans = N -o $ans = no -o $ans = No -o $ans = NO ]
-	then
-		echo "Main screen still on."
-		x=1
-	else
-		echo "CAUTION! THIS WILL DISABLE LAPTOP SCREEN! Please enter y/n"
-		sleep 0.4
-	fi
-	done
-	echo "Enjoy!"
-	return 0
 }
