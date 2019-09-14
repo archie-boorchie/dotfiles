@@ -22,8 +22,16 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 c.url.searchengines = {
     # duckduckgo (default)
     'DEFAULT': 'https://duckduckgo.com/?q={}',
+    # duckduckgo
+    'dd': 'https://duckduckgo.com/?q={}',
+    # google search
+    'gg': 'https://www.google.com/search?hl=en&q={}',
+    # google translate (english to greek)
+    'tr': 'https://translate.google.com/#en/el/{}',
     # arch wiki
     'aw': 'https://wiki.archlinux.org/index.php?title=Special%3ASearch&search={}',
+    # inspire
+    'in': 'http://inspirehep.net/search?ln=en&p={}&of=hb&action_search=Search&sf=earliestdate&so=d',
     # arxiv (paper id)
     'ar': 'https://arxiv.org/abs/{}',
     # arxiv (search)
@@ -31,17 +39,13 @@ c.url.searchengines = {
     # youtube
     'yt': 'https://youtube.com/search?q={}',
     # library genesis (standard)
-    'lg': 'http://libgen.io/search.php?req={}',
+    'lg': 'http://libgen.unblockall.org/search.php?req={}',
     # library genesis (scientific articles)
-    'lgp': 'http://libgen.io/scimag/index.php?s={}',
+    'lgp': 'http://libgen.unblockall.org/scimag/?q={}',
     # library genesis (fiction)
-    'lgf': 'http://libgen.io/foreignfiction/index.php?s={}',
-    # google search
-    'gg': 'https://www.google.com/search?hl=en&q={}',
-    # google translate (english to greek)
-    'tr': 'https://translate.google.com/#en/el/{}',
+    'lgf': 'http://libgen.unblockall.org/fiction/?q={}',
+    # get comics
+    'gc': 'https://getcomics.info/?s={}',
     # local files
-    'lf': 'file://{}',
-    # inspire
-    'in': 'http://inspirehep.net/search?ln=en&p={}&of=hb&action_search=Search&sf=earliestdate&so=d'
+    'lf': 'file://{}'
 }

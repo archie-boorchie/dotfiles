@@ -23,6 +23,8 @@ alias j='jobs -l'
 alias h='history'
 
 # Application shortcuts
+alias v='vim'
+alias vi='vim'
 alias r='ranger'
 alias pdfdiff='diffpdf'
 
@@ -56,8 +58,3 @@ alias -g ...='../..'
 alias -g ....='../../..'
 alias -g L="| less"
 alias -g NUL="> /dev/null 2>&1"
-
-# To-do List
-alias todo='clear; echo "Please enter new task"; read task; echo "$task" >> /home/lampros/todolist.txt'
-alias todolist='clear; echo "__________________________________________________"; echo "___________________ TO DO LIST ___________________"; echo "__________________________________________________"; echo ""; cat -b /home/lampros/todolist.txt; echo ""; echo "__________________________________________________";  echo "__________________________________________________"; echo ""'
-alias todoclear='echo "" > /home/lampros/todolist.txt'

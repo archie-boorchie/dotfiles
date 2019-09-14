@@ -12,6 +12,14 @@ set statusbar-basename false
 # easily access command mode
 map ; focus_inputbar :
 
+# exchange reload and rotate
+map r reload
+map R rotate
+
+# zooming
+map L zoom in
+map H zoom out
+
 # hide the input and title-bar and display v-scrollbar
 set guioptions v
 set show-v-scrollbar true

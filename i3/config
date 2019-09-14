@@ -212,14 +212,14 @@ mode "resize" {
 # Resize floating windows easily
 mode "resize floating window" {
     # horizontal orientation
-    bindsym s resize set 350 250
-    bindsym m resize set 520 350
-    bindsym l resize set 720 420
+    bindsym s resize set 350 250; mode "default"
+    bindsym m resize set 520 350; mode "default"
+    bindsym l resize set 720 420; mode "default"
 
     # vertical orientation
-    bindsym Shift+s resize set 250 350
-    bindsym Shift+m resize set 450 520
-    bindsym Shift+l resize set 520 620
+    bindsym Shift+s resize set 250 350; mode "default"
+    bindsym Shift+m resize set 450 520; mode "default"
+    bindsym Shift+l resize set 520 620; mode "default"
 
     # moving through the floating windows
     bindsym f focus left
@@ -259,7 +259,7 @@ gaps outer $out_gaps
 hide_edge_borders smart
 #smart_borders no_gaps
 
-# i3-gaps resizing modes
+# i3-gaps resizing mode
 set $mode_gaps_inner Gaps (inner)
 bindsym $mod+g mode "$mode_gaps_inner"
 set $mode_gaps_outer Gaps (outer)
@@ -299,7 +299,7 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
-# External monitor modes
+# External monitor mode
 set $mode_external_monitor Monitor(s): [d]ual, [e]xternal, [l]aptop, [m]irror
 bindsym $mod+m mode "$mode_external_monitor"
 
@@ -326,14 +326,15 @@ for_window [instance="scratchmite" window_role="startup"] move scratchpad
 bindsym $mod+Shift+Return exec --no-startup-id termite --name scratchmite
 
 # Autostart programs
-# this is also in xinitrc but it gets overwritten 
 exec_always --no-startup-id feh --bg-scale ~/.wallpaper
-exec_always --no-startup-id sh ~/dotfiles/i3/.keys-config.sh
-exec --no-startup-id termite
+# some keyboard stuff already exist in xinitrc but they get overwritten 
+exec_always --no-startup-id sh ~/dotfiles/i3/.keys-config.sh 
 exec_always --no-startup-id sh ~/dotfiles/polybar/launch.sh
 exec --no-startup-id unclutter --timeout 1 --jitter 15 --ignore-scrolling --fork
 exec --no-startup-id clipmenud
-# create a scratchpad terminal at startup
+exec --no-startup-id termite
 exec --no-startup-id termite --name scratchmite --role startup
-# reminds you to take a break
+# starting some dunst notifications
 exec --no-startup-id sh ~/dotfiles/i3/.take_a_break.sh
+exec --no-startup-id sh ~/dotfiles/i3/.low_battery.sh
+exec --no-startup-id sh ~/dotfiles/i3/.todo_reminder.sh

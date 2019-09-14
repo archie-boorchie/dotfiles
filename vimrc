@@ -15,6 +15,9 @@ set noerrorbells
 set novisualbell
 set t_vb=
 
+" Autoread a file when it has been changed outside of vim
+set autoread
+
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
@@ -47,10 +50,12 @@ let mapleader = "\<Space>"
 let maplocalleader = "\<Space>"
 
 " Write and quit shortcuts
-nnoremap <leader>w :w<cr>|   " write file more easily
-cmap w!! w !sudo tee %|      " write file as root
-nnoremap <leader>q :q<cr>|   " exit unmodified file more easily
-nnoremap <leader>Q :q!<cr>|  " force exit modified file more easily
+nnoremap <leader>w :w<cr>
+nnoremap <leader>q :q<cr>
+nnoremap <leader>Q :q!<cr>
+
+" Write file as sudo user
+cnoremap w!! execute 'silent! write !sudo tee % >/dev/null' <bar> edit!
 
 " Faster update time
 set updatetime=100
@@ -80,6 +85,10 @@ nnoremap ; :
 vnoremap : ;
 vnoremap ; :
 
+" Faster command mode and search completion
+cnoremap <C-k> <Up>
+cnoremap <C-j> <Down>
+
 " In insert mode use j+direction for action
 imap jj <Esc>
 imap jk <C-O>dd
@@ -102,6 +111,19 @@ if !isdirectory(&undodir) | call mkdir(&undodir, 'p', 0700) | endif
 
 " Keep 1000 lines of command line history
 set history=1000
+
+" Set dark background as default
+set background=dark
+
+" Toggle background
+nnoremap <leader>bg :call ToggleBackground()<cr>
+function! ToggleBackground()
+  if &background == "dark"
+    set background=light
+  else
+    set background=dark
+  endif
+endfunction
 
 " Show current position of cursor
 set ruler
@@ -140,7 +162,7 @@ set smartcase   " case-sensitive search when query contains uppercase letters
 set incsearch   " incremental search that shows partial matches
 
 " Easily turn-off search highlighting
-noremap <Leader>/ :nohlsearch<CR>:<backspace>
+noremap <leader>/ :nohlsearch<CR>:<backspace>
 
 " Search for duplicate words
 nnoremap <leader>d/ /\(\<\w\+\>\)\_s*\1<CR>
@@ -362,6 +384,9 @@ call plug#begin('~/.vim/plugged')
     " Make blockwise Visual mode more useful
     Plug 'kana/vim-niceblock'
 
+    " Ranger integration in vim and neovim
+    Plug 'francoiscabrol/ranger.vim'
+
 call plug#end()
 
 " NerdCommenter settings
@@ -391,7 +416,6 @@ let g:limelight_conceal_ctermfg = 240
 let g:limelight_priority = -1  " don't overrule hlsearch
 
 " Gruvbox settings
-set background=dark
 let g:gruvbox_italic=0
 let g:gruvbox_contrast_dark='hard'
 let g:gruvbox_contrast_light='hard'
@@ -441,12 +465,12 @@ let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 
 " Gitgutter settings
 " using h for hunks
-nmap ]h <Plug>GitGutterNextHunk
-nmap [h <Plug>GitGutterPrevHunk
-omap ih <Plug>GitGutterTextObjectInnerPending
-omap ah <Plug>GitGutterTextObjectOuterPending
-xmap ih <Plug>GitGutterTextObjectInnerVisual
-xmap ah <Plug>GitGutterTextObjectOuterVisual
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
+omap ih <Plug>(GitGutterTextObjectInnerPending)
+omap ah <Plug>(GitGutterTextObjectOuterPending)
+xmap ih <Plug>(GitGutterTextObjectInnerVisual)
+xmap ah <Plug>(GitGutterTextObjectOuterVisual)
 " refresh gitgutter when focusing
 let g:gitgutter_terminal_reports_focus = 0
 
@@ -484,6 +508,12 @@ call vimtex#imaps#add_map(
     \{ 'lhs' : 'V', 'rhs' : '\Omega', 'wraper' : 'vimtex#imaps#math_wrap'} )
 call vimtex#imaps#add_map(
     \{ 'lhs' : '2', 'rhs' : '\to', 'wraper' : 'vimtex#imaps#math_wrap'} )
+call vimtex#imaps#add_map(
+    \{ 'lhs' : "'", 'rhs' : '\prime', 'wraper' : 'vimtex#imaps#math_wrap'} )
+call vimtex#imaps#add_map(
+    \{ 'lhs' : '+', 'rhs' : '\dagger', 'wraper' : 'vimtex#imaps#math_wrap'} )
+call vimtex#imaps#add_map(
+    \{ 'lhs' : '/', 'rhs' : '\frac', 'wraper' : 'vimtex#imaps#math_wrap'} )
 call vimtex#imaps#add_map(
     \{ 'lhs' : '>', 'rhs' : '\implies', 'wraper' : 'vimtex#imaps#math_wrap'} )
 
@@ -534,4 +564,12 @@ let g:rainbow#max_level = 36
 let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}'], ['<', '>']]
 
 " EasyMotion settings
-map <Leader> <Plug>(easymotion-prefix)
+" use leader f to search for character
+map  <leader>  <Plug>(easymotion-prefix)
+map  <leader>f <Plug>(easymotion-bd-f)
+nmap <leader>f <Plug>(easymotion-overwin-f)
+
+" vimRanger settings
+let g:ranger_map_keys = 0
+nnoremap <leader>r :Ranger<CR>
+nnoremap <leader>R :split<CR>:Ranger<CR>

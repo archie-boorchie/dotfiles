@@ -1,8 +1,5 @@
 # Functions for shell (if you use bash shell instead of zsh, change &! to &)
 
-# Create a new directory and instantly jump to that directory.
-mkdircd () { mkdir -p $1; cd $1; }
-
 # Preview the differences of two directories using Vim and the Vim plugin
 # vim-dirdiff (https://github.com/will133/vim-dirdiff)
 function dirdiff()
@@ -13,15 +10,52 @@ function dirdiff()
     vim $@ -c "DirDiff $DIR1 $DIR2"
 }
 
+# Todo-list
+function todo()
+{
+    todofile=~/.todolist.txt
+    # create file if not there
+    if [ ! -f "$todofile" ]; then
+        echo -ne "\nCreating file .todolist.txt in home directory.\n"
+        touch "$todofile"
+    fi
+    # start interactive mode
+    while true; do
+    # clear empty lines
+    sed '/^[[:space:]]*$/d' "$todofile" > .tmptodofile.tmp && mv .tmptodofile.tmp "$todofile"
+    # user prompt
+    echo -ne "\nWelcome to the to-do list!\n[a]dd item;\n[p]rint list;\n[e]dit the list;\n[q]uit\n"
+    read -s -k 1 arg # for zsh shell
+    # read -rsn1 arg # for bash shell
+    if [[ $arg = "q" ]]; then
+        break
+    elif [[ $arg = "p" ]]; then
+        less '-RS#3NM~g' "$todofile"
+    elif [[ $arg = "a" ]]; then
+        echo -ne "Adding new task (leave empty to abort):\n"
+        vared -c task # for zsh shell
+        # read -e task # for bash shell
+        echo "$task" >> "$todofile"
+    elif [[ $arg = "e" ]]; then
+        $EDITOR "$todofile"
+    else
+        echo -ne "Invalid option. Try again.\n"
+    fi
+    done
+}
+
 # Weather information
-weather () {
+weather() {
     echo -ne "\n\nPlease enter a city name:  "
     read mycity
     curl wttr.in/"$mycity"
 }
 
+# Create a new directory and instantly jump to that directory
+mkdircd () { mkdir -p $1; cd $1; }
+
 # Use xdg-open in 'silent mode'
-o () { xdg-open "$1" >/dev/null 2>&1 &! }
+o() { xdg-open "$1" >/dev/null 2>&1 &! }
 
 # Use less for pdf view
 pdfless() {pdftotext -layout $1 - | less}
@@ -29,8 +63,8 @@ pdfless() {pdftotext -layout $1 - | less}
 # Use man for markdown view
 mdless() {pandoc -s -f markdown -t man "$1" | man -l -}
 
-# To extract any type of file.
-extract () {
+# To extract any type of file
+extract() {
  if [ -z "$1" ]; then
     # display usage if no parameters given
     echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
@@ -65,16 +99,16 @@ extract () {
 fi
 }
 
-# System information.
+# System information
 function sysinfo()
 {
-    clear;
-    echo -e "\nMachine information:" ; uname -a
+    echo -e "Machine information:" ; uname -a
     echo -e "\nUsers logged on:" ; w -h
     echo -e "\nCurrent date :" ; date
     echo -e "\nMachine status :" ; uptime
     echo -e "\nMemory status :" ; free
     echo -e "\nFilesystem status :"; df -h
+    echo -e " "
 }
 
 # Colourful man pages
