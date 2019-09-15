@@ -25,18 +25,27 @@ function todo()
     sed '/^[[:space:]]*$/d' "$todofile" > .tmptodofile.tmp && mv .tmptodofile.tmp "$todofile"
     # user prompt
     echo -ne "\nWelcome to the to-do list!\n[a]dd item;\n[p]rint list;\n[e]dit the list;\n[q]uit\n"
-    read -s -k 1 arg # for zsh shell
-    # read -rsn1 arg # for bash shell
+    if [ -n "$ZSH_VERSION" ]; then
+        read -s -k 1 arg # for zsh shell
+    else
+        read -rsn1 arg # for bash shell
+    fi
     if [[ $arg = "q" ]]; then
         break
     elif [[ $arg = "p" ]]; then
+        clear
         less '-RS#3NM~g' "$todofile"
     elif [[ $arg = "a" ]]; then
+        clear
         echo -ne "Adding new task (leave empty to abort):\n"
-        vared -c task # for zsh shell
-        # read -e task # for bash shell
+        if [ -n "$ZSH_VERSION" ]; then
+            vared -c task # for zsh shell
+        else
+            read -e task # for bash shell
+        fi
         echo "$task" >> "$todofile"
     elif [[ $arg = "e" ]]; then
+        clear
         $EDITOR "$todofile"
     else
         echo -ne "Invalid option. Try again.\n"
