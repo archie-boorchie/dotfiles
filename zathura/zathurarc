@@ -19,6 +19,19 @@ map R rotate
 # zooming
 map L zoom in
 map H zoom out
+set zoom-step 7
+
+# display 20 most recent files in completion
+set show-recent 20
+
+# don't display directories in completion
+set show-directories false
+
+# no notification after selecting text
+set selection-notification false
+
+# enable smooth scroll
+set smooth-scroll true
 
 # hide the input and title-bar and display v-scrollbar
 set guioptions v
