@@ -39,11 +39,12 @@ function todo()
         clear
         echo -ne "Adding new task (leave empty to abort):\n"
         if [ -n "$ZSH_VERSION" ]; then
-            vared -c task # for zsh shell
+            addTask=""
+            vared -c addTask # for zsh shell
         else
-            read -e task # for bash shell
+            read -e addTask # for bash shell
         fi
-        echo "$task" >> "$todofile"
+        echo "$addTask" >> "$todofile"
     elif [[ $arg = "e" ]]; then
         clear
         $EDITOR "$todofile"
