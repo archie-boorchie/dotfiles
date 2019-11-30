@@ -18,6 +18,21 @@ config.set('content.javascript.enabled', True, 'chrome://*/*')
 # Type: Bool
 config.set('content.javascript.enabled', True, 'qute://*/*')
 
+# Bind keys to commands
+config.bind('ch', 'history-clear')
+config.bind('gh', 'home')
+config.bind(';', 'set-cmd-text :')
+
+# Bind keys to spawn commands
+config.bind(',m', 'spawn mpv {url}')
+config.bind(',f', 'spawn -u rss')
+
+# Auto-save session
+config.set('auto_save.session', True)
+
+# Set spell to British English
+config.set('spellcheck.languages', ["en-GB"])
+
 # More search engine options
 c.url.searchengines = {
     # duckduckgo (default)
@@ -44,6 +59,8 @@ c.url.searchengines = {
     'lgp': 'http://libgen.unblockall.org/scimag/?q={}',
     # library genesis (fiction)
     'lgf': 'http://libgen.unblockall.org/fiction/?q={}',
+    # audiobook bay
+    'ab': 'http://audiobookbay.nl/?s={}',
     # get comics
     'gc': 'https://getcomics.info/?s={}',
     # local files

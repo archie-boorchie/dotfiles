@@ -24,7 +24,7 @@ function todo()
     # clear empty lines
     sed '/^[[:space:]]*$/d' "$todofile" > .tmptodofile.tmp && mv .tmptodofile.tmp "$todofile"
     # user prompt
-    echo -ne "\nWelcome to the to-do list!\n[a]dd item;\n[p]rint list;\n[e]dit the list;\n[q]uit\n"
+    echo -ne "Welcome to the to-do list!\n[a]dd item;\n[p]rint list;\n[e]dit the list;\n[q]uit\n"
     if [ -n "$ZSH_VERSION" ]; then
         read -s -k 1 arg # for zsh shell
     else
@@ -62,7 +62,7 @@ weather() {
 }
 
 # Create a new directory and instantly jump to that directory
-mkdircd () { mkdir -p $1; cd $1; }
+mkdircd () { mkdir -pv $1; cd $1; }
 
 # Use xdg-open in 'silent mode'
 o() { xdg-open "$1" >/dev/null 2>&1 &! }
@@ -72,6 +72,15 @@ pdfless() {pdftotext -layout $1 - | less}
 
 # Use man for markdown view
 mdless() {pandoc -s -f markdown -t man "$1" | man -l -}
+
+# Avoid nested ranger sessions
+ranger() {
+    if [ -z "$RANGER_LEVEL" ]; then
+        /usr/bin/ranger "$@"
+    else
+        exit
+    fi
+}
 
 # To extract any type of file
 extract() {

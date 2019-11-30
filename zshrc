@@ -1,21 +1,39 @@
-# Set up the prompt
-source /home/lampros/dotfiles/minimal-prompt.zsh
-# Or, if you prefer a standard one:
-#   autoload -Uz promptinit
-#   promptinit
-#   prompt fade black
-
-# Use vi keybings
-bindkey -v
+# Don't wait too long after <Esc>
+# (Warning: Setting this too low can break some zsh functionality, eg:
+#  https://github.com/zsh-users/zsh-autosuggestions/issues/254#issuecomment-345175735)
+export KEYTIMEOUT=5
 
 # Use fish-like syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# fish-like autosuggestions
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# Use vim keybings and a vim mode right prompt
+# (the right prompt overwites the previous one)
+source ~/dotfiles/vim-mode.zsh
+# # Or, if you prefer the standard vi mode:
+# bindkey -v
+
+# Complete the next suggested word when in instert mode
+bindkey '^W' forward-word
+
+# Set up the prompt
+source ~/dotfiles/minimal-prompt.zsh
+# # Or, if you prefer a standard one:
+# autoload -Uz promptinit
+# promptinit
+# prompt fade black
+
+# Note: the order of zsh-syntax-highlighting, zsh-autosuggestions, vim-mode is
+# chosen this way to avoid conficts. Also, if the prompt is after vim-mode it
+# gets redrawn.
 
 # Use a pkgfile hook to automatically search the official repositories when
 # entering an unrecognized command
 source /usr/share/doc/pkgfile/command-not-found.zsh
 
-# History
+# History settings
 # set history file
 HISTFILE=~/.zsh_history
 # ignore all duplicates in history
@@ -35,9 +53,6 @@ bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 bindkey -M vicmd 'k' history-substring-search-up
 bindkey -M vicmd 'j' history-substring-search-down
-# fish-like autosuggestion
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-bindkey '^W' forward-word
 
 # Automatically reset the terminal if needed
 ttyctl -f
@@ -55,9 +70,6 @@ autoload -Uz run-help-svn
 # and rename run-help to help
 unalias run-help
 alias help=run-help
-
-# Wait only 10ms for key sequences
-KEYTIMEOUT=1
 
 # Have new executables included in the completion
 zstyle ':completion:*' rehash true
@@ -115,7 +127,7 @@ export BROWSER=qutebrowser
 # Edit command in editor
 export VISUAL=vim
 autoload edit-command-line; zle -N edit-command-line
-bindkey -M vicmd v edit-command-line
+bindkey -M vicmd V edit-command-line
 
 # Customize TTY 
 if [ "$TERM" = "linux" ]; then

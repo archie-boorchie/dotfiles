@@ -493,19 +493,25 @@ call vimtex#imaps#add_map(
 call vimtex#imaps#add_map(
     \{ 'lhs' : 'C', 'rhs' : '\Psi', 'wraper' : 'vimtex#imaps#math_wrap'} )
 call vimtex#imaps#add_map(
+    \{ 'lhs' : 'x', 'rhs' : '\chi', 'wraper' : 'vimtex#imaps#math_wrap'} )
+call vimtex#imaps#add_map(
+    \{ 'lhs' : 'X', 'rhs' : '\Chi', 'wraper' : 'vimtex#imaps#math_wrap'} )
+call vimtex#imaps#add_map(
+    \{ 'lhs' : 'j', 'rhs' : '\xi', 'wraper' : 'vimtex#imaps#math_wrap'} )
+call vimtex#imaps#add_map(
+    \{ 'lhs' : 'J', 'rhs' : '\Xi', 'wraper' : 'vimtex#imaps#math_wrap'} )
+call vimtex#imaps#add_map(
     \{ 'lhs' : 'u', 'rhs' : '\theta', 'wraper' : 'vimtex#imaps#math_wrap'} )
 call vimtex#imaps#add_map(
     \{ 'lhs' : 'U', 'rhs' : '\Theta', 'wraper' : 'vimtex#imaps#math_wrap'} )
 call vimtex#imaps#add_map(
     \{ 'lhs' : 'vu', 'rhs' : '\vartheta', 'wraper' : 'vimtex#imaps#math_wrap'} )
 call vimtex#imaps#add_map(
+    \{ 'lhs' : 'n', 'rhs' : '\nu', 'wraper' : 'vimtex#imaps#math_wrap'} )
+call vimtex#imaps#add_map(
     \{ 'lhs' : 'y', 'rhs' : '\upsilon', 'wraper' : 'vimtex#imaps#math_wrap'} )
 call vimtex#imaps#add_map(
     \{ 'lhs' : 'Y', 'rhs' : '\Upsilon', 'wraper' : 'vimtex#imaps#math_wrap'} )
-call vimtex#imaps#add_map(
-    \{ 'lhs' : 'v', 'rhs' : '\omega', 'wraper' : 'vimtex#imaps#math_wrap'} )
-call vimtex#imaps#add_map(
-    \{ 'lhs' : 'V', 'rhs' : '\Omega', 'wraper' : 'vimtex#imaps#math_wrap'} )
 call vimtex#imaps#add_map(
     \{ 'lhs' : '2', 'rhs' : '\to', 'wraper' : 'vimtex#imaps#math_wrap'} )
 call vimtex#imaps#add_map(

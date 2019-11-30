@@ -60,6 +60,9 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
+# Move floating window to the position of mouse
+bindsym --whole-window $mod+button1 move position mouse
+
 # Split in vertical orientation 
 bindsym $mod+v split v
 
@@ -211,18 +214,28 @@ mode "resize" {
 
 # Resize floating windows easily
 mode "resize floating window" {
-    # horizontal orientation
-    bindsym s resize set 350 250; mode "default"
-    bindsym m resize set 520 350; mode "default"
-    bindsym l resize set 720 420; mode "default"
-
-    # vertical orientation
-    bindsym Shift+s resize set 250 350; mode "default"
-    bindsym Shift+m resize set 450 520; mode "default"
-    bindsym Shift+l resize set 520 620; mode "default"
-
     # moving through the floating windows
     bindsym f focus left
+
+    # move to center of screen
+    bindsym c move position center
+
+    # move to cursor position
+    bindsym --whole-window button1 move position mouse
+    bindsym --whole-window $mod+button1 move position mouse
+
+    # set horizontal or vertical orientation
+    bindsym h resize set 760 500
+    bindsym v resize set 480 600
+
+    # grow or shrink floating window in place
+    bindsym minus move right 5 px; move down 5 px; resize shrink height 10 px; resize shrink width 10 px
+    bindsym plus move left 5 px; move up 5 px; resize grow height 10 px; resize grow width 10 px
+    bindsym shift+plus move left 5 px; move up 5 px; resize grow height 10 px; resize grow width 10 px
+    bindsym shift+h move right 5 px; resize shrink width 10 px
+    bindsym shift+l move left 5 px; resize grow width 10 px
+    bindsym shift+j move down 5 px; resize shrink height 10 px
+    bindsym shift+k move up 5 px; resize grow height 10 px
 
     # Enter or Escape for normal mode; r or $mod+r for regular resize mode
     bindsym Return mode "default"
@@ -313,6 +326,18 @@ mode "$mode_external_monitor" {
         bindsym Escape mode "default"
 }
 
+# # Pause/resume Dunst notifications mode
+# set $mode_dunst Notifications: [p]ause, [r]esume
+# bindsym $mod+n mode "$mode_dunst"
+#
+# mode "$mode_dunst" {
+#         bindsym p exec termite -e notify-send "DUNST_COMMAND_PAUSE"; mode "default"
+#         bindsym r exec termite -e notify-send "DUNST_COMMAND_RESUME"; mode "default"
+#
+#         bindsym Return mode "default"
+#         bindsym Escape mode "default"
+# }
+
 # Using a scratchpad
 # make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
@@ -334,7 +359,7 @@ exec --no-startup-id unclutter --timeout 1 --jitter 15 --ignore-scrolling --fork
 exec --no-startup-id clipmenud
 exec --no-startup-id termite
 exec --no-startup-id termite --name scratchmite --role startup
-# starting some dunst notifications
-exec --no-startup-id sh ~/dotfiles/i3/.take_a_break.sh
-exec --no-startup-id sh ~/dotfiles/i3/.low_battery.sh
-exec --no-startup-id sh ~/dotfiles/i3/.todo_reminder.sh
+# # starting some dunst notifications
+# exec --no-startup-id sh ~/dotfiles/i3/.take_a_break.sh
+# exec --no-startup-id sh ~/dotfiles/i3/.low_battery.sh
+# exec --no-startup-id sh ~/dotfiles/i3/.todo_reminder.sh
