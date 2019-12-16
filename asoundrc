@@ -1,0 +1,10 @@
+# Configuration to choose between external monitor or laptop speakers.
+#
+# Please modify parameters accordingly, e.g. {1,3} for HDMI, {0,0} for laptop,
+# etc.
+#
+# To find the exact parameters for your setup, run aplay -l
+
+defaults.pcm.card 0
+defaults.pcm.device 0
+defaults.ctl.card 0
