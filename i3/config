@@ -225,8 +225,8 @@ mode "resize floating window" {
     bindsym --whole-window $mod+button1 move position mouse
 
     # set horizontal or vertical orientation
-    bindsym h resize set 760 500
-    bindsym v resize set 480 600
+    bindsym h resize set 900 555
+    bindsym v resize set 600 800
 
     # grow or shrink floating window in place
     bindsym minus move right 5 px; move down 5 px; resize shrink height 10 px; resize shrink width 10 px
