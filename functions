@@ -142,3 +142,27 @@ man() {
     LESS_TERMCAP_us=$(printf "\e[1;32m") \
     man "$@"
 }
+
+# A function to change permissions of a folder in the default ones
+# Useful when copying from ntfs drives that don't recognise Linux permissions
+permissionssetdefault() {
+if [ -z "$1" ]; then
+    # display usage if no parameters given
+    echo "Give the name of the directory which you wish to return to default permissions."
+else
+    for n in $@
+    do
+        # verify users choice
+        echo "You chose directory  $n."
+        echo "Are you sure you want to change permissions (y/N)?"
+        read yn
+        yn=${yn:-no}
+        if [ $yn = "yes" -o $yn = "y" -o $yn = "YES" -o $yn = "Y" ]; then
+            find "$n" -type d -exec chmod 755 {} ";"
+            find "$n" -type f -exec chmod 644 {} ";"
+            else
+            echo "Aborting..."
+        fi
+    done
+fi
+}

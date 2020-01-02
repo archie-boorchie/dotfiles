@@ -92,8 +92,8 @@ bindsym $mod+a focus parent
 # Focus the child container
 bindsym $mod+Shift+a focus child
 
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
+# Define names for default workspaces for which we configure key bindings later on
+# We use variables to avoid repeating the names in multiple places
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
@@ -255,7 +255,7 @@ bindsym $mod+s sticky toggle
 
 # Colors
 # class                 border  backgr. text    indicator child_border
-client.focused          #00ff55 #222222 #ffffff #333333   #00ff55
+client.focused          #fba922 #222222 #ffffff 333333    #fba922
 client.focused_inactive #333333 #5f676a #ffffff #484e50   #5f676a
 client.unfocused        #333333 #222222 #aaaaaa #292d2e   #222222
 client.urgent           #2f343a #900000 #ffffff #900000   #900000
@@ -263,9 +263,9 @@ client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 client.background       #ffffff
 
 # i3-gaps
-for_window [class="^.*"] border pixel 1
+for_window [class="^.*"] border pixel 2
 for_window [title=" - Wolfram Mathematica"] border normal 1 # I nead titles in .nb files
-set $in_gaps 4
+set $in_gaps 14
 set $out_gaps 0
 gaps inner $in_gaps
 gaps outer $out_gaps
@@ -326,17 +326,17 @@ mode "$mode_external_monitor" {
         bindsym Escape mode "default"
 }
 
-# # Pause/resume Dunst notifications mode
-# set $mode_dunst Notifications: [p]ause, [r]esume
-# bindsym $mod+n mode "$mode_dunst"
-#
-# mode "$mode_dunst" {
-#         bindsym p exec termite -e notify-send "DUNST_COMMAND_PAUSE"; mode "default"
-#         bindsym r exec termite -e notify-send "DUNST_COMMAND_RESUME"; mode "default"
-#
-#         bindsym Return mode "default"
-#         bindsym Escape mode "default"
-# }
+# Pause/resume Dunst notifications mode
+set $mode_dunst Notifications: [p]ause, [r]esume
+bindsym $mod+n mode "$mode_dunst"
+
+mode "$mode_dunst" {
+        bindsym p exec termite -e "notify-send 'DUNST_COMMAND_PAUSE'"; mode "default"
+        bindsym r exec termite -e "notify-send 'DUNST_COMMAND_RESUME'"; mode "default"
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
 
 # Using a scratchpad
 # make the currently focused window a scratchpad
@@ -359,7 +359,9 @@ exec --no-startup-id unclutter --timeout 1 --jitter 15 --ignore-scrolling --fork
 exec --no-startup-id clipmenud
 exec --no-startup-id termite
 exec --no-startup-id termite --name scratchmite --role startup
+exec --no-startup-id i3-battery-popup -n -L 30 -l 20 -m "Low Battery!"
+# exec --no-startup-id oneko -time 80000
 # # starting some dunst notifications
-# exec --no-startup-id sh ~/dotfiles/i3/.take_a_break.sh
+exec --no-startup-id sh ~/dotfiles/i3/.take_a_break.sh
 # exec --no-startup-id sh ~/dotfiles/i3/.low_battery.sh
 # exec --no-startup-id sh ~/dotfiles/i3/.todo_reminder.sh

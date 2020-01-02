@@ -7,12 +7,13 @@ if [ $res = "lock" ]; then
     sh ~/dotfiles/i3/i3lock-blur.sh # blured screenshot i3lock
 fi
 
-if [ $res = "logout" ]; then
-    i3-msg exit
+if [ $res = "suspend" ]; then
+    # lock screen and suspend
+    sh ~/dotfiles/i3/i3lock-blur.sh && systemctl suspend
 fi
 
-if [ $res = "suspend" ]; then
-    sh ~/dotfiles/i3/i3lock-blur.sh && systemctl suspend
+if [ $res = "logout" ]; then
+    i3-msg exit
 fi
 
 if [ $res = "reboot" ]; then
