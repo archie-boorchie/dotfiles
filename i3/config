@@ -270,7 +270,6 @@ set $out_gaps 0
 gaps inner $in_gaps
 gaps outer $out_gaps
 hide_edge_borders smart
-#smart_borders no_gaps
 
 # i3-gaps resizing mode
 set $mode_gaps_inner Gaps (inner)
