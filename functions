@@ -166,3 +166,18 @@ else
     done
 fi
 }
+
+# Convert greek subtitles to UTF-8 so you can edit/resync them
+function fixsubs()
+{
+    if [ -z "$1" ]; then
+        echo "Please give subtitle file"
+    else
+        # Convert to UTF8
+        iconv -f GREEK -t UTF8 "$1" > "$1".tmp0
+        # Getting rid of trailing whitespace
+        tr -d "\015" < "$1".tmp0 > "$1".tmp1
+        rm "$1".tmp0
+        mv "$1".tmp1 "$1"
+    fi
+}

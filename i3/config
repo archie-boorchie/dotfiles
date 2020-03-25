@@ -266,6 +266,7 @@ client.background       #ffffff
 for_window [class="^.*"] border pixel 2
 for_window [title=" - Wolfram Mathematica"] border normal 1 # I nead titles in .nb files
 set $in_gaps 14
+# set $in_gaps 32
 set $out_gaps 0
 gaps inner $in_gaps
 gaps outer $out_gaps
@@ -361,6 +362,6 @@ exec --no-startup-id termite --name scratchmite --role startup
 exec --no-startup-id i3-battery-popup -n -L 30 -l 20 -m "Low Battery!"
 # exec --no-startup-id oneko -time 80000
 # # starting some dunst notifications
-exec --no-startup-id sh ~/dotfiles/i3/.take_a_break.sh
+# exec --no-startup-id sh ~/dotfiles/i3/.take_a_break.sh
 # exec --no-startup-id sh ~/dotfiles/i3/.low_battery.sh
 # exec --no-startup-id sh ~/dotfiles/i3/.todo_reminder.sh

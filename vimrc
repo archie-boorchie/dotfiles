@@ -387,6 +387,9 @@ call plug#begin('~/.vim/plugged')
     " Ranger integration in vim and neovim
     Plug 'francoiscabrol/ranger.vim'
 
+    " A vim plugin for checking and listening to English phonetics
+    Plug 'soywod/phonetics.vim'
+
 call plug#end()
 
 " NerdCommenter settings
@@ -515,13 +518,23 @@ call vimtex#imaps#add_map(
 call vimtex#imaps#add_map(
     \{ 'lhs' : '2', 'rhs' : '\to', 'wraper' : 'vimtex#imaps#math_wrap'} )
 call vimtex#imaps#add_map(
+    \{ 'lhs' : '.', 'rhs' : '\cdot', 'wraper' : 'vimtex#imaps#math_wrap'} )
+call vimtex#imaps#add_map(
+    \{ 'lhs' : '<<', 'rhs' : '\ll', 'wraper' : 'vimtex#imaps#math_wrap'} )
+call vimtex#imaps#add_map(
+    \{ 'lhs' : '>>', 'rhs' : '\gg', 'wraper' : 'vimtex#imaps#math_wrap'} )
+call vimtex#imaps#add_map(
+    \{ 'lhs' : '6', 'rhs' : '\partial', 'wraper' : 'vimtex#imaps#math_wrap'} )
+call vimtex#imaps#add_map(
+    \{ 'lhs' : '8', 'rhs' : '\infty', 'wraper' : 'vimtex#imaps#math_wrap'} )
+call vimtex#imaps#add_map(
     \{ 'lhs' : "'", 'rhs' : '\prime', 'wraper' : 'vimtex#imaps#math_wrap'} )
 call vimtex#imaps#add_map(
     \{ 'lhs' : '+', 'rhs' : '\dagger', 'wraper' : 'vimtex#imaps#math_wrap'} )
 call vimtex#imaps#add_map(
     \{ 'lhs' : '/', 'rhs' : '\frac', 'wraper' : 'vimtex#imaps#math_wrap'} )
 call vimtex#imaps#add_map(
-    \{ 'lhs' : '>', 'rhs' : '\implies', 'wraper' : 'vimtex#imaps#math_wrap'} )
+    \{ 'lhs' : '->', 'rhs' : '\implies', 'wraper' : 'vimtex#imaps#math_wrap'} )
 
 " Vim-pandoc settings
 let g:pandoc#modules#disabled = ["folding"]

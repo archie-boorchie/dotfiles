@@ -22,8 +22,7 @@ config.set('content.javascript.enabled', True, 'qute://*/*')
 config.bind('ch', 'history-clear')
 config.bind('gh', 'home')
 config.bind(';', 'set-cmd-text :')
-
-# Bind keys to spawn commands
+config.bind(',q', ':open -t !qr {url}')
 config.bind(',m', 'spawn mpv {url}')
 config.bind(',f', 'spawn -u rss')
 
@@ -45,8 +44,8 @@ c.url.searchengines = {
     'tr': 'https://translate.google.com/#en/el/{}',
     # arch wiki
     'aw': 'https://wiki.archlinux.org/index.php?title=Special%3ASearch&search={}',
-    # inspire
-    'in': 'http://inspirehep.net/search?ln=en&p={}&of=hb&action_search=Search&sf=earliestdate&so=d',
+    # inspire hep
+    'in': 'https://labs.inspirehep.net/literature?sort=mostrecent&size=25&page=1&q={}',
     # arxiv (paper id)
     'ar': 'https://arxiv.org/abs/{}',
     # arxiv (search)

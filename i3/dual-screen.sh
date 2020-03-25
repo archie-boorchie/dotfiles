@@ -25,19 +25,19 @@ fi
 # Configuring mode
 if [[ $arg = "d" ]]; then
 # enable both monitors
-    xrandr | grep -q "HDMI1 connected" && xrandr --output eDP1 --auto --primary --output HDMI1 --auto --left-of eDP1
+    xrandr | grep -q "HDMI2 connected" && xrandr --output eDP1 --auto --primary --output HDMI2 --auto --left-of eDP1
     xrandr | grep -q "DP1 connected" && xrandr --output eDP1 --auto --primary --output DP1 --auto --left-of eDP1
 elif [[ $arg = "l" ]]; then
 # enable laptop monitor / disable external monitor
-    xrandr | grep -q "HDMI1 connected" && xrandr --output HDMI1 --off --output eDP1 --auto --primary
+    xrandr | grep -q "HDMI2 connected" && xrandr --output HDMI2 --off --output eDP1 --auto --primary
     xrandr | grep -q "DP1 connected" && xrandr --output DP1 --off --output eDP1 --auto --primary
 elif [[ $arg = "e" ]]; then
 # enable external monitor / disable laptop monitor
-    xrandr | grep -q "HDMI1 connected" && xrandr --output HDMI1 --auto --primary --output eDP1 --off
+    xrandr | grep -q "HDMI2 connected" && xrandr --output HDMI2 --auto --primary --output eDP1 --off
     xrandr | grep -q "DP1 connected" && xrandr --output DP1 --auto --primary --output eDP1 --off
 elif [[ $arg = "m" ]]; then
 # enable both monitors in 'mirror' mode
-    xrandr | grep -q "HDMI1 connected" && xrandr --output eDP1 --auto --output HDMI1 --auto --same-as eDP1
+    xrandr | grep -q "HDMI2 connected" && xrandr --output eDP1 --auto --output HDMI2 --auto --same-as eDP1
     xrandr | grep -q "DP1 connected" && xrandr --output eDP1 --auto --output DP1 --auto --same-as eDP1
 else
     echo "Unknown command. Read help for details."

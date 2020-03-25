@@ -38,7 +38,7 @@ fixed-center = false
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 4
+line-size = 2
 line-color = #f00
 
 border-top = 10
@@ -290,7 +290,7 @@ label-connected = %essid%  %local_ip% (%signal%%)
 [module/eth]
 ; check interface name with ifconfig -a
 type = internal/network
-interface = lo
+interface = enp0s20f0u1u1
 interval = 3.0
 
 format-connected-underline = #55aa55
