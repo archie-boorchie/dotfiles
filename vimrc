@@ -520,6 +520,8 @@ call vimtex#imaps#add_map(
 call vimtex#imaps#add_map(
     \{ 'lhs' : '.', 'rhs' : '\cdot', 'wraper' : 'vimtex#imaps#math_wrap'} )
 call vimtex#imaps#add_map(
+    \{ 'lhs' : '..', 'rhs' : '\dot{', 'wraper' : 'vimtex#imaps#math_wrap'} )
+call vimtex#imaps#add_map(
     \{ 'lhs' : '<<', 'rhs' : '\ll', 'wraper' : 'vimtex#imaps#math_wrap'} )
 call vimtex#imaps#add_map(
     \{ 'lhs' : '>>', 'rhs' : '\gg', 'wraper' : 'vimtex#imaps#math_wrap'} )
