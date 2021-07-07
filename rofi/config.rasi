@@ -1,0 +1,25 @@
+configuration {
+	modi: "drun,window,file-browser";
+	width: 100;
+	lines: 4;
+	font: "Source Code Pro Semibold 9";
+	bw: 0;
+	location: 0;
+	padding: 550;
+	show-icons: true;
+    icon-theme: "Numix-Circle-Arc";
+	sidebar-mode: true;
+	eh: 2;
+	auto-select: false;
+	matching: "fuzzy";
+	line-margin: 2;
+	separator-style: "solid";
+	hide-scrollbar: false;
+	color-normal: "argb:00292d37, #ffffff, argb:00292d37, argb:00292d37, #17a086";
+	color-urgent: "argb:00292d37, #ffffff, argb:00292d37, argb:00292d37, #ffffff";
+	color-active: "argb:00292d37, #ffaadd, argb:00292d37, argb:00292d37, #44ff99";
+	color-window: "argb:ea292d37, #292d37, #17a086";
+	display-drun: "run";
+	display-window: "window";
+	display-file-browser: "files";
+}

@@ -23,9 +23,9 @@ config.bind('ch', 'history-clear')
 config.bind('gh', 'home')
 config.bind(';', 'set-cmd-text :')
 config.bind(',q', ':open -t !qr {url}')
-config.bind(',m', 'spawn --detach mpv --force-window yes {url}')
 config.bind(',f', 'spawn -u rss')
-config.bind(',M', 'hint links spawn --detach mpv --force-window yes {hint-url}')
+config.bind(',m', 'spawn --userscript /usr/share/qutebrowser/userscripts/view_in_mpv')
+config.bind(',d', 'spawn --userscript ~/bin/rofi-downloads.sh')
 
 # Auto-save session
 config.set('auto_save.session', True)
@@ -47,6 +47,8 @@ c.url.searchengines = {
     'trd': 'https://translate.google.com/#auto/en/{}',
     # Cambridge dictionary
     'di': 'https://dictionary.cambridge.org/dictionary/english/{}',
+    # Scholarpedia
+    'sc': 'http://www.scholarpedia.org/w/index.php?search={}',
     # arch wiki
     'aw': 'https://wiki.archlinux.org/index.php?title=Special%3ASearch&search={}',
     # inspire hep
@@ -71,6 +73,8 @@ c.url.searchengines = {
     'sk': 'https://www.skroutz.gr/search?keyphrase={}',
     # roll a d-sided die
     'd': 'https://rolladie.net/#!numbers=1&sides={}&length=1&sets=&last_roll_only=false&totals_only=false&start=false',
+    # time in different time zones
+    'ti': 'https://time.is/{}',
     # local files
     'lf': 'file://{}'
 }

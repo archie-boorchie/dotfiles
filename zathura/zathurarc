@@ -36,3 +36,11 @@ set smooth-scroll true
 # hide the input and title-bar and display v-scrollbar
 set guioptions v
 set show-v-scrollbar true
+
+# highlight color options
+set highlight-transparency 0.2
+set highlight-active-color "#3333aa"
+set highlight-color "#666688"
+
+# background color
+set default-bg "#222230"
