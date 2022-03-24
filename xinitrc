@@ -33,6 +33,5 @@ fi
 xset b off
 xset r rate 250 60
 
-xcompmgr -cCfF -D 1 &
-
+# Start i3 window manager
 exec i3

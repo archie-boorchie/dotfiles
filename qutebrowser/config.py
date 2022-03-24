@@ -33,6 +33,20 @@ config.set('auto_save.session', True)
 # Set spell to British English
 config.set('spellcheck.languages', ["en-GB"])
 
+#  # Fonts
+#  c.fonts.completion.category = '7pt NotoSans-Regular'
+#  c.fonts.completion.entry = '7pt NotoSans-Regular'
+#  c.fonts.contextmenu = '7pt SourceCodePro'
+#  c.fonts.debug_consoles = '7pt SourceCodePro'
+#  c.fonts.tabs.selected = '7pt NotoSans-Regular'
+#  c.fonts.tabs.unselected = '7pt NotoSans-Regular'
+#  c.fonts.statusbar = '7pt SourceCodePro'
+#  c.fonts.prompts = '7pt SourceCodePro'
+#  c.fonts.messages.warning = '7pt SourceCodePro'
+#  c.fonts.messages.error = '7pt SourceCodePro'
+#  c.fonts.messages.info = '7pt SourceCodePro'
+#
+#
 # More search engine options
 c.url.searchengines = {
     # duckduckgo (default)
@@ -41,8 +55,8 @@ c.url.searchengines = {
     'dd': 'https://duckduckgo.com/?q={}',
     # google search
     'gg': 'https://www.google.com/search?hl=en&q={}',
-    # google translate (english to greek)
-    'tr': 'https://translate.google.com/#en/el/{}',
+    # translate (english to greek)
+    'tr': 'https://www.wordreference.com/engr/{}',
     # google translate (detect language to english)
     'trd': 'https://translate.google.com/#auto/en/{}',
     # Cambridge dictionary

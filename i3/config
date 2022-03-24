@@ -1,5 +1,4 @@
-# i3 config file
-# Please see https://i3wm.org/docs/userguide.html for a complete reference!
+## i3 config file
 
 # Use super key as mod key
 set $mod Mod4
@@ -7,37 +6,41 @@ set $mod Mod4
 # Font for window titles
 font pango:Noto Regular 7
 
-# Before i3 v4.8, we used to recommend this one as the default:
-# font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
-# The font above is very space-efficient, that is, it looks good, sharp and
-# clear in small sizes. However, its unicode glyph coverage is limited, the old
-# X core fonts rendering does not support right-to-left and this being a bitmap
-# font, it doesn’t scale on retina/hidpi displays.
+# Kill focused window
+bindsym $mod+q kill
 
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
+# Reload the configuration file
+bindsym $mod+Shift+c reload
+
+# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# Exiting i3 (lock, suspend, logout, reboot, poweroff)
+bindsym $mod+Shift+e exec source ~/dotfiles/i3/scripts/i3-exiting.sh
 
 # Start a terminal
 bindsym $mod+Return exec i3-sensible-terminal
 
-# Kill focused window
-bindsym $mod+q kill
+# Toggle terminal transparency
+bindsym $mod+shift+b exec "sh ~/dotfiles/i3/scripts/i3-toggle-blur.sh"
 
-# Start rofi (a program launcher)
+# Toggle the bar
+bindsym $mod+b exec polybar-msg cmd toggle
+
+# Start rofi
 bindsym $mod+d exec rofi -config ~/.config/rofi/config.rasi -show drun
 bindsym $mod+Shift+d exec rofi -config ~/.config/rofi/config.rasi -show window
 
-# Start a file opener in rofi
-bindsym $mod+o exec rofi -config ~/.config/rofi/config-fm.rasi -show file-browser
-
-# Manage clipboard with dmenu
+# Manage clipboard
 bindsym $mod+p exec clipmenu -i -fn Terminus:size=8 -nb '#002b36' -nf '#839496' -sb '#073642' -sf '#93a1a1'
 bindsym $mod+Ctrl+p exec clipdel -d ".*"
 
-# Take a screenshot (yank screen)
+# Screenshot shortcuts
 bindsym $mod+y exec maim -u -m 10 ~/Pictures/screenshots/src_`date +%s`.png
 bindsym $mod+Shift+y exec maim -u -m 10 -s ~/Pictures/screenshots/src_`date +%s`.png
 bindsym $mod+Ctrl+y exec maim -u -m 10 -i $(xdotool getactivewindow) ~/Pictures/screenshots/src_`date +%s`.png
+
+## Window management
 
 # Change focus
 bindsym $mod+h focus left
@@ -63,9 +66,6 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-# Move floating window to the position of mouse
-bindsym --whole-window $mod+button1 move position mouse
-
 # Split in vertical orientation 
 bindsym $mod+v split v
 
@@ -75,19 +75,10 @@ bindsym $mod+Shift+v split h
 # Enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
 
-# Toggle the bar (polybar)
-bindsym $mod+b exec polybar-msg cmd toggle
-
 # Change container layout (stacked, tabbed, toggle split)
 bindsym $mod+Shift+s layout toggle split
 bindsym $mod+Ctrl+s layout stacking
 bindsym $mod+t layout tabbed
-
-# Toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
-
-# Change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
 
 # Focus the parent container
 bindsym $mod+a focus parent
@@ -95,8 +86,35 @@ bindsym $mod+a focus parent
 # Focus the child container
 bindsym $mod+Shift+a focus child
 
-# Define names for default workspaces for which we configure key bindings later on
-# We use variables to avoid repeating the names in multiple places
+# Jump to urgent window
+bindsym $mod+x [urgent=last] focus
+
+## Floating windows
+
+# Toggle tiling/floating
+bindsym $mod+Shift+space floating toggle
+
+# Change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# Move floating window to the position of mouse
+bindsym --whole-window $mod+button1 move position mouse
+
+# Enable floating for specific windows
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [class="Tor Browser"] floating enable
+
+## Workspaces
+
+# Define names for the workspaces
 set $ws0 "0"
 set $ws1 "1"
 set $ws2 "2"
@@ -123,7 +141,7 @@ bindsym $mod+9 workspace $ws9
 bindsym $mod+0 workspace $ws10
 
 # Move focused container to workspace
-bindsym $mod+Shift+grave move workspace to workspace $ws0
+bindsym $mod+Shift+grave move container to workspace $ws0
 bindsym $mod+Shift+1 move container to workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $ws3
@@ -135,65 +153,34 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-# Move focused window between monitors
-bindsym $mod+Shift+greater move container to output right
-bindsym $mod+Shift+less    move container to output left
-
-# Move focused workspace between monitors
-bindsym $mod+Ctrl+greater move workspace to output right
-bindsym $mod+Ctrl+less    move workspace to output left
-
-# Reload the configuration file
-bindsym $mod+Shift+c reload
-
-# Restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-
-# Exiting i3 (lock, logout, reboot, shutdown)
-bindsym $mod+Shift+e exec source ~/dotfiles/i3/i3exiting.sh
-
-# Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +1% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -1% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
-
-# Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 5 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 5 # decrease screen brightness
-
-# Touchpad controls
-bindsym $mod+Ctrl+l exec sh ~/dotfiles/i3/.toggletouchpad.sh # toggle touchpad
-
-# Media player controls
-bindsym XF86AudioPlay exec playerctl play
-bindsym XF86AudioPause exec playerctl pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
-
-# Enable floating for specific windows
-# for pop-ups, dialogs etc
-for_window [window_role="pop-up"] floating enable
-for_window [window_role="bubble"] floating enable
-for_window [window_role="task_dialog"] floating enable
-for_window [window_role="Preferences"] floating enable
-for_window [window_type="dialog"] floating enable
-for_window [window_type="menu"] floating enable
-# for tor browser to avoid detection
-for_window [class="Tor Browser"] floating enable
-
 # Jump to previous workspace
 bindsym $mod+Tab workspace back_and_forth
 
 # Cycle through workspaces on current output
 bindsym $mod+Shift+Tab workspace next_on_output
 
-# Jump to urgent window
-bindsym $mod+x [urgent=last] focus
+## Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id "sh ~/dotfiles/i3/scripts/i3-volume-control.sh up"
+bindsym XF86AudioLowerVolume exec --no-startup-id "sh ~/dotfiles/i3/scripts/i3-volume-control.sh down"
+bindsym XF86AudioMute        exec --no-startup-id "sh ~/dotfiles/i3/scripts/i3-volume-control.sh mute"
+
+## Sreen brightness controls
+bindsym XF86MonBrightnessUp   exec --no-startup-id "sh ~/dotfiles/i3/scripts/i3-brightness-control.sh up"
+bindsym XF86MonBrightnessDown exec --no-startup-id "sh ~/dotfiles/i3/scripts/i3-brightness-control.sh down"
+
+# Toggle touchpad
+bindsym $mod+Ctrl+l exec sh ~/dotfiles/i3/scripts/i3-toggle-touchpad.sh
+
+# Media player controls
+bindsym XF86AudioPlay  exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext  exec playerctl next
+bindsym XF86AudioPrev  exec playerctl previous
 
 # Resize window (you can also use the mouse for that)
 mode "resize" {
     # These bindings trigger as soon as you enter the resize mode
-    
+
     # Pressing left will shrink the window’s width.
     # Pressing right will grow the window’s width.
     # Pressing up will shrink the window’s height.
@@ -202,7 +189,7 @@ mode "resize" {
     bindsym j resize grow height 2 px or 2 ppt
     bindsym k resize shrink height 2 px or 2 ppt
     bindsym l resize grow width 2 px or 2 ppt
-    
+
     # same bindings, but for the arrow keys
     bindsym Left resize shrink width 2 px or 2 ppt
     bindsym Down resize grow height 2 px or 2 ppt
@@ -211,7 +198,7 @@ mode "resize" {
 
     # trigger floating window resize mode
     bindsym f mode "resize floating window"; focus floating
-    
+
     # back to normal: Enter or Escape or $mod+r
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -249,7 +236,7 @@ mode "resize floating window" {
     bindsym r mode "resize"
     bindsym $mod+r mode "resize"
 }
-    
+
 bindsym $mod+r mode "resize"
 
 # Minimum and maximum size for floating windows
@@ -268,17 +255,19 @@ client.urgent           #2f343a #900000 #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 client.background       #ffffff
 
-# i3-gaps
-for_window [class="^.*"] border pixel 2
+# Borders
+for_window [class="^.*"] border pixel 0
 # for_window [title=" - Wolfram Mathematica"] border normal 1 # I nead titles in .nb files
-set $in_gaps 14
-# set $in_gaps 32
-set $out_gaps 0
+
+## Gaps
+
+set $in_gaps 40
+set $out_gaps 30
 gaps inner $in_gaps
 gaps outer $out_gaps
 hide_edge_borders smart
 
-# i3-gaps resizing mode
+# Gaps resizing mode
 set $mode_gaps_inner Gaps (inner)
 bindsym $mod+g mode "$mode_gaps_inner"
 set $mode_gaps_outer Gaps (outer)
@@ -318,19 +307,37 @@ mode "$mode_gaps_outer" {
         bindsym Escape mode "default"
 }
 
+# Only enable gaps on a workspace when there is at least one container
+smart_gaps on
+
+# Only enable outer gaps when there is exactly one container
+smart_gaps inverse_outer
+
+## Monitors
+
 # External monitor mode
 set $mode_external_monitor Monitor(s): [d]ual, [e]xternal, [l]aptop, [m]irror
 bindsym $mod+m mode "$mode_external_monitor"
 
 mode "$mode_external_monitor" {
-        bindsym d exec --no-startup-id sh ~/dotfiles/i3/dual-screen.sh d; mode "default"
-        bindsym e exec --no-startup-id sh ~/dotfiles/i3/dual-screen.sh e; mode "default"
-        bindsym l exec --no-startup-id sh ~/dotfiles/i3/dual-screen.sh l; mode "default"
-        bindsym m exec --no-startup-id sh ~/dotfiles/i3/dual-screen.sh m; mode "default"
+        bindsym d exec --no-startup-id sh ~/dotfiles/i3/scripts/i3-dual-screen.sh d; mode "default"
+        bindsym e exec --no-startup-id sh ~/dotfiles/i3/scripts/i3-dual-screen.sh e; mode "default"
+        bindsym l exec --no-startup-id sh ~/dotfiles/i3/scripts/i3-dual-screen.sh l; mode "default"
+        bindsym m exec --no-startup-id sh ~/dotfiles/i3/scripts/i3-dual-screen.sh m; mode "default"
 
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
+
+# Move focused window between monitors
+bindsym $mod+Shift+greater move container to output right
+bindsym $mod+Shift+less    move container to output left
+
+# Move focused workspace between monitors
+bindsym $mod+Ctrl+greater move workspace to output right
+bindsym $mod+Ctrl+less    move workspace to output left
+
+## Notifications
 
 # Pause/resume Dunst notifications mode
 set $mode_dunst Notifications: [p]ause, [r]esume
@@ -344,30 +351,85 @@ mode "$mode_dunst" {
         bindsym Escape mode "default"
 }
 
-# Using a scratchpad
-# make the currently focused window a scratchpad
+# # i3 grid manager
+# bindsym $mod+i exec /bin/bash ~/dotfiles/i3/scripts/grid-rofi/manager.sh
+#
+# # Dedicated shortcuts for frequently used commands (less keystrokes)
+# # bindsym $mod+c exec "python3 -m i3grid reset"
+#
+# # Grid floating windows
+# mode "i3grid" {
+#     bindsym q exec "python3 -m i3grid snap --cols 2 --rows 2 --target 1"
+#     bindsym e exec "python3 -m i3grid snap --cols 2 --rows 2 --target 2"
+#     bindsym z exec "python3 -m i3grid snap --cols 2 --rows 2 --target 3"
+#     bindsym c exec "python3 -m i3grid snap --cols 2 --rows 2 --target 4"
+#
+#     bindsym w exec "python3 -m i3grid snap --cols 1 --rows 2 --target 1"
+#     bindsym x exec "python3 -m i3grid snap --cols 1 --rows 2 --target 2"
+#
+#     bindsym a exec "python3 -m i3grid snap --cols 2 --rows 1 --target 1"
+#     bindsym d exec "python3 -m i3grid snap --cols 2 --rows 1 --target 2"
+#     bindsym s exec "python3 -m i3grid reset"
+#     bindsym f exec "python3 -m i3grid csize --perc 100"
+#
+#     bindsym g exec "python3 -m i3grid csize --perc 33"
+#     bindsym h exec "python3 -m i3grid csize --perc 50"
+#     bindsym j exec "python3 -m i3grid csize --perc 66"
+#     bindsym k exec "python3 -m i3grid csize --perc 85"
+#     bindsym l exec "python3 -m i3grid csize --perc 92"
+#     bindsym p exec "python3 -m i3grid snap --cols 3 --rows 3 --target 3"
+#     bindsym o exec "python3 -m i3grid snap --cols 3 --rows 3 --target 2"
+#     bindsym i exec "python3 -m i3grid snap --cols 3 --rows 3 --target 1"
+#
+#     bindsym Return mode "default"
+#     bindsym Escape mode "default"
+# }
+# bindsym $mod+shift+o mode "i3grid"
+
+## Scratchpad windows
+
+# Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
-# show the first scratchpad window
+
+# Show/hide scratchpad windows
 bindsym $mod+minus scratchpad show
 
-# Scratchpad terminals
-for_window [instance="scratchmite"] floating enable sticky enable
-for_window [instance="scratchmite" window_role="startup"] move scratchpad
-# create a scratchpad terminal on the fly
-bindsym $mod+Shift+Return exec --no-startup-id termite --name scratchmite
+# Create a scratchpad terminal on the fly
+bindsym $mod+Shift+Return exec --no-startup-id alacritty --class="scratchpad_terminal"
 
-# Autostart programs
+# Settings for scratchpad terminals
+for_window [title="Alacritty" instance="scratchpad_terminal"] floating enable sticky enable
+for_window [title="Alacritty" instance="scratchpad_terminal_startup"] floating enable sticky enable move scratchpad
+
+## Autostart programs
+
+# Wallpaper
 exec_always --no-startup-id feh --bg-scale ~/.wallpaper
-# some keyboard stuff already exist in xinitrc but they get overwritten 
-exec_always --no-startup-id sh ~/dotfiles/i3/.keys-config.sh 
+
+# Keyboard configuration already exist in xinitrc but it is overwritten 
+exec_always --no-startup-id sh ~/dotfiles/i3/scripts/i3-keys-config.sh 
+
+# Launch Polybar 
 exec_always --no-startup-id sh ~/dotfiles/polybar/launch.sh
+
+# Hide cursor
 exec --no-startup-id unclutter --timeout 1 --jitter 15 --ignore-scrolling --fork
+
+# Manage clipboard
 exec --no-startup-id clipmenud
-exec --no-startup-id termite
-exec --no-startup-id termite --name scratchmite --role startup
-exec --no-startup-id i3-battery-popup -n -L 30 -l 20 -m "Low Battery!"
-# exec --no-startup-id oneko -time 80000
-# # starting some dunst notifications
-# exec --no-startup-id sh ~/dotfiles/i3/.take_a_break.sh
-# exec --no-startup-id sh ~/dotfiles/i3/.low_battery.sh
-# exec --no-startup-id sh ~/dotfiles/i3/.todo_reminder.sh
+
+# Create a scratchpad terminal at startup
+exec --no-startup-id alacritty --class="scratchpad_terminal_startup"
+
+# Low battery notification
+exec_always --no-startup-id i3-battery-popup -n -L 30 -l 20 -m "Low Battery!"
+exec_always --no-startup-id i3-battery-popup -n -L 15 -l 10 -m "Please charge!"
+
+# Launch a compositor
+#exec_always --no-startup-id picom --experimental-backend
+# I use the picom-ibhagwan-git package from the AUR which fixes rounded corners
+# It doesn't require --experimental-backend
+exec_always --no-startup-id picom
+
+# Create an archlinux system info screen at startup
+exec --no-startup-id sh ~/dotfiles/i3/scripts/i3-startup.sh

@@ -22,15 +22,19 @@ enable-ipc = true
 ; Put the bar at the bottom of the screen
 bottom = false
 
-; Tell the Window Manager not to configure the window
-override-redirect = false
+; Tell the Window Manager not to configure the window.
+; This keeps i3wm windows fixed when toggling polybar
+override-redirect = true
+
+; Keep polybar below all other windows (inluding floating ones) when using i3wm
+wm-restack = i3
 
 width = 100%
 height = 20
 
 offset-x = 0
-offset-y = 0
-radius = 2.0
+offset-y = -2
+radius = 2
 
 ; Center the `modules-center` block between the left and right block
 fixed-center = false
@@ -107,7 +111,7 @@ interval = 25
 mount-0 = /
 mount-1 = /home
 
-label-mounted = %{F#99}%mountpoint%%{F-} %percentage_used%%
+label-mounted = %{F#999}%mountpoint%%{F-} %percentage_used%%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground-alt}
 
@@ -146,26 +150,26 @@ wrapping-scroll = false
 
 ; set icons for each workspace
 ws-icon-0 = 0;%{F#fba922}󰣇%{F-}
-ws-icon-1 = 1;1
-ws-icon-2 = 2;2
-ws-icon-3 = 3;3
-ws-icon-4 = 4;4
-ws-icon-5 = 5;5
-ws-icon-6 = 6;6
-ws-icon-7 = 7;7
-ws-icon-8 = 8;8
-ws-icon-9 = 9;9
-ws-icon-10 = 10;10
-; ws-icon-1 = 1;󰼏
-; ws-icon-2 = 2;󰼐
-; ws-icon-3 = 3;󰼑
-; ws-icon-4 = 4;󰼒
-; ws-icon-5 = 5;󰼓
-; ws-icon-6 = 6;󰼔
-; ws-icon-7 = 7;󰼕
-; ws-icon-8 = 8;󰼖
-; ws-icon-9 = 9;󰼗
-; ws-icon-10 = 10;󰿪
+; s-icon-1 = 1;1
+; s-icon-2 = 2;2
+; s-icon-3 = 3;3
+; s-icon-4 = 4;4
+; s-icon-5 = 5;5
+; s-icon-6 = 6;6
+; s-icon-7 = 7;7
+; s-icon-8 = 8;8
+; s-icon-9 = 9;9
+; s-icon-10 = 10;10
+ws-icon-1 = 1;󰼏
+ws-icon-2 = 2;󰼐
+ws-icon-3 = 3;󰼑
+ws-icon-4 = 4;󰼒
+ws-icon-5 = 5;󰼓
+ws-icon-6 = 6;󰼔
+ws-icon-7 = 7;󰼕
+ws-icon-8 = 8;󰼖
+ws-icon-9 = 9;󰼗
+ws-icon-10 = 10;󰿪
 
 ; Only show workspaces on the same output as the bar
 pin-workspaces = true
@@ -230,8 +234,8 @@ ramp-coreload-7-foreground = #ff5555
 
 [module/date]
 type = internal/date
-date = %%{F#99} 󱑓 %%{F#fff}%a %b %e, %H:%M%%{F#555}:%%{F#fba922}%S%%{F-}
-date-alt = %%{F#99} 󰃰 %%{F#fff}%A, %B %d %Y, %H:%M%%{F#555}:%%{F#fba922}%S%%{F-}
+date = %%{F#999} 󱑓 %%{F#fff}%a %b %e, %H:%M%%{F#555}:%%{F#fba922}%S%%{F-}
+date-alt = %%{F#999} 󰃰 %%{F#fff}%A, %B %d %Y, %H:%M%%{F#555}:%%{F#fba922}%S%%{F-}
 
 
 [module/memory]
@@ -239,7 +243,7 @@ type = internal/memory
 format = <label> <bar-used>
 label = RAM
 
-bar-used-width = 8
+bar-used-width = 20
 bar-used-foreground-0 = #aaff77
 bar-used-foreground-1 = #aaff77
 bar-used-foreground-2 = #fba922
@@ -403,8 +407,8 @@ time-format = %H:%M
 format-charging = <animation-charging> <label-charging>
 format-discharging = <ramp-capacity> <label-discharging>
 
-label-charging = %{F#99}%time%%{F-} %percentage%%
-label-discharging = %{F#99}%time%%{F-} %percentage%%
+label-charging = %{F#999}%time%%{F-} %percentage%%
+label-discharging = %{F#999}%time%%{F-} %percentage%%
 
 format-full-prefix = "full "
 format-full-prefix-foreground = ${colors.foreground}
@@ -487,7 +491,7 @@ label-open = 
 label-open-foreground = ${colors.secondary}
 label-close = 
 label-close-foreground = ${colors.secondary}
-label-separator = 
+label-separator = " | "
 label-separator-foreground = ${colors.foreground-alt-darker}
 
 menu-0-0 = " "

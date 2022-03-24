@@ -1,15 +1,15 @@
 #!/bin/bash
 
-res=$(rofi -dmenu -p "   :" -lines 5 < ~/dotfiles/i3/.dmenu-i3exit)
+res=$(rofi -dmenu -p "   :" -lines 5 < ~/dotfiles/i3/scripts/.dmenu-i3exit)
 
 if [ $res = "lock" ]; then
     # i3lock exit # traditional i3lock
-    sh ~/dotfiles/i3/i3lock-blur.sh # blured screenshot i3lock
+    sh ~/dotfiles/i3/scripts/i3-lock-blur.sh # blured screenshot i3lock
 fi
 
 if [ $res = "suspend" ]; then
     # lock screen and suspend
-    sh ~/dotfiles/i3/i3lock-blur.sh && systemctl suspend
+    sh ~/dotfiles/i3/scripts/i3-lock-blur.sh && systemctl suspend
 fi
 
 if [ $res = "logout" ]; then

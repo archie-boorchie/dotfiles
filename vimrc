@@ -548,7 +548,7 @@ let g:comfortable_motion_scroll_down_key = "j"
 let g:comfortable_motion_scroll_up_key = "k"
 
 " Highlightedyank settings
-let g:highlightedyank_highlight_duration = 150
+let g:highlightedyank_highlight_duration = 120
 
 " Startify settings
 let g:startify_fortune_use_unicode = 1
@@ -570,9 +570,10 @@ let g:startify_lists = [
             \ { 'type': 'commands',  'header': ['   Commands'] }
             \ ]
 let g:startify_bookmarks = [ 
+            \ { 'bc': '~/dotfiles/picom/picom.conf' },
             \ { 'bi': '~/dotfiles/i3/config' },
             \ { 'bp': '~/dotfiles/polybar/config' },
-            \ { 'bt': '~/dotfiles/termite/config' },
+            \ { 'bt': '~/dotfiles/alacritty/alacritty.yml' },
             \ { 'bv': '~/dotfiles/vimrc' },
             \ { 'bz': '~/dotfiles/zshrc' }
             \ ]

@@ -181,3 +181,13 @@ function fixsubs()
         mv "$1".tmp1 "$1"
     fi
 }
+
+# Change pitch of song with mplayer by one semitone down
+function mplayerpitch()
+{
+    if [ -z "$1" ]; then
+        echo "Please give the audio file name."
+    else
+    mplayer -af scaletempo=scale=1.0:speed=pitch -speed 0.9438 "$1"
+    fi
+}
