@@ -64,7 +64,7 @@ font-3 = MaterialDesignIcons:size=11;+1
 
 modules-left = i3
 modules-center = xwindow
-modules-right = cpu memory filesystem xbacklight pulseaudio wlan eth battery temperature date powermenu
+modules-right = cpu memory filesystem xbacklight pulseaudio xkeyboard wlan eth battery temperature date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -91,12 +91,15 @@ label-empty-underline = #aafba922
 type = internal/xkeyboard
 blacklist-0 = num lock
 
-format-prefix = " "
+format-prefix =
 format-prefix-foreground = ${colors.foreground-alt}
 format-prefix-underline = ${colors.secondary}
 
-label-layout = %layout%
+label-layout = %icon%
 label-layout-underline = ${colors.secondary}
+
+layout-icon-0 = us;en
+layout-icon-1 = gr;gr
 
 label-indicator-padding = 2
 label-indicator-margin = 1
@@ -487,9 +490,9 @@ expand-right = false
 
 format-spacing = 1
 
-label-open = 
+label-open = " "
 label-open-foreground = ${colors.secondary}
-label-close = 
+label-close = " "
 label-close-foreground = ${colors.secondary}
 label-separator = " | "
 label-separator-foreground = ${colors.foreground-alt-darker}

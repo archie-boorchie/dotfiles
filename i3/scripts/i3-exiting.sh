@@ -1,6 +1,6 @@
 #!/bin/bash
 
-res=$(rofi -dmenu -p "   :" -lines 5 < ~/dotfiles/i3/scripts/.dmenu-i3exit)
+res=$(rofi -dmenu -p "   :" -lines 5 < ~/dotfiles/i3/scripts/.i3-exiting-dmenu)
 
 if [ $res = "lock" ]; then
     # i3lock exit # traditional i3lock
