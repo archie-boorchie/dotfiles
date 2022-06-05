@@ -73,11 +73,34 @@ map <c-k> k<c-y>
 " Yank till the end of line
 nnoremap Y y$
 
+" Yank text to clipboard
+nnoremap <leader>yy "+yy
+nnoremap <leader>Y "+y$
+vnoremap <leader>y "+y
+
 " Paste the last yanked text
 nnoremap <leader>p "0p
 nnoremap <leader>P "0P
 xnoremap <leader>p "0p
 xnoremap <leader>P "0P
+
+" Paste the text from clipboard
+nnoremap <leader><C-p> "+p
+nnoremap <leader><C-P> "+P
+xnoremap <leader><C-p> "+p
+xnoremap <leader><C-P> "+P
+
+" " Navigate split windows using alt+arrows
+" nnoremap <a-right> <C-w>l
+" nnoremap <a-left> <C-w>h
+" nnoremap <a-up> <C-w>k
+" nnoremap <a-down> <C-w>j
+"
+" " Window resize via Alt + Shift + arrows
+" map <A-S-Left> <C-W>>
+" map <A-S-Right> <C-W><
+" map <A-S-Up> <C-W>+
+" map <A-S-Down> <C-W>-
 
 " Exchange ; and : to easily access command mode
 nnoremap : ;
@@ -452,8 +475,8 @@ function! LightlineFilename()
 endfunction
 " add git symbol in gitbranch
 function! GitBranchWithSymbol()
-    let gitbranchname = fugitive#head() !=# '' ? fugitive#head() : ''
-    let gitbranchsymbol = fugitive#head() !=# '' ? "  " : ''
+    let gitbranchname = FugitiveHead() !=# '' ? FugitiveHead() : ''
+    let gitbranchsymbol = FugitiveHead() !=# '' ? "  " : ''
     return gitbranchsymbol . gitbranchname
 endfunction
 

@@ -57,10 +57,8 @@ padding-right = 2
 module-margin-left = 2
 module-margin-right = 4
 
-font-0 = NotoSans-Regular:size=8;-0
-font-1 = MaterialIcons:size=10;+1
-font-2 = FontAwesome:size=9;+1
-font-3 = MaterialDesignIcons:size=11;+1
+font-0 = NotoSans-Regular:size=8;+1
+font-1 = Iosevka:size=10;+1
 
 modules-left = i3
 modules-center = xwindow
@@ -82,7 +80,7 @@ cursor-scroll = ns-resize
 type = internal/xwindow
 label = %title:0:46:...%
 label-underline = ${colors.foreground-alt}
-label-empty = "󰣇  Powered by Arch Linux  󰣇"
+label-empty = "  Powered by Arch Linux  "
 label-empty-foreground = #fba922
 label-empty-underline = #aafba922
 
@@ -91,7 +89,7 @@ label-empty-underline = #aafba922
 type = internal/xkeyboard
 blacklist-0 = num lock
 
-format-prefix =
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-prefix-underline = ${colors.secondary}
 
@@ -148,31 +146,18 @@ format = <label-state> <label-mode>
 index-sort = true
 wrapping-scroll = false
 
- ;#fba922
-;#aafba922 
-
 ; set icons for each workspace
-ws-icon-0 = 0;%{F#fba922}󰣇%{F-}
-; s-icon-1 = 1;1
-; s-icon-2 = 2;2
-; s-icon-3 = 3;3
-; s-icon-4 = 4;4
-; s-icon-5 = 5;5
-; s-icon-6 = 6;6
-; s-icon-7 = 7;7
-; s-icon-8 = 8;8
-; s-icon-9 = 9;9
-; s-icon-10 = 10;10
-ws-icon-1 = 1;󰼏
-ws-icon-2 = 2;󰼐
-ws-icon-3 = 3;󰼑
-ws-icon-4 = 4;󰼒
-ws-icon-5 = 5;󰼓
-ws-icon-6 = 6;󰼔
-ws-icon-7 = 7;󰼕
-ws-icon-8 = 8;󰼖
-ws-icon-9 = 9;󰼗
-ws-icon-10 = 10;󰿪
+ws-icon-0 = 0;%{F#fba922}%{F-}
+ws-icon-1 = 1;
+ws-icon-2 = 2;
+ws-icon-3 = 3;
+ws-icon-4 = 4;
+ws-icon-5 = 5;
+ws-icon-6 = 6;
+ws-icon-7 = 7;
+ws-icon-8 = 8;
+ws-icon-9 = 9;
+ws-icon-10 = 10;
 
 ; Only show workspaces on the same output as the bar
 pin-workspaces = true
@@ -205,9 +190,9 @@ label-urgent-padding = ${module/bspwm.label-urgent-padding}
 
 [module/cpu]
 type = internal/cpu
-interval = 0.5
+interval = 0.3
 format = <label> <ramp-coreload>
-label = CPU
+label = "CPU "
 
 ramp-coreload-0 = ▁
 ramp-coreload-0-font = 0
@@ -230,33 +215,33 @@ ramp-coreload-5-foreground = #fba922
 ramp-coreload-6 = ▇
 ramp-coreload-6-font = 0
 ramp-coreload-6-foreground = #ff5555
-ramp-coreload-7 = █
-ramp-coreload-7-font = 0
-ramp-coreload-7-foreground = #ff5555
+;ramp-coreload-7 = █
+;ramp-coreload-7-font = 0
+;ramp-coreload-7-foreground = #ff5555
 
 
 [module/date]
 type = internal/date
-date = %%{F#999} 󱑓 %%{F#fff}%a %b %e, %H:%M%%{F#555}:%%{F#fba922}%S%%{F-}
-date-alt = %%{F#999} 󰃰 %%{F#fff}%A, %B %d %Y, %H:%M%%{F#555}:%%{F#fba922}%S%%{F-}
+date = %%{F#999}   %%{F#fff}%a %b %e, %H:%M%%{F#555}:%%{F#fba922}%S%%{F-}
+date-alt = %%{F#999}   %%{F#fff}%A, %B %d %Y, %H:%M%%{F#555}:%%{F#fba922}%S%%{F-}
 
 
 [module/memory]
 type = internal/memory
 format = <label> <bar-used>
-label = RAM
+label = "RAM "
 
-bar-used-width = 20
+bar-used-width = 5
 bar-used-foreground-0 = #aaff77
 bar-used-foreground-1 = #aaff77
 bar-used-foreground-2 = #fba922
 bar-used-foreground-3 = #ff5555
-bar-used-indicator = |
+bar-used-indicator = 
 bar-used-indicator-font = 0
-bar-used-indicator-foreground = #ff
-bar-used-fill = ─
+bar-used-indicator-foreground = #afa
+bar-used-fill = 
 bar-used-fill-font = 0
-bar-used-empty = ─
+bar-used-empty = 
 bar-used-empty-font = 0
 bar-used-empty-foreground = ${colors.foreground-alt-darker}
 
@@ -283,11 +268,20 @@ format = <ramp> <label>
 label = %percentage%%
 label-foreground = ${root.foreground}
 
-ramp-0 = 🌕
-ramp-1 = 🌔
-ramp-2 = 🌓
-ramp-3 = 🌒
-ramp-4 = 🌑
+ramp-0 = ""
+ramp-1 = ""
+ramp-2 = ""
+ramp-3 = ""
+ramp-4 = ""
+ramp-5 = ""
+ramp-6 = ""
+ramp-7 = ""
+ramp-8 = ""
+ramp-9 = ""
+ramp-10 = ""
+ramp-11 = ""
+ramp-12 = ""
+ramp-13 = ""
 ramp-foreground = ${colors.foreground-alt}
 
 bar-width = 5
@@ -338,19 +332,19 @@ label-connected =  %local_ip%
 [module/pulseaudio]
 type = internal/pulseaudio
 
-format-volume = <ramp-volume> <label-volume> <bar-volume>
+;format-volume = <ramp-volume> <label-volume> <bar-volume>
+format-volume = <ramp-volume> <label-volume>
 label-volume = %percentage%%
 label-volume-foreground = ${root.foreground}
 
-ramp-volume-0 = 󰕿 
-ramp-volume-1 = 󰖀
-ramp-volume-2 = 󰖀
-ramp-volume-3 = 󰕾
-ramp-volume-4 = 󰕾
-ramp-volume-5 = 󱄠
+ramp-volume-0 = "奄 "
+ramp-volume-1 = "奔 "
+ramp-volume-2 = "墳 "
+ramp-volume-3 = "墳 "
+ramp-volume-4 = "  "
 ramp-volume-foreground = ${colors.foreground-alt}
 
-label-muted = 󰸈 %percentage%%
+label-muted = ﱝ %percentage%%
 label-muted-foreground = #666
 
 bar-volume-width = 5
@@ -417,15 +411,25 @@ format-full-prefix = "full "
 format-full-prefix-foreground = ${colors.foreground}
 format-full-prefix-underline = ${colors.foreground}
 
-ramp-capacity-0 =  
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-4 = 
-ramp-capacity-5 = 
-ramp-capacity-6 = 
-ramp-capacity-7 = 
-ramp-capacity-8 = 
+;ramp-capacity-0 = 
+;ramp-capacity-1 = 
+;ramp-capacity-2 = 
+;ramp-capacity-3 = 
+;ramp-capacity-4 = 
+;ramp-capacity-5 = 
+;ramp-capacity-6 = 
+;ramp-capacity-7 = 
+;ramp-capacity-8 = 
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-5 = 
+ramp-capacity-6 = 
+ramp-capacity-7 = 
+ramp-capacity-8 = 
+ramp-capacity-9 = 
 ramp-capacity-foreground = ${colors.foreground-alt}
 ramp-capacity-0-foreground = ${colors.alert}
 ramp-capacity-1-foreground = ${colors.alert}

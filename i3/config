@@ -81,10 +81,10 @@ bindsym $mod+Ctrl+s layout stacking
 bindsym $mod+t layout tabbed
 
 # Focus the parent container
-bindsym $mod+a focus parent
+# bindsym $mod+a focus parent
 
 # Focus the child container
-bindsym $mod+Shift+a focus child
+# bindsym $mod+Shift+a focus child
 
 # Jump to urgent window
 bindsym $mod+x [urgent=last] focus
@@ -218,8 +218,8 @@ mode "resize floating window" {
     bindsym --whole-window $mod+button1 move position mouse
 
     # set horizontal or vertical orientation
-    bindsym plus    resize set 900 555
-    bindsym shift+h resize set 900 555
+    bindsym plus    resize set 1000 800
+    bindsym shift+h resize set 1000 600
     bindsym v resize set 600 800
 
     # grow or shrink floating window in place
@@ -246,6 +246,8 @@ floating_maximum_size -1 x -1
 # Toggle sticky windows
 bindsym $mod+s sticky toggle
 
+## Borders
+
 # Colors
 # class                 border  backgr. text    indicator child_border
 client.focused          #fba922 #222222 #ffffff 333333    #fba922
@@ -255,14 +257,22 @@ client.urgent           #2f343a #900000 #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 client.background       #ffffff
 
-# Borders
+# Hide borders and titles for all windows
 for_window [class="^.*"] border pixel 0
-# for_window [title=" - Wolfram Mathematica"] border normal 1 # I nead titles in .nb files
+
+# Keep titles in Mathematica notebooks
+#for_window [title=" - Wolfram Mathematica"] border normal 2
+
+# Toggle borders on focused window
+bindsym $mod+a border toggle 1
+
+# Toggle borders on every window
+bindsym $mod+Shift+a exec i3-msg '[class=".*"] border toggle 2'
 
 ## Gaps
 
 set $in_gaps 40
-set $out_gaps 30
+set $out_gaps 22
 gaps inner $in_gaps
 gaps outer $out_gaps
 hide_edge_borders smart
